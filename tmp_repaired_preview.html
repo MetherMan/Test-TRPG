@@ -1,0 +1,1145 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>메라노더 TRPG: GM 밸런스 + 3인 시트 + 다이스 헬퍼</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/meranoder_plasma_helper_3pc_d20.css?v=20260219-24" />
+  <link rel="stylesheet" href="/styles/monster_hp_status.css?v=20260219-5" />
+  <link rel="stylesheet" href="/styles/panel_hierarchy_and_texture_fix.css" />
+  <link rel="stylesheet" href="/styles/player_strip_layout.css?v=20260219-17" />
+  <link rel="stylesheet" href="/styles/monster_user_layout.css" />
+</head>
+<body>
+<header>
+  <div class="headerTop">
+    <div class="headerIntro">
+      <div class="headerTitleRow">
+      <h1>TRPG 메러맨</h1>
+        <button id="adminAuthBtn" class="adminAuthBtn" type="button">??????? <-</button>
+      </div>
+      <p>
+      </p>
+    </div>
+    <div class="box headerJudgePanel" id="judgeBasicPanel">
+    <div class="t">관리자 유저 인벤토리 확인</div>
+      <div class="grid2" style="margin-top:8px;">
+        <div>
+            <label>플라즈마 회복(대상 유저)</label>
+          <input id="dc" type="number" value="12" min="1" />
+        </div>
+        <div>
+            <label>플라즈마 회복(대상 유저)</label>
+          <input id="enemyEva" type="number" value="0" />
+        </div>
+      </div>
+      <div class="dcToggleRow">
+        <label class="checkboxLine" for="showDcToUsers">
+          <input id="showDcToUsers" type="checkbox" checked />
+          <span>유저에게 목표 DC 공개</span>
+        </label>
+      </div>
+    </div>
+    <div class="box headerWhisper">
+    <div class="t">관리자 유저 인벤토리 확인</div>
+      <div id="whisperLogList" class="small" style="margin-top:8px;max-height:180px;overflow:auto;"></div>
+      <div id="whisperTargetWrap" style="margin-top:8px;">
+            <label>플라즈마 회복(대상 유저)</label>
+        <select id="whisperTargetSlot">
+          <option value="0">User1 (PC1)</option>
+          <option value="1">User2 (PC2)</option>
+          <option value="2">User3 (PC3)</option>
+        </select>
+      </div>
+      <div style="margin-top:8px;">
+            <label>플라즈마 회복(대상 유저)</label>
+        <input id="whisperInput" type="text" maxlength="180" placeholder="??????? ??? ????? ????" />
+      </div>
+      <div class="btnRow" style="margin-top:8px;align-items:flex-end;">
+        <button id="whisperSendBtn" type="button">???? ????</button>
+      </div>
+    </div>
+    <div class="box headerChat">
+    <div class="t">관리자 유저 인벤토리 확인</div>
+      <div id="chatLogList" class="small" style="margin-top:8px;max-height:180px;overflow:auto;"></div>
+      <div class="grid2" style="margin-top:8px;">
+        <div>
+            <label>플라즈마 회복(대상 유저)</label>
+          <input id="chatInput" type="text" maxlength="180" placeholder="메시지 입력 후 전송" />
+        </div>
+        <div class="btnRow" style="align-items:flex-end;">
+          <button id="chatSendBtn" type="button">전송</button>
+          <button id="chatClearBtn" type="button">로그 클리어</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="card" id="gmCard">
+    <div class="cardHeadLine">
+      <h2 id="gmCardTitle">GM 밸런스 계수</h2>
+      <div id="gmPanelTabs" class="panelTagTabs" role="tablist" aria-label="GM ?��? ???">
+        <button id="gmPanelTabBalance" class="panelTagBtn active" type="button" role="tab" aria-selected="true">?�Z??</button>
+        <button id="gmPanelTabMonster" class="panelTagBtn" type="button" role="tab" aria-selected="false">????</button>
+      </div>
+    </div>
+    <p id="gmCardDesc" class="muted">아래 계수는 PC 3명에게 공통 적용됩니다.</p>
+
+    <div id="monsterOpsPanel" class="box monsterCategoryPanel" style="display:none;">
+      <div class="t" id="monsterPanelTitle">몬스터 운영</div>
+      <p class="small" id="monsterPanelDesc" style="margin:8px 0 0;">현재 전투 몬스터를 등록/관리합니다.</p>
+
+      <div id="monsterAdminControls">
+        <div class="grid3" style="margin-top:8px;">
+          <div>
+            <label>플라즈마 회복(대상 유저)</label>
+            <select id="activeMonsterTemplateSelect"></select>
+          </div>
+          <div class="btnRow" style="align-items:flex-end;">
+            <button id="activeMonsterCreateFromTemplateBtn" type="button">템플릿으로 등록</button>
+          </div>
+          <div>
+            <label>플라즈마 회복(대상 유저)</label>
+            <select id="activeMonsterFocusSelect"></select>
+          </div>
+        </div>
+        <div class="btnRow" style="margin-top:8px;">
+          <button id="encounterApplyBtn" type="button">???? ????</button>
+          <button id="encounterHideBtn" type="button">???? ????</button>
+        </div>
+        <p id="encounterPublishStatus" class="small" style="margin:8px 0 0;"></p>
+      <p class="small" style="margin:8px 0 0;">이 채널은 공격 유형별 특성 보너스를 직접 설정합니다. 변경 즉시 실시간 반영됩니다.</p>
+      </div>
+
+      <div id="activeMonsterRuntimeList" class="small" style="margin-top:8px;"></div>
+    </div>
+
+    <div class="box" id="monsterPanel" style="margin-top:10px;display:none;">
+      <details open>
+      <summary>JSON 내보내기 / 가져오기 (밸런스 + 3PC + 몬스터)</summary>
+        <div class="grid3" style="margin-top:8px;">
+          <div>
+            <label>플라즈마 회복(대상 유저)</label>
+          <input id="monsterName" type="text" placeholder="예: 늪지 오우거" />
+          </div>
+          <div>
+            <label>플라즈마 회복(대상 유저)</label>
+            <select id="monsterKind">
+            <option value="per_player">플레이어별 몬스터</option>
+            <option value="per_player">플레이어별 몬스터</option>
+            </select>
+          </div>
+          <div>
+            <label>플라즈마 회복(대상 유저)</label>
+            <input id="monsterHp" type="number" min="1" value="20" />
+          </div>
+          <div>
+            <label>DC</label>
+            <input id="monsterDc" type="number" min="1" value="12" />
+          </div>
+          <div>
+            <label>플라즈마 회복(대상 유저)</label>
+            <input id="monsterEvaInput" type="number" value="0" />
+          </div>
+          <div>
+            <label>플라즈마 회복(대상 유저)</label>
+            <textarea id="monsterNote" rows="3" maxlength="500" placeholder="??? ??? (???? ????)"></textarea>
+          </div>
+        </div>
+        <div class="box mediaUploadBox" style="margin-top:8px;">
+            <label>플라즈마 회복(대상 유저)</label>
+          <div class="mediaUploadRow">
+            <input id="monsterImageFile" class="mediaFileInput" type="file" accept="image/*" />
+            <div class="mediaUploadBtns">
+              <button id="applyMonsterImageBtn" type="button">????</button>
+              <button id="clearMonsterImageBtn" type="button">????</button>
+            </div>
+            <img id="monsterImagePreview" class="monsterTemplatePreview" alt="???? ????? ???????" />
+          </div>
+        </div>
+        <div class="btnRow" style="margin-top:8px;">
+        <button id="monsterCreateBtn" type="button">몬스터 템플릿 저장</button>
+          <button id="monsterCancelEditBtn" type="button" style="display:none;">???? ???</button>
+        </div>
+      </details>
+
+      <details open style="margin-top:8px;">
+      <summary>JSON 내보내기 / 가져오기 (밸런스 + 3PC + 몬스터)</summary>
+        <div class="grid3" style="margin-top:8px;">
+          <div>
+            <label>플라즈마 회복(대상 유저)</label>
+            <select id="encounterMode">
+            <option value="per_player">플레이어별 몬스터</option>
+            <option value="per_player">플레이어별 몬스터</option>
+            <option value="per_player">플레이어별 몬스터</option>
+            </select>
+          </div>
+          <div>
+            <label>플라즈마 회복(대상 유저)</label>
+            <select id="encounterSharedMonster"></select>
+          </div>
+          <div>
+            <label>플라즈마 회복(대상 유저)</label>
+            <input id="encounterSwarmCount" type="number" min="1" value="3" />
+          </div>
+        </div>
+        <div class="grid3" style="margin-top:8px;">
+          <div>
+            <label>플라즈마 회복(대상 유저)</label>
+            <select id="encounterPcMonster0"></select>
+          </div>
+          <div>
+            <label>플라즈마 회복(대상 유저)</label>
+            <select id="encounterPcMonster1"></select>
+          </div>
+          <div>
+            <label>플라즈마 회복(대상 유저)</label>
+            <select id="encounterPcMonster2"></select>
+          </div>
+        </div>
+      </details>
+
+      <details open style="margin-top:8px;">
+      <summary>JSON 내보내기 / 가져오기 (밸런스 + 3PC + 몬스터)</summary>
+        <div id="monsterTemplateList" class="small" style="margin-top:8px;"></div>
+      </details>
+    </div>
+
+    <div class="realtimePanel" id="realtimePanel">
+      <h2 style="margin:0 0 8px;">실시간 세션</h2>
+      <p class="small" style="margin:0 0 8px;">???? ?????? ???? [?��???? ?��???] ?????? ????????.</p>
+
+      <div class="adminTools" id="adminTools">
+        <div class="grid2">
+          <div>
+            <label>플라즈마 회복(대상 유저)</label>
+            <input id="damageAmount" type="number" min="0" value="1" />
+          </div>
+          <div>
+            <label>플라즈마 회복(대상 유저)</label>
+            <input id="healAmount" type="number" min="0" value="1" />
+          </div>
+        </div>
+
+        <div class="btnRow" style="margin-top:8px;">
+          <button id="applyDamageBtn" type="button">피해 적용</button>
+          <button id="applyHealBtn" type="button">회복 적용</button>
+          <button id="pushLocalToServerBtn" type="button">???? ?? ???? ????</button>
+        </div>
+
+        <div style="margin-top:10px;" class="muted">관리자 스탯 / 포인트 설정</div>
+        <div class="grid3" style="margin-top:8px;">
+          <div>
+            <label>플라즈마 회복(대상 유저)</label>
+            <select id="adminTargetSlot">
+              <option value="0">User1 (PC1)</option>
+              <option value="1">User2 (PC2)</option>
+              <option value="2">User3 (PC3)</option>
+            </select>
+          </div>
+          <div>
+            <label>플라즈마 회복(대상 유저)</label>
+            <input id="grantPointsAmount" type="number" min="0" value="1" />
+          </div>
+          <div class="btnRow" style="align-items:flex-end;">
+            <button id="grantPointsBtn" type="button">포인트 지급</button>
+          </div>
+        </div>
+        <div class="grid3" style="margin-top:8px;">
+          <div>
+            <label>플라즈마 회복(대상 유저)</label>
+            <select id="adminStatName">
+            <option value="per_player">플레이어별 몬스터</option>
+            <option value="per_player">플레이어별 몬스터</option>
+            <option value="per_player">플레이어별 몬스터</option>
+            <option value="per_player">플레이어별 몬스터</option>
+            <option value="per_player">플레이어별 몬스터</option>
+            <option value="per_player">플레이어별 몬스터</option>
+            <option value="per_player">플레이어별 몬스터</option>
+            <option value="per_player">플레이어별 몬스터</option>
+            <option value="per_player">플레이어별 몬스터</option>
+            <option value="per_player">플레이어별 몬스터</option>
+            </select>
+          </div>
+          <div>
+            <label>플라즈마 회복(대상 유저)</label>
+            <input id="adminStatValue" type="number" min="0" value="20" />
+          </div>
+          <div class="btnRow" style="align-items:flex-end;">
+            <button id="adminSetStatBtn" type="button">스탯 반영</button>
+          </div>
+        </div>
+        <div class="grid3" style="margin-top:8px;">
+          <div>
+            <label>플라즈마 회복(대상 유저)</label>
+            <div class="btnRow" style="align-items:flex-end;">
+              <button id="adminPlasmaPlusOneBtn" type="button">+1 회복</button>
+              <button id="adminPlasmaFullBtn" type="button">풀회복</button>
+            </div>
+          </div>
+        </div>
+        <div class="grid3" style="margin-top:8px;">
+          <div>
+            <label>플라즈마 회복(대상 유저)</label>
+            <input id="adminGoldAmount" type="number" min="1" value="10" />
+          </div>
+          <div class="btnRow" style="align-items:flex-end;">
+            <button id="grantGoldBtn" type="button">골드 지급</button>
+            <button id="takeGoldBtn" type="button">골드 회수</button>
+          </div>
+        </div>
+
+        <div class="sideHint">아이템 제작/인벤 관리는 좌측 화살표 패널에서 조정합니다.</div>
+
+        <div style="margin-top:10px;" class="muted">관리자 스탯 / 포인트 설정</div>
+        <div class="grid3" style="margin-top:8px;">
+          <div class="box">
+            <label>플라즈마 회복(대상 유저)</label>
+            <input id="avatarFile0" type="file" accept="image/*" />
+            <div class="btnRow" style="margin-top:8px;">
+              <button id="applyAvatar0" type="button">적용</button>
+              <button id="clearAvatar0" type="button">삭제</button>
+            </div>
+          </div>
+          <div class="box">
+            <label>플라즈마 회복(대상 유저)</label>
+            <input id="avatarFile1" type="file" accept="image/*" />
+            <div class="btnRow" style="margin-top:8px;">
+              <button id="applyAvatar1" type="button">적용</button>
+              <button id="clearAvatar1" type="button">삭제</button>
+            </div>
+          </div>
+          <div class="box">
+            <label>플라즈마 회복(대상 유저)</label>
+            <input id="avatarFile2" type="file" accept="image/*" />
+            <div class="btnRow" style="margin-top:8px;">
+              <button id="applyAvatar2" type="button">적용</button>
+              <button id="clearAvatar2" type="button">삭제</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="userHint">관리자가 바꾼 값은 실시간 동기화됩니다. 유저는 스킬 포인트로만 스탯을 강화할 수 있습니다.</div>
+    </div>
+
+    <div id="gmBalanceControls">
+    <div class="box">
+    <div class="t">관리자 유저 인벤토리 확인</div>
+      <p class="small" style="margin:8px 0 0;">이 채널은 공격 유형별 특성 보너스를 직접 설정합니다. 변경 즉시 실시간 반영됩니다.</p>
+      <div class="grid3" style="margin-top:8px;">
+        <div><label>??? ????: N??</label><input id="gm_str_step" type="number" min="1" value="3" /></div>
+        <div><label>??? ????: ??????</label><input id="gm_str_gain" type="number" min="0" value="1" /></div>
+        <div><label>??�� DC: N??</label><input id="gm_dex_dc_step" type="number" min="1" value="4" /></div>
+        <div><label>??�� DC: ??????</label><input id="gm_dex_dc_gain" type="number" min="0" value="1" /></div>
+        <div><label>??�� ????: N??</label><input id="gm_dex_hit_step" type="number" min="1" value="10" /></div>
+        <div><label>??�� ????: ??????</label><input id="gm_dex_hit_gain" type="number" min="0" value="1" /></div>
+        <div><label>???? ????: N??</label><input id="gm_int_hit_step" type="number" min="1" value="4" /></div>
+        <div><label>???? ????: ??????</label><input id="gm_int_hit_gain" type="number" min="0" value="1" /></div>
+        <div><label>???? ???: N??</label><input id="gm_int_eff_step" type="number" min="1" value="4" /></div>
+        <div><label>???? ???: ??? +%</label><input id="gm_int_eff_chance" type="number" min="0" value="10" /></div>
+        <div><label>?o??? ????: N??</label><input id="gm_plasma_pow_step" type="number" min="1" value="3" /></div>
+        <div><label>?o??? ????: ??????</label><input id="gm_plasma_pow_gain" type="number" min="0" value="2" /></div>
+      </div>
+      <div class="grid3" style="margin-top:8px;">
+        <div><label>??? ?????(??)</label><input id="gm_pool_base" type="number" min="1" value="5" /></div>
+        <div><label>??? ???? ?????</label><input id="gm_pool_start" type="number" min="1" value="4" /></div>
+        <div><label>??? ????: N??</label><input id="gm_pool_step" type="number" min="1" value="4" /></div>
+        <div><label>??? ????: ??????</label><input id="gm_pool_gain" type="number" min="1" value="1" /></div>
+      </div>
+      <div style="margin-top:8px;">
+            <label>플라즈마 회복(대상 유저)</label>
+        <input id="gm_cha_guide" type="text" maxlength="160" value="NPC ????/???? ?????? GM ?? ????" />
+      </div>
+      <p class="small" style="margin:8px 0 0;">?o??? ??? ???: <b>pool ?? ?????</b>??? pool ???, ?? ??? <b>????? + floor((pool-?????)/N) * ??????</b></p>
+    </div>
+
+    <div class="btnRow" style="margin-top:10px;">
+      <button id="saveBtn" type="button">로컬 저장</button>
+      <button id="loadBtn" type="button">로컬 불러오기</button>
+      <button id="resetAllBtn" type="button">전체 초기화</button>
+    </div>
+
+    <details class="themeCustomizer" style="margin-top:10px;">
+      <summary>JSON 내보내기 / 가져오기 (밸런스 + 3PC + 몬스터)</summary>
+      <div class="grid3" style="margin-top:8px;">
+        <div><label>??? ???</label><input id="themeBgTop" type="color" value="#2a1b12" /></div>
+        <div><label>??? ???</label><input id="themeBgMid" type="color" value="#22170f" /></div>
+        <div><label>??? ???</label><input id="themeBgBottom" type="color" value="#1a110b" /></div>
+        <div><label>???? ????(?��?)</label><input id="themeSurface" type="color" value="#f4e7cd" /></div>
+        <div><label>?? ????</label><input id="themeText" type="color" value="#3a241b" /></div>
+        <div><label>???? ????</label><input id="themeMuted" type="color" value="#6d4f43" /></div>
+        <div><label>??????(???/??)</label><input id="themeAccent" type="color" value="#9b6835" /></div>
+        <div>
+            <label>플라즈마 회복(대상 유저)</label>
+          <div class="btnRow" style="align-items:center;">
+            <input id="themeBrightness" type="range" min="60" max="120" step="1" value="100" style="flex:1 1 auto;" />
+            <b id="themeBrightnessValue" class="themeBrightnessValue">100%</b>
+          </div>
+        </div>
+        <div>
+            <label>플라즈마 회복(대상 유저)</label>
+          <select id="themeImageMode" disabled>
+              <option value="plasma" selected>플라즈마</option>
+          </select>
+        </div>
+        <div>
+            <label>플라즈마 회복(대상 유저)</label>
+          <input id="themeImageTileW" type="number" min="80" max="4096" step="1" value="1000" />
+        </div>
+        <div>
+            <label>플라즈마 회복(대상 유저)</label>
+          <input id="themeImageTileH" type="number" min="80" max="4096" step="1" value="1000" />
+        </div>
+        <div>
+            <label>플라즈마 회복(대상 유저)</label>
+          <div class="btnRow" style="align-items:center;">
+            <input id="themeImageBrightness" type="range" min="40" max="180" step="1" value="100" style="flex:1 1 auto;" />
+            <b id="themeImageBrightnessValue" class="themeBrightnessValue">100%</b>
+          </div>
+        </div>
+        <div>
+            <label>플라즈마 회복(대상 유저)</label>
+          <div class="btnRow" style="align-items:center;">
+            <input id="themeImageSaturation" type="range" min="0" max="200" step="1" value="100" style="flex:1 1 auto;" />
+            <b id="themeImageSaturationValue" class="themeBrightnessValue">100%</b>
+          </div>
+        </div>
+        <div>
+            <label>플라즈마 회복(대상 유저)</label>
+          <input id="themeImageFile" type="file" accept="image/*" />
+        </div>
+        <div class="btnRow" style="align-items:flex-end;">
+          <button id="themeImageApplyBtn" type="button">????? ????</button>
+          <button id="themeImageDefaultBtn" type="button">?? ????? ????</button>
+        </div>
+      </div>
+      <div class="btnRow" style="margin-top:8px;">
+        <button id="themeResetBtn" type="button">???? ???? ????</button>
+      </div>
+      <div class="box" style="margin-top:10px;">
+    <div class="t">관리자 유저 인벤토리 확인</div>
+        <div class="grid3" style="margin-top:8px;">
+          <div><label>????? ??u ??</label><input id="diceBodyColor" type="color" value="#f3e4be" /></div>
+          <div><label>???? ??</label><input id="diceEdgeColor" type="color" value="#5b3a1f" /></div>
+          <div><label>???? ??</label><input id="diceTextColor" type="color" value="#2b180b" /></div>
+          <div><label>???? ????? ??</label><input id="diceTextOutlineColor" type="color" value="#fcf1d5" /></div>
+          <div>
+            <label>플라즈마 회복(대상 유저)</label>
+            <select id="diceTextureStyle">
+              <option value="plasma" selected>플라즈마</option>
+            <option value="per_player">플레이어별 몬스터</option>
+            <option value="per_player">플레이어별 몬스터</option>
+            <option value="per_player">플레이어별 몬스터</option>
+            </select>
+          </div>
+          <div>
+            <label>플라즈마 회복(대상 유저)</label>
+            <div class="btnRow" style="align-items:center;">
+              <input id="diceRoughness" type="range" min="0" max="100" step="1" value="46" style="flex:1 1 auto;" />
+              <b id="diceRoughnessValue" class="themeBrightnessValue">46%</b>
+            </div>
+          </div>
+          <div>
+            <label>플라즈마 회복(대상 유저)</label>
+            <div class="btnRow" style="align-items:center;">
+              <input id="diceMetalness" type="range" min="0" max="100" step="1" value="3" style="flex:1 1 auto;" />
+              <b id="diceMetalnessValue" class="themeBrightnessValue">3%</b>
+            </div>
+          </div>
+          <div>
+            <label>플라즈마 회복(대상 유저)</label>
+            <div class="btnRow" style="align-items:center;">
+              <input id="diceRollDuration" type="range" min="700" max="3500" step="50" value="1500" style="flex:1 1 auto;" />
+              <b id="diceRollDurationValue" class="themeBrightnessValue">1500ms</b>
+            </div>
+          </div>
+          <div>
+            <label>플라즈마 회복(대상 유저)</label>
+            <div class="btnRow" style="align-items:center;">
+              <input id="diceRollPower" type="range" min="70" max="250" step="1" value="150" style="flex:1 1 auto;" />
+              <b id="diceRollPowerValue" class="themeBrightnessValue">150%</b>
+            </div>
+          </div>
+        </div>
+        <div class="btnRow" style="margin-top:8px;">
+          <button id="diceAppearanceResetBtn" type="button">????? ???? ????</button>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary>JSON 내보내기 / 가져오기 (밸런스 + 3PC + 몬스터)</summary>
+      <p class="muted">같은 세팅을 JSON으로 공유할 수 있습니다.</p>
+      <div class="split">
+        <div>
+            <label>플라즈마 회복(대상 유저)</label>
+          <textarea id="exportBox" readonly></textarea>
+          <div class="btnRow" style="margin-top:8px;">
+            <button id="copyJsonBtn" type="button">복사</button>
+            <button id="refreshExportBtn" type="button">새로고침</button>
+          </div>
+        </div>
+        <div>
+            <label>플라즈마 회복(대상 유저)</label>
+          <textarea id="importBox" placeholder="여기에 JSON을 붙여넣으세요"></textarea>
+          <div class="btnRow" style="margin-top:8px;">
+            <button id="importBtn" type="button">가져오기 적용</button>
+          </div>
+        </div>
+      </div>
+    </details>
+    </div>
+  </section>
+
+  <section class="card" id="pcBattleCard">
+    <div style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start;">
+      <div>
+      <h2 style="margin:0;">운영자 인벤토리</h2>
+        <p class="muted" style="margin:6px 0 0;">탭으로 PC를 전환해 각각의 상태를 확인/수정하세요.</p>
+      </div>
+      <div id="pcQuickBar" class="btnRow" style="align-items:center;">
+        <div style="display:flex;align-items:center;gap:6px;">
+          <label for="pcQuickDamageTarget" class="small" style="margin:0;white-space:nowrap;">???</label>
+          <select id="pcQuickDamageTarget" style="width:200px;padding:8px 10px;">
+            <option value="per_player">플레이어별 몬스터</option>
+          </select>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <label for="pcQuickDamageAmount" class="small" style="margin:0;white-space:nowrap;">????</label>
+          <input id="pcQuickDamageAmount" type="number" min="0" value="1" style="width:82px;padding:8px 10px;" />
+        </div>
+        <button id="pcQuickDamageBtn" type="button">???? ????</button>
+        <button id="pcQuickHealBtn" type="button">??? ????</button>
+        <button id="pcResetBtn" class="pcResetIconBtn" type="button" title="???? PC ????" aria-label="???? PC ????">?</button>
+      </div>
+    </div>
+
+    <div class="tabs" id="pcTabs">
+      <div class="tab active" data-pc="0">PC1</div>
+      <div class="tab" data-pc="1">PC2</div>
+      <div class="tab" data-pc="2">PC3</div>
+    </div>
+
+    <div id="userCombatOverview" class="userCombatOverview" aria-live="polite">
+      <div class="userCombatCol enemyCol">
+        <div class="userCombatTitle">???? ????</div>
+        <div id="userCombatEnemyList" class="userCombatList"></div>
+      </div>
+      <div class="userCombatCol allyCol">
+        <div class="userCombatTitle">?��???? ????</div>
+        <div id="userCombatAllyList" class="userCombatList"></div>
+      </div>
+    </div>
+
+    <div class="playerStrip" id="playerStrip">
+      <div class="playerCard active" id="playerCard0" data-slot="0">
+        <img class="avatar" id="avatar0" alt="User1 이미지" />
+        <div class="playerMeta">
+          <div class="name" id="playerName0">User1</div>
+          <div class="hp" id="playerHp0">HP 0</div>
+          <div class="playerHpBar"><span id="playerHpBar0" class="playerHpBarFill"></span></div>
+          <div class="playerPlasmaMini" id="playerPlasma0" aria-label="플라즈마 잔량"></div>
+          <div class="playerHungerMini" id="playerHunger0" aria-label="????? ??????"></div>
+          <div class="playerStatusMini" id="playerStatus0" aria-label="???????"></div>
+          <div class="alwaysModBox">
+          <div class="small">상시보정</div>
+            <div class="alwaysModRow">
+              <span class="alwaysModLabel">????</span>
+              <div class="alwaysModCtrls">
+            <button id="alwaysDown0" type="button" aria-label="User1 상시보정 감소">-</button>
+                <b id="alwaysHit0">+0</b>
+            <button id="alwaysUp0" type="button" aria-label="User1 상시보정 증가">+</button>
+              </div>
+            </div>
+            <div class="alwaysModRow">
+              <span class="alwaysModLabel">????</span>
+              <div class="alwaysModCtrls">
+                <button id="alwaysPowDown0" type="button" aria-label="User1 ??? ???? ???? ????">-</button>
+                <b id="alwaysPow0">+0</b>
+                <button id="alwaysPowUp0" type="button" aria-label="User1 ??? ???? ???? ????">+</button>
+              </div>
+            </div>
+            <div class="alwaysModRow alwaysDistanceRow">
+              <span class="alwaysModLabel">???</span>
+              <select id="distanceQuick0" class="distanceQuickSelect" aria-label="User1 ?????? ???">
+            <option value="per_player">플레이어별 몬스터</option>
+              <option value="plasma" selected>플라즈마</option>
+            <option value="per_player">플레이어별 몬스터</option>
+            <option value="per_player">플레이어별 몬스터</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="playerRightCol">
+          <div class="injuryBoardWrap" id="injuryBoard0" aria-label="User1 ???? ????"></div>
+        </div>
+      </div>
+      <div class="playerCard" id="playerCard1" data-slot="1">
+        <img class="avatar" id="avatar1" alt="User2 이미지" />
+        <div class="playerMeta">
+          <div class="name" id="playerName1">User2</div>
+          <div class="hp" id="playerHp1">HP 0</div>
+          <div class="playerHpBar"><span id="playerHpBar1" class="playerHpBarFill"></span></div>
+          <div class="playerPlasmaMini" id="playerPlasma1" aria-label="플라즈마 잔량"></div>
+          <div class="playerHungerMini" id="playerHunger1" aria-label="????? ??????"></div>
+          <div class="playerStatusMini" id="playerStatus1" aria-label="???????"></div>
+          <div class="alwaysModBox">
+          <div class="small">상시보정</div>
+            <div class="alwaysModRow">
+              <span class="alwaysModLabel">????</span>
+              <div class="alwaysModCtrls">
+            <button id="alwaysDown1" type="button" aria-label="User2 상시보정 감소">-</button>
+                <b id="alwaysHit1">+0</b>
+            <button id="alwaysUp1" type="button" aria-label="User2 상시보정 증가">+</button>
+              </div>
+            </div>
+            <div class="alwaysModRow">
+              <span class="alwaysModLabel">????</span>
+              <div class="alwaysModCtrls">
+                <button id="alwaysPowDown1" type="button" aria-label="User2 ??? ???? ???? ????">-</button>
+                <b id="alwaysPow1">+0</b>
+                <button id="alwaysPowUp1" type="button" aria-label="User2 ??? ???? ???? ????">+</button>
+              </div>
+            </div>
+            <div class="alwaysModRow alwaysDistanceRow">
+              <span class="alwaysModLabel">???</span>
+              <select id="distanceQuick1" class="distanceQuickSelect" aria-label="User2 ?????? ???">
+            <option value="per_player">플레이어별 몬스터</option>
+              <option value="plasma" selected>플라즈마</option>
+            <option value="per_player">플레이어별 몬스터</option>
+            <option value="per_player">플레이어별 몬스터</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="playerRightCol">
+          <div class="injuryBoardWrap" id="injuryBoard1" aria-label="User2 ???? ????"></div>
+        </div>
+      </div>
+      <div class="playerCard" id="playerCard2" data-slot="2">
+        <img class="avatar" id="avatar2" alt="User3 이미지" />
+        <div class="playerMeta">
+          <div class="name" id="playerName2">User3</div>
+          <div class="hp" id="playerHp2">HP 0</div>
+          <div class="playerHpBar"><span id="playerHpBar2" class="playerHpBarFill"></span></div>
+          <div class="playerPlasmaMini" id="playerPlasma2" aria-label="플라즈마 잔량"></div>
+          <div class="playerHungerMini" id="playerHunger2" aria-label="????? ??????"></div>
+          <div class="playerStatusMini" id="playerStatus2" aria-label="???????"></div>
+          <div class="alwaysModBox">
+          <div class="small">상시보정</div>
+            <div class="alwaysModRow">
+              <span class="alwaysModLabel">????</span>
+              <div class="alwaysModCtrls">
+            <button id="alwaysDown2" type="button" aria-label="User3 상시보정 감소">-</button>
+                <b id="alwaysHit2">+0</b>
+            <button id="alwaysUp2" type="button" aria-label="User3 상시보정 증가">+</button>
+              </div>
+            </div>
+            <div class="alwaysModRow">
+              <span class="alwaysModLabel">????</span>
+              <div class="alwaysModCtrls">
+                <button id="alwaysPowDown2" type="button" aria-label="User3 ??? ???? ???? ????">-</button>
+                <b id="alwaysPow2">+0</b>
+                <button id="alwaysPowUp2" type="button" aria-label="User3 ??? ???? ???? ????">+</button>
+              </div>
+            </div>
+            <div class="alwaysModRow alwaysDistanceRow">
+              <span class="alwaysModLabel">???</span>
+              <select id="distanceQuick2" class="distanceQuickSelect" aria-label="User3 ?????? ???">
+            <option value="per_player">플레이어별 몬스터</option>
+              <option value="plasma" selected>플라즈마</option>
+            <option value="per_player">플레이어별 몬스터</option>
+            <option value="per_player">플레이어별 몬스터</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="playerRightCol">
+          <div class="injuryBoardWrap" id="injuryBoard2" aria-label="User3 ???? ????"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dicePanel">
+      <div class="diceStage" id="diceStage">
+        <div id="dice3dViewport" class="dice3dViewport" aria-hidden="true"></div>
+        <div class="diceTop">
+          <div class="diceHint">아래에서 주사위를 선택하고 굴리세요</div>
+          <div class="diceResult">
+          <span>유저에게 목표 DC 공개</span>
+            <span class="badge" id="judgeBadge">-</span>
+            <span class="badge" id="sumBadge">d20+보정</span>
+          </div>
+        </div>
+        <div class="diceWrap" id="diceWrap">
+          <div class="dice" id="diceFace">20</div>
+          <div class="diceSub" id="diceSub">준비</div>
+        </div>
+        <div class="diceTotalFx neutral" id="diceTotalFx" aria-live="polite">+</div>
+      </div>
+
+      <div class="box">
+    <div class="t">관리자 유저 인벤토리 확인</div>
+        <div class="small" style="margin-top:8px;">????????? <b>1d20 ????</b>????.</div>
+        <div class="diceControlStack" style="margin-top:8px;">
+          <button type="button" id="rollHitBtn">적중 굴림 (1d20)</button>
+          <div class="diceDamageRow">
+          <button type="button" id="rollDamageBtn">피해 굴림 (선택 주사위)</button>
+            <div class="diceDamageSelect">
+            <label>플라즈마 회복(대상 유저)</label>
+              <select id="damageDiceSides">
+                <option value="4">1d4</option>
+                <option value="6" selected>1d6</option>
+                <option value="8">1d8</option>
+                <option value="10">1d10 (d4+d6)</option>
+                <option value="12">1d12</option>
+                <option value="20">1d20</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="pill" style="margin-top:8px;"><span>현재 적중굴림 보정</span><b id="currentHitMod">+0</b></div>
+        <div class="pill" style="margin-top:8px;"><span>?��???? ??? DC</span><b id="playerTargetDc">?</b></div>
+      </div>
+    </div>
+
+    <div class="grid2" style="margin-top:10px;">
+      <div class="box" id="pcStatsBox">
+    <div class="t">관리자 유저 인벤토리 확인</div>
+        <div style="margin-top:8px;">
+            <label>플라즈마 회복(대상 유저)</label>
+          <input id="pc_name" type="text" value="User1" maxlength="24" />
+        </div>
+        <div class="grid2" style="margin-top:8px;">
+          <div><label>체력</label><input id="sta_hp" type="number" value="20" min="0" max="999"></div>
+          <div><label>근력</label><input id="sta_str" type="number" value="5" min="0" max="999"></div>
+          <div><label>민첩</label><input id="sta_dex" type="number" value="5" min="0" max="999"></div>
+          <div><label>지능</label><input id="sta_int" type="number" value="5" min="0" max="999"></div>
+          <div><label>플라즈마 위력</label><input id="sta_plasma_power" type="number" value="5" min="0" max="999"></div>
+          <div><label>매력</label><input id="sta_cha" type="number" value="5" min="0" max="999"></div>
+          <div><label>플라즈마 총량</label><input id="sta_pool" type="number" value="5" min="1" max="9999"></div>
+        </div>
+        <div class="t" style="margin-top:10px;">능력치 관리</div>
+        <div class="pill" style="margin-top:8px;"><span>남은 스킬 포인트</span><b id="skillPointLeft">0</b></div>
+        <div class="grid2" style="margin-top:8px;">
+          <div>
+            <label>플라즈마 회복(대상 유저)</label>
+            <input id="nameInput" type="text" value="User1" maxlength="24" />
+          </div>
+          <div class="btnRow" style="align-items:flex-end;">
+            <button id="applyNameBtn" type="button">이름 적용</button>
+          </div>
+        </div>
+        <div class="grid2" style="margin-top:8px;">
+          <div>
+            <label>플라즈마 회복(대상 유저)</label>
+            <select id="pointStat">
+            <option value="per_player">플레이어별 몬스터</option>
+            <option value="per_player">플레이어별 몬스터</option>
+            <option value="per_player">플레이어별 몬스터</option>
+            <option value="per_player">플레이어별 몬스터</option>
+            <option value="per_player">플레이어별 몬스터</option>
+            <option value="per_player">플레이어별 몬스터</option>
+            <option value="per_player">플레이어별 몬스터</option>
+            </select>
+          </div>
+          <div class="btnRow" style="align-items:flex-end;">
+            <button id="spendPointBtn" type="button">포인트 +1</button>
+          </div>
+        </div>
+        <p class="small" style="margin:10px 0 0;">
+          ?��????? ???? ????? ?????????? ?????? ?��? ?? ??????.
+        </p>
+        <p class="small" style="margin:6px 0 0;">
+          ??? ?????: NPC ?????? ????/???? ?????? GM ?????? ??????? ?????????.
+        </p>
+      </div>
+
+      <div class="box" id="actionSetupBox">
+    <div class="t">관리자 유저 인벤토리 확인</div>
+        <div class="small actionGuideText" style="margin-top:6px;">???? ??? 2???? ????????: ???? / ??????</div>
+
+        <div class="actionPresetWrap" style="margin-top:8px;">
+          <label style="margin-bottom:6px;">?? ????</label>
+          <div class="actionPresetRow">
+            <button id="actionModeAttack" class="actionPresetBtn" data-user-allowed="1" type="button">????</button>
+            <button id="actionModeItem" class="actionPresetBtn" data-user-allowed="1" type="button">??????</button>
+          </div>
+        </div>
+
+        <div class="pill actionSummaryPill" style="margin-top:8px;">
+          <span>유저에게 목표 DC 공개</span>
+          <b id="actionSetupSummary">???? ?? ???? ?? ???? ?? ?? ??? ???? ?? Lv 1</b>
+        </div>
+
+        <details id="actionAdvancedDetails" style="margin-top:10px;">
+      <summary>JSON 내보내기 / 가져오기 (밸런스 + 3PC + 몬스터)</summary>
+          <div class="box" style="margin-top:8px;">
+            <div class="box" id="plasmaPanel" style="margin-top:2px;">
+    <div class="t">관리자 유저 인벤토리 확인</div>
+            <div id="plasmaOrbs" class="plasmaOrbs" style="margin-top:8px;"></div>
+            <div class="plasmaMeta">
+            <div class="pill"><span>현재 / 최대</span><b id="plasmaEnergyText">0 / 0</b></div>
+            <div class="pill"><span>동시 사용 한도</span><b id="plasmaCapText">1</b></div>
+            </div>
+          <div class="small" id="plasmaExtraMeta" style="margin-top:8px;">형태 규칙: 단일(위력 +1), 범위(적중 +1/위력 -1), 잔존(0), 안정화(레이어로 생긴 음수 적중 상쇄)</div>
+          </div>
+            <div id="plasmaSkillList" class="small" style="margin-top:10px;"></div>
+          </div>
+        </details>
+
+        <details id="plasmaSkillCreateDetails" style="margin-top:8px;">
+      <summary>JSON 내보내기 / 가져오기 (밸런스 + 3PC + 몬스터)</summary>
+          <div class="box" style="margin-top:8px;">
+            <div class="grid2" style="margin-top:2px;">
+              <div>
+            <label>플라즈마 회복(대상 유저)</label>
+                <input id="plasmaSkillName" data-user-allowed="1" type="text" maxlength="40" placeholder="??: ???? ????" />
+              </div>
+              <div>
+            <label>플라즈마 회복(대상 유저)</label>
+                <input id="plasmaSkillBaseCost" data-user-allowed="1" type="number" min="1" max="99" value="1" />
+              </div>
+              <div>
+            <label>플라즈마 회복(대상 유저)</label>
+                <select id="plasmaSkillRange" data-user-allowed="1">
+              <option value="plasma" selected>플라즈마</option>
+            <option value="per_player">플레이어별 몬스터</option>
+                </select>
+              </div>
+              <div>
+            <label>플라즈마 회복(대상 유저)</label>
+                <select id="plasmaSkillKind" data-user-allowed="1">
+              <option value="plasma" selected>플라즈마</option>
+            <option value="per_player">플레이어별 몬스터</option>
+            <option value="per_player">플레이어별 몬스터</option>
+                </select>
+              </div>
+              <div id="plasmaBuffHitWrap">
+            <label>플라즈마 회복(대상 유저)</label>
+                <input id="plasmaSkillBuffHit" data-user-allowed="1" type="number" min="0" max="99" value="0" />
+              </div>
+              <div id="plasmaBuffPowWrap">
+            <label>플라즈마 회복(대상 유저)</label>
+                <input id="plasmaSkillBuffPow" data-user-allowed="1" type="number" min="0" max="99" value="0" />
+              </div>
+            </div>
+            <div style="margin-top:8px;">
+            <label>플라즈마 회복(대상 유저)</label>
+              <textarea id="plasmaSkillDesc" data-user-allowed="1" maxlength="180" placeholder="??? ????? ???? ????"></textarea>
+            </div>
+            <div class="btnRow" style="margin-top:8px; align-items:flex-end;">
+              <button id="plasmaSkillSaveBtn" data-user-allowed="1" type="button">???��? ???</button>
+            </div>
+            <div id="plasmaSkillSaveStatus" class="small muted" style="margin-top:6px;">???��? ????</div>
+          </div>
+        </details>
+
+        <div id="actionManualControls" class="actionManualControls" aria-hidden="true">
+          <select id="attackType">
+            <option value="per_player">플레이어별 몬스터</option>
+              <option value="plasma" selected>플라즈마</option>
+            <option value="per_player">플레이어별 몬스터</option>
+          </select>
+          <select id="distanceState">
+            <option value="per_player">플레이어별 몬스터</option>
+              <option value="plasma" selected>플라즈마</option>
+            <option value="per_player">플레이어별 몬스터</option>
+            <option value="per_player">플레이어별 몬스터</option>
+          </select>
+          <select id="shape">
+              <option value="plasma" selected>플라즈마</option>
+            <option value="per_player">플레이어별 몬스터</option>
+            <option value="per_player">플레이어별 몬스터</option>
+            <option value="per_player">플레이어별 몬스터</option>
+          </select>
+          <select id="intensity">
+            <option value="per_player">플레이어별 몬스터</option>
+              <option value="plasma" selected>플라즈마</option>
+            <option value="per_player">플레이어별 몬스터</option>
+          </select>
+          <input id="multi" type="number" value="1" min="1" max="10" />
+        </div>
+      </div>
+
+      <div class="box calcResultBox">
+    <div class="t">관리자 유저 인벤토리 확인</div>
+        <div class="kpi" style="margin-top:8px;">
+          <div class="box"><div class="t">적중 보정</div><div class="v" id="hitBonus">+0</div></div>
+          <div class="box"><div class="t">위력 보정</div><div class="v" id="powBonus">+0</div></div>
+          <div class="box"><div class="t">메모</div><div class="v" id="note" style="font-size:12px;">-</div></div>
+        </div>
+
+        <div class="breakdown">
+          <div class="muted" style="margin-bottom:8px;">계산 내역</div>
+          <div id="breakdown"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<button id="adminDrawerToggle" class="sideToggle left" type="button">▶ 운영자 인벤</button>
+<aside id="adminDrawer" class="sideDrawer left">
+  <div class="sideDrawerHeader">
+    <div>
+      <h2 style="margin:0;">운영자 인벤토리</h2>
+      <span class="sideTag">[아이템 제작]</span>
+    </div>
+    <button id="adminDrawerClose" type="button">닫기</button>
+  </div>
+
+  <div class="box">
+    <details open>
+      <summary>JSON 내보내기 / 가져오기 (밸런스 + 3PC + 몬스터)</summary>
+      <div class="grid3" style="margin-top:8px;">
+        <div>
+            <label>플라즈마 회복(대상 유저)</label>
+          <input id="adminItemName" type="text" placeholder="예: 회복 물약" />
+        </div>
+        <div>
+            <label>플라즈마 회복(대상 유저)</label>
+          <select id="adminItemType">
+            <option value="per_player">플레이어별 몬스터</option>
+            <option value="per_player">플레이어별 몬스터</option>
+          </select>
+        </div>
+        <div>
+            <label>플라즈마 회복(대상 유저)</label>
+          <input id="adminItemBaseQty" type="number" min="1" value="1" />
+        </div>
+      </div>
+      <div style="margin-top:8px;">
+            <label>플라즈마 회복(대상 유저)</label>
+        <textarea id="adminItemDesc" placeholder="???/???? ??? (????: Shift+Enter)"></textarea>
+      </div>
+      <div class="btnRow" style="margin-top:8px;">
+        <button id="adminCreateItemBtn" type="button">템플릿 생성</button>
+        <button id="adminCancelItemEditBtn" type="button" style="display:none;">???? ???</button>
+      </div>
+    </details>
+
+    <details style="margin-top:8px;">
+      <summary>JSON 내보내기 / 가져오기 (밸런스 + 3PC + 몬스터)</summary>
+      <div class="grid3" style="margin-top:8px;">
+        <div>
+            <label>플라즈마 회복(대상 유저)</label>
+          <select id="adminGrantTemplate"></select>
+        </div>
+        <div>
+            <label>플라즈마 회복(대상 유저)</label>
+          <select id="adminGrantSlot">
+            <option value="0">User1</option>
+            <option value="1">User2</option>
+            <option value="2">User3</option>
+          </select>
+        </div>
+        <div>
+            <label>플라즈마 회복(대상 유저)</label>
+          <input id="adminGrantQty" type="number" min="1" value="1" />
+        </div>
+      </div>
+      <div class="btnRow" style="margin-top:8px;">
+        <button id="adminGrantItemBtn" type="button">선택 템플릿 지급</button>
+      </div>
+    </details>
+
+    <details open style="margin-top:8px;">
+      <summary>JSON 내보내기 / 가져오기 (밸런스 + 3PC + 몬스터)</summary>
+      <div class="box" style="margin-top:8px;">
+        <div id="adminTemplateList" class="small" style="margin-top:2px;"></div>
+      </div>
+    </details>
+  </div>
+
+  <div class="box" id="adminInspectPanel" style="margin-top:10px;">
+    <div class="t">관리자 유저 인벤토리 확인</div>
+    <div class="grid3" style="margin-top:8px;">
+      <div>
+            <label>플라즈마 회복(대상 유저)</label>
+        <select id="adminInspectSlot">
+          <option value="0">User1</option>
+          <option value="1">User2</option>
+          <option value="2">User3</option>
+        </select>
+      </div>
+      <div>
+            <label>플라즈마 회복(대상 유저)</label>
+        <input id="adminInspectGoldAmount" type="number" min="1" value="10" />
+      </div>
+      <div class="btnRow" style="align-items:flex-end;">
+        <button id="adminInspectGoldAddBtn" type="button">골드 +</button>
+        <button id="adminInspectGoldSubBtn" type="button">골드 -</button>
+      </div>
+    </div>
+    <div class="pill" style="margin-top:8px;"><span>대상 골드</span><b id="adminInspectGold">0</b></div>
+    <div id="adminInspectInventory" class="small" style="margin-top:8px;"></div>
+    <div class="box" style="margin-top:8px;">
+    <div class="t">관리자 유저 인벤토리 확인</div>
+      <div class="grid3" style="margin-top:8px;">
+        <div>
+            <label>플라즈마 회복(대상 유저)</label>
+          <input id="adminNpcName" type="text" placeholder="??: ??? ???" />
+        </div>
+        <div>
+          <label>HP</label>
+          <input id="adminNpcHp" type="number" min="1" value="10" />
+        </div>
+        <div>
+            <label>플라즈마 회복(대상 유저)</label>
+          <input id="adminNpcPlasma" type="number" min="1" value="5" />
+        </div>
+        <div>
+            <label>플라즈마 회복(대상 유저)</label>
+          <input id="adminNpcHunger" type="number" min="0" max="5" value="5" />
+        </div>
+        <div>
+            <label>플라즈마 회복(대상 유저)</label>
+          <input id="adminNpcNote" type="text" placeholder="??: ???? ??? ????" />
+        </div>
+      </div>
+      <div class="box mediaUploadBox" style="margin-top:8px;">
+            <label>플라즈마 회복(대상 유저)</label>
+        <div class="mediaUploadRow">
+          <input id="adminNpcImageFile" class="mediaFileInput" type="file" accept="image/*" />
+          <div class="mediaUploadBtns">
+            <button id="adminNpcImageApplyBtn" type="button">????</button>
+            <button id="adminNpcImageClearBtn" type="button">????</button>
+          </div>
+          <img id="adminNpcImagePreview" class="monsterTemplatePreview" alt="NPC ????? ???????" />
+        </div>
+      </div>
+      <div class="btnRow" style="margin-top:8px;">
+        <button id="adminNpcAddBtn" type="button">???? NPC ???</button>
+      </div>
+      <div class="box" style="margin-top:8px;">
+    <div class="t">관리자 유저 인벤토리 확인</div>
+        <div class="grid2" style="margin-top:8px;">
+          <div>
+            <label>플라즈마 회복(대상 유저)</label>
+            <select id="adminNpcTemplateSelect"></select>
+          </div>
+          <div class="btnRow" style="align-items:flex-end;">
+            <button id="adminNpcTemplateApplyBtn" type="button">?? ???????</button>
+            <button id="adminNpcTemplateDeleteBtn" type="button">???? ????</button>
+          </div>
+        </div>
+        <div class="btnRow" style="margin-top:8px;">
+          <button id="adminNpcTemplateSaveBtn" type="button">???? ?? ???��? ????</button>
+        </div>
+      </div>
+      <div id="adminInspectNpcList" class="small" style="margin-top:8px;"></div>
+    </div>
+    <div class="box" style="margin-top:8px;">
+    <div class="t">관리자 유저 인벤토리 확인</div>
+      <div id="adminStatusGrid" class="statusGrid" style="margin-top:8px;"></div>
+      <div class="btnRow" style="margin-top:8px;">
+        <button id="adminClearStatusBtn" type="button">??????? ????</button>
+      </div>
+    </div>
+  </div>
+
+</aside>
+
+<button id="userDrawerToggle" class="sideToggle right" type="button">유저 인벤 ◀</button>
+<aside id="userDrawer" class="sideDrawer right open">
+  <div class="sideDrawerHeader">
+    <div>
+      <h2 style="margin:0;">운영자 인벤토리</h2>
+        <div class="sideHint">아이템 제작/인벤 관리는 좌측 화살표 패널에서 조정합니다.</div>
+    </div>
+    <button id="userDrawerClose" type="button">닫기</button>
+  </div>
+  <div class="pill"><span>대상</span><b id="userInventoryOwner">-</b></div>
+  <div class="pill" style="margin-top:8px;"><span>보유 골드</span><b id="userInventoryGold">0</b></div>
+  <div class="pill" style="margin-top:8px;"><span>상대 몬스터</span><b id="userEnemyLabel">수동 대상</b></div>
+  <div class="box" style="margin-top:8px;">
+    <div class="t">관리자 유저 인벤토리 확인</div>
+    <div id="userStatusBadges" class="statusMiniWrap" style="margin-top:8px;"></div>
+  </div>
+  <div style="margin-top:8px;">
+    <label style="font-size:12px;color:var(--muted);margin-bottom:6px;display:block;">메모장</label>
+    <textarea id="userMemo" placeholder="기억할 내용, 단서, 계획 등을 기록" style="min-height:96px;"></textarea>
+  </div>
+  <div class="box" style="margin-top:10px;">
+    <div class="t">관리자 유저 인벤토리 확인</div>
+    <div class="grid2" style="margin-top:8px;">
+      <div>
+            <label>플라즈마 회복(대상 유저)</label>
+        <select id="inventoryFilterType" data-user-allowed="1">
+            <option value="per_player">플레이어별 몬스터</option>
+            <option value="per_player">플레이어별 몬스터</option>
+            <option value="per_player">플레이어별 몬스터</option>
+        </select>
+      </div>
+      <div>
+            <label>플라즈마 회복(대상 유저)</label>
+        <select id="inventoryGiveTarget" data-user-allowed="1"></select>
+      </div>
+    </div>
+    <div id="inventoryList" class="small" style="margin-top:8px;"></div>
+  </div>
+  <div class="box" style="margin-top:10px;">
+    <div class="t">관리자 유저 인벤토리 확인</div>
+    <div id="userNpcList" class="small" style="margin-top:8px;"></div>
+  </div>
+  <div class="box userRealtimeDock" id="userRealtimeDock" style="margin-top:10px;">
+    <div class="t">관리자 유저 인벤토리 확인</div>
+    <div class="grid2" style="margin-top:8px;">
+      <div>
+            <label>플라즈마 회복(대상 유저)</label>
+        <select id="roleMode">
+            <option value="per_player">플레이어별 몬스터</option>
+              <option value="plasma" selected>플라즈마</option>
+        </select>
+      </div>
+      <div id="userSlotWrap" style="display:none;">
+            <label>플라즈마 회복(대상 유저)</label>
+        <select id="userSlot">
+          <option value="0">User1 (PC1)</option>
+          <option value="1">User2 (PC2)</option>
+          <option value="2">User3 (PC3)</option>
+        </select>
+      </div>
+      <div>
+            <label>플라즈마 회복(대상 유저)</label>
+        <input id="roomId" type="text" value="trpg-room-1" />
+      </div>
+      <div class="btnRow" style="align-items:flex-end;">
+        <button id="connectBtn" type="button">연결</button>
+        <button id="disconnectBtn" type="button">연결 해제</button>
+      </div>
+    </div>
+    <div class="realtimeMeta userRealtimeMeta">
+        <span id="netStatus" class="status warn">오프라인</span>
+        <span id="presenceInfo" class="small">접속자: -</span>
+    </div>
+  </div>
+</aside>
+
+<div id="diceRollOverlay" class="diceRollOverlay" aria-hidden="true"></div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/assets/vendor/three.min.js?v=0.152.2-local"></script>
+<script>
+  if(!window.THREE){
+    document.write('<script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"><\\/script>');
+  }
+</script>
+<script>
+  if(!window.THREE){
+    document.write('<script src="https://unpkg.com/three@0.152.2/build/three.min.js"><\\/script>');
+  }
+</script>
+<script src="/injury_body_map.js"></script>
+<script src="/meranoder_plasma_helper_3pc_d20.js?v=20260219-59"></script>
+</body>
+</html>
+
+

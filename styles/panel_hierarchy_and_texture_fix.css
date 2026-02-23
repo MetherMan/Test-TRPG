@@ -1,0 +1,220 @@
+/* Typography hierarchy and texture fix for major panel readability. */
+
+body:not(.admin-mode) .headerTop {
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 440px) minmax(300px, 440px) !important;
+}
+
+body.admin-mode .headerTop {
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 360px) minmax(300px, 440px) minmax(300px, 440px) !important;
+}
+
+/* GM main two-column ratio follows right drawer state. */
+body.admin-mode:not(.layout-compact):not(.layout-ultra-compact) main {
+  grid-template-columns: minmax(420px, var(--gm-main-left-col)) minmax(560px, var(--gm-main-right-col)) !important;
+}
+
+.headerWhisper {
+  max-height: 270px;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+#whisperLogList {
+  flex: 1 1 auto;
+  min-height: 86px;
+  max-height: none !important;
+  overflow: auto;
+}
+
+/* 1) Texture correction: keep these GM boxes on single texture fill (not muddy overlay). */
+#gmBalanceControls #gmTraitStepBox,
+#gmBalanceControls #gmTraitTypeBonusBox,
+#gmBalanceControls #gmBaseStatStepBox,
+#gmBalanceControls #gmBaseHitCoeffBox,
+#gmBalanceControls #gmBasePowCoeffBox {
+  background: var(--texture-panel-fill) !important;
+  border: var(--texture-panel-border) !important;
+  box-shadow: var(--texture-panel-shadow) !important;
+}
+
+/* 2) Major headings */
+.cardHeadLine h2,
+#realtimePanel > h2,
+#monsterOpsPanel > .t:first-child,
+#pcStatsBox > .t:first-child,
+#actionSetupBox > .t:first-child,
+#gmBalanceControls > .box > .t:first-child,
+#gmBalanceControls > .split > .box > .t:first-child,
+#gmBalanceControls > details > summary {
+  font-size: clamp(18px, 2.2vw, 24px) !important;
+  font-weight: 900 !important;
+  color: #3a2413 !important;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+  text-shadow: 0 1px 0 rgba(255, 242, 214, 0.7);
+}
+
+/* 3) Section titles inside panels */
+.box .t,
+.sideDrawer .t {
+  font-size: 17px !important;
+  font-weight: 900 !important;
+  color: #4a2f17 !important;
+  line-height: 1.25;
+}
+
+/* 4) Sub headings / labels */
+#gmBalanceControls label,
+#pcStatsBox label,
+#actionSetupBox label,
+#realtimePanel label,
+#monsterOpsPanel label,
+.sideDrawer label {
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  color: #4d3118 !important;
+  letter-spacing: 0.2px;
+}
+
+/* 5) Stat panel input readability */
+#pcStatsBox input,
+#pcStatsBox select {
+  font-size: 18px;
+  font-weight: 700 !important;
+}
+
+#pcStatsBox input[type="text"] {
+  font-size: 17px;
+}
+
+#pcStatsBox .pill {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+#pcStatsBox .pill b {
+  font-size: 18px;
+  font-weight: 900;
+}
+
+/* Session log: transparent overlay panel feeling */
+#chatLogList,
+#whisperLogList {
+  padding: 8px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(122, 87, 49, 0.52);
+  background:
+    linear-gradient(180deg, rgba(35, 22, 11, 0.18), rgba(35, 22, 11, 0.08)),
+    transparent !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 239, 206, 0.22);
+  backdrop-filter: blur(2px);
+}
+
+#chatLogList .chatLogRow,
+#whisperLogList .whisperRow {
+  padding: 6px 0;
+  border-bottom: 1px dashed rgba(117, 84, 49, 0.42);
+  color: #3e2915;
+  font-weight: 600;
+}
+
+#chatLogList .chatLogRow:last-child,
+#whisperLogList .whisperRow:last-child {
+  border-bottom: 0;
+}
+
+/* Header admin unlock button */
+.headerTitleRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.adminAuthBtn {
+  width: auto !important;
+  min-width: 124px;
+  padding: 6px 12px !important;
+  border-radius: 999px !important;
+  font-size: 12px !important;
+  font-weight: 900 !important;
+  line-height: 1.2;
+  border-color: #6a421f !important;
+}
+
+/* User drawer realtime controls: keep compact */
+.userRealtimeDock .t {
+  font-size: 14px !important;
+  font-weight: 800 !important;
+}
+
+.userRealtimeDock label {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  margin-bottom: 4px;
+}
+
+.userRealtimeDock input,
+.userRealtimeDock select {
+  padding: 8px;
+  font-size: 12px;
+}
+
+.userRealtimeDock .btnRow button {
+  min-height: 34px;
+  padding: 8px 10px;
+  font-size: 12px;
+}
+
+.userRealtimeDock .userRealtimeMeta {
+  margin-top: 8px;
+}
+
+body.user-mode #realtimePanel {
+  display: none !important;
+}
+
+#adminItemDesc {
+  min-height: 88px;
+  font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Segoe UI", sans-serif;
+  line-height: 1.35;
+}
+
+/* Place session connection block at the bottom of user inventory panel */
+#userDrawer {
+  display: flex;
+  flex-direction: column;
+}
+
+#userDrawer .userRealtimeDock {
+  margin-top: auto !important;
+}
+
+/* User inventory: keep long item lists scrollable inside the panel */
+#userDrawer #inventoryList {
+  max-height: clamp(220px, 40vh, 420px);
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+#userDrawer #inventoryList::-webkit-scrollbar {
+  width: 8px;
+}
+
+#userDrawer #inventoryList::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(120, 82, 42, 0.62);
+}
+
+@media (max-width: 760px) {
+  #pcStatsBox input,
+  #pcStatsBox select {
+    font-size: 17px;
+  }
+
+  #pcStatsBox input[type="text"] {
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,631 @@
+﻿/* Extracted from main CSS to keep HP and monster display rules isolated. */
+
+.monsterHead {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+  border-bottom: 0;
+  padding-bottom: 4px;
+}
+
+.monsterHeadText {
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+body.admin-mode #monsterOpsPanel .monsterHead {
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+}
+
+body.admin-mode #monsterOpsPanel .monsterHeadText {
+  min-width: 0;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+body.admin-mode #monsterOpsPanel .monsterHead .listActions {
+  grid-column: 1 / -1;
+  justify-content: flex-start;
+  margin-top: 6px;
+}
+
+body.admin-mode #monsterOpsPanel .monsterAdminCardDetails {
+  border: 1px solid rgba(126, 90, 51, 0.48);
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(253, 245, 228, 0.84), rgba(239, 223, 190, 0.8));
+}
+
+body.admin-mode #monsterOpsPanel .monsterAdminCardDetails > summary {
+  cursor: pointer;
+  list-style-position: inside;
+  padding: 8px;
+}
+
+body.admin-mode #monsterOpsPanel .monsterAdminCardSummary {
+  display: block;
+}
+
+body.admin-mode #monsterOpsPanel .monsterAdminSummaryHead {
+  margin: 0;
+  padding: 0;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+}
+
+body.admin-mode #monsterOpsPanel .monsterAdminSummaryText {
+  min-width: 0;
+}
+
+body.admin-mode #monsterOpsPanel .monsterAdminSummaryName {
+  font-weight: 900;
+  line-height: 1.2;
+  color: #412712;
+}
+
+body.admin-mode #monsterOpsPanel .monsterAdminSummaryMeta {
+  margin-top: 2px;
+  font-size: 12px;
+  color: #634728;
+  line-height: 1.3;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+.monsterTargetBadge {
+  justify-self: end;
+  align-self: start;
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(131, 93, 51, 0.56);
+  background: linear-gradient(180deg, rgba(249, 236, 206, 0.95), rgba(233, 205, 157, 0.9));
+  color: #53351a;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.monsterSummaryRight {
+  justify-self: end;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.monsterAttackPickBtn {
+  width: auto;
+  min-width: 0;
+  padding: 3px 9px;
+  border-radius: 999px !important;
+  border: 1px solid rgba(129, 84, 48, 0.62) !important;
+  background: linear-gradient(180deg, rgba(246, 231, 201, 0.9), rgba(232, 205, 158, 0.86)) !important;
+  color: #4a2f19 !important;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.2;
+  box-shadow: none !important;
+}
+
+.monsterAttackPickBtn.active {
+  border-color: rgba(50, 117, 63, 0.78) !important;
+  background: linear-gradient(180deg, rgba(122, 197, 132, 0.96), rgba(74, 153, 93, 0.94)) !important;
+  color: #f2fff3 !important;
+}
+
+body.admin-mode #monsterOpsPanel .monsterTargetQuickRow {
+  margin-top: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+body.admin-mode #monsterOpsPanel .monsterTargetQuickBtn {
+  width: auto;
+  min-width: 0;
+  padding: 4px 9px;
+  border-radius: 999px !important;
+  border: 1px solid rgba(129, 84, 48, 0.62) !important;
+  background: linear-gradient(180deg, rgba(246, 231, 201, 0.9), rgba(232, 205, 158, 0.86)) !important;
+  color: #4a2f19 !important;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.2;
+  box-shadow: none !important;
+}
+
+body.admin-mode #monsterOpsPanel .monsterTargetQuickBtn.active {
+  border-color: rgba(46, 97, 145, 0.78) !important;
+  background: linear-gradient(180deg, rgba(142, 195, 237, 0.95), rgba(87, 149, 206, 0.92)) !important;
+  color: #0f3658 !important;
+}
+
+body.admin-mode #monsterOpsPanel .monsterAdminSummaryMemo {
+  margin-top: 6px;
+  color: #5d4325;
+  font-size: 12px;
+  line-height: 1.35;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+body.admin-mode #monsterOpsPanel .monsterStatusSummary {
+  margin-top: 6px;
+}
+
+body.admin-mode #monsterOpsPanel .monsterAdminCardBody {
+  margin-top: 8px;
+  padding: 8px;
+  border-top: 1px solid rgba(126, 90, 51, 0.34);
+}
+
+body.admin-mode #monsterOpsPanel .monsterAdminActionRow {
+  margin-top: 0;
+  margin-bottom: 8px;
+  justify-content: flex-start;
+}
+
+body.admin-mode #monsterOpsPanel .monsterAdminCompactLayout {
+  display: grid;
+  grid-template-columns: 188px minmax(0, 1fr);
+  gap: 10px;
+  margin-top: 8px;
+  align-items: start;
+}
+
+body.admin-mode #monsterOpsPanel .monsterAdminCompactLayout .monsterInjuryBoard {
+  width: 100%;
+  margin-top: 0 !important;
+}
+
+body.admin-mode #monsterOpsPanel .monsterAdminCompactControls {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+body.admin-mode #monsterOpsPanel .monsterAdminFieldGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+body.admin-mode #monsterOpsPanel .monsterAdminFieldGrid > div,
+body.admin-mode #monsterOpsPanel .monsterAdminAdvancedGrid > div {
+  min-width: 0;
+}
+
+body.admin-mode #monsterOpsPanel .monsterAdminFieldGrid label,
+body.admin-mode #monsterOpsPanel .monsterAdminAdvancedGrid label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 12px;
+}
+
+body.admin-mode #monsterOpsPanel .monsterAdminFieldGrid input,
+body.admin-mode #monsterOpsPanel .monsterAdminFieldGrid select,
+body.admin-mode #monsterOpsPanel .monsterAdminAdvancedGrid input,
+body.admin-mode #monsterOpsPanel .monsterAdminAdvancedGrid textarea {
+  width: 100%;
+}
+
+body.admin-mode #monsterOpsPanel .monsterAdminAdvancedGrid textarea {
+  min-height: 108px;
+  resize: vertical;
+}
+
+body.admin-mode #monsterOpsPanel .monsterAdminAdvanced {
+  margin-top: 0;
+}
+
+body.admin-mode #monsterOpsPanel .monsterAdminAdvanced > summary {
+  font-size: 12px;
+  font-weight: 800;
+}
+
+body.admin-mode #monsterOpsPanel .monsterAdminAdvancedGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 8px;
+}
+
+body.admin-mode #monsterOpsPanel .monsterAdminAdvancedGrid .full {
+  grid-column: 1 / -1;
+}
+
+body.admin-mode #monsterOpsPanel .monsterStatusEditor {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+body.admin-mode #monsterOpsPanel .monsterStatusEditorControls {
+  display: flex;
+  justify-content: flex-end;
+}
+
+body.admin-mode #monsterOpsPanel .monsterStatusGrid {
+  max-height: 148px;
+  overflow: auto;
+  padding-right: 2px;
+  gap: 5px;
+}
+
+body.admin-mode #monsterOpsPanel .monsterStatusGrid .statusToggleBtn {
+  padding: 5px 8px;
+  font-size: 11px;
+}
+
+@media (max-width: 1200px) {
+  body.admin-mode #monsterOpsPanel .monsterAdminCompactLayout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.monsterThumb,
+.monsterTemplatePreview {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  border: 1px solid rgba(118, 80, 42, 0.6);
+  background: linear-gradient(180deg, rgba(255, 245, 222, 0.9), rgba(236, 212, 165, 0.86));
+  display: block;
+  object-fit: cover;
+  box-shadow: inset 0 0 0 1px rgba(255, 246, 225, 0.48);
+}
+
+.monsterHpLine {
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--theme-text-soft);
+}
+
+.monsterHpLine b {
+  font-size: 13px;
+  color: var(--theme-text-main);
+}
+
+.monsterHpBar {
+  margin-top: 4px;
+  height: 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(100, 41, 34, 0.38);
+  background: rgba(85, 27, 20, 0.2);
+  overflow: hidden;
+}
+
+.monsterHpBarFill {
+  display: block;
+  height: 100%;
+  width: 0%;
+  transition: width 0.2s ease;
+}
+
+.monsterHpBarFill.safe {
+  background: linear-gradient(90deg, #3d9b3f, #60bc58 52%, #8ddd7a 100%);
+}
+
+.monsterHpBarFill.warn {
+  background: linear-gradient(90deg, #d38a2a, #ebb047 50%, #f4cb73 100%);
+}
+
+.monsterHpBarFill.danger {
+  background: linear-gradient(90deg, #b7312a, #db4a3f 45%, #ef7a74 100%);
+  box-shadow: 0 0 8px rgba(194, 61, 52, 0.42);
+}
+
+body.user-mode #monsterOpsPanel .monsterOpsCard {
+  padding: 12px;
+}
+
+body.user-mode #monsterOpsPanel .monsterHead {
+  grid-template-columns: auto minmax(0, 1fr);
+}
+
+body.user-mode #monsterOpsPanel .monsterUserHead {
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+}
+
+body.user-mode #monsterOpsPanel .monsterHeadText {
+  font-size: 23px;
+  line-height: 1.4;
+}
+
+body.user-mode #monsterOpsPanel .monsterTargetBadge {
+  font-size: 12px;
+  padding: 4px 9px;
+}
+
+body.user-mode #monsterOpsPanel .monsterThumb {
+  width: 54px;
+  height: 54px;
+}
+
+body.user-mode #monsterOpsPanel .monsterHpLine {
+  font-size: 15px;
+}
+
+body.user-mode #monsterOpsPanel .monsterHpLine b {
+  font-size: 17px;
+}
+
+body.user-mode #monsterOpsPanel .monsterHpBar {
+  height: 14px;
+  margin-top: 6px;
+}
+
+body.user-mode #monsterOpsPanel .monsterUserNote {
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+body.user-mode #monsterOpsPanel .monsterUserStatusWrap {
+  margin-top: 6px;
+}
+
+.userMonsterInjuryBoard {
+  width: min(192px, 100%);
+  margin: 8px auto 0;
+}
+
+/* Player/NPC HP aura: 71~100 green, 31~70 orange, 0~30 red(critical pulse) */
+.playerStrip .playerCard.hp-state-high,
+.playerStrip .followerCard.hp-state-high {
+  animation: none !important;
+  border-color: rgba(62, 150, 73, 0.86) !important;
+  box-shadow:
+    inset 0 0 0 2px rgba(171, 232, 182, 0.5),
+    0 0 0 2px rgba(84, 184, 102, 0.34),
+    0 0 26px rgba(72, 170, 94, 0.52),
+    0 10px 24px rgba(30, 78, 42, 0.2) !important;
+}
+
+.playerStrip .playerCard.hp-state-mid,
+.playerStrip .followerCard.hp-state-mid {
+  animation: none !important;
+  border-color: rgba(193, 120, 33, 0.84) !important;
+  box-shadow:
+    inset 0 0 0 2px rgba(255, 214, 153, 0.52),
+    0 0 0 2px rgba(230, 149, 49, 0.36),
+    0 0 26px rgba(222, 142, 48, 0.54),
+    0 10px 24px rgba(92, 60, 25, 0.2) !important;
+}
+
+.playerStrip .playerCard.hp-state-low,
+.playerStrip .followerCard.hp-state-low {
+  border-color: rgba(184, 55, 45, 0.9) !important;
+  animation: hpCriticalPulse calc(1.3s - (var(--hp-critical-intensity, 0) * 0.75s)) ease-in-out infinite !important;
+  box-shadow:
+    inset 0 0 20px rgba(219, 46, 37, calc(0.22 + (var(--hp-critical-intensity, 0) * 0.56))),
+    inset 0 0 0 2px rgba(255, 173, 166, calc(0.5 + (var(--hp-critical-intensity, 0) * 0.4))),
+    0 0 20px rgba(210, 49, 39, calc(0.28 + (var(--hp-critical-intensity, 0) * 0.42))),
+    0 10px 24px rgba(88, 30, 25, 0.26) !important;
+}
+
+@keyframes hpCriticalPulse {
+  0%,
+  100% {
+    box-shadow:
+      inset 0 0 18px rgba(219, 46, 37, calc(0.18 + (var(--hp-critical-intensity, 0) * 0.5))),
+      inset 0 0 0 2px rgba(255, 173, 166, calc(0.46 + (var(--hp-critical-intensity, 0) * 0.36))),
+      0 0 16px rgba(210, 49, 39, calc(0.24 + (var(--hp-critical-intensity, 0) * 0.34))),
+      0 10px 24px rgba(88, 30, 25, 0.22);
+  }
+  50% {
+    box-shadow:
+      inset 0 0 28px rgba(225, 51, 41, calc(0.28 + (var(--hp-critical-intensity, 0) * 0.7))),
+      inset 0 0 0 2px rgba(255, 186, 178, calc(0.56 + (var(--hp-critical-intensity, 0) * 0.46))),
+      0 0 32px rgba(220, 60, 50, calc(0.32 + (var(--hp-critical-intensity, 0) * 0.54))),
+      0 10px 24px rgba(88, 30, 25, 0.28);
+  }
+}
+
+.playerStatusMini,
+.statusMiniWrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 4px;
+}
+
+.playerMeta {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "name name"
+    "hp hp"
+    "hpbar hpbar"
+    "plasma hunger"
+    "status status";
+  column-gap: 6px;
+  row-gap: 3px;
+}
+
+.playerMeta .name { grid-area: name; }
+.playerMeta .hp { grid-area: hp; }
+.playerHpBar { grid-area: hpbar; margin-top: 1px; }
+.playerPlasmaMini { grid-area: plasma; margin-top: 2px; }
+.playerHungerMini { grid-area: hunger; justify-self: end; margin-top: 2px; }
+.playerStatusMini { grid-area: status; margin-top: 1px; }
+
+.playerHungerMini {
+  display: inline-flex !important;
+  align-items: center;
+  flex-wrap: nowrap !important;
+  gap: 1px;
+  margin-top: 4px;
+  min-height: 18px;
+  min-width: max-content !important;
+  padding: 2px 6px;
+  border-radius: 999px;
+  border: 1px solid rgba(129, 92, 54, 0.52);
+  background: linear-gradient(180deg, rgba(250, 241, 222, 0.88), rgba(236, 219, 183, 0.84));
+  width: fit-content;
+  max-width: 100%;
+  white-space: nowrap !important;
+}
+
+.playerHungerMini::before {
+  content: "허기";
+  margin-right: 4px;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.2px;
+  line-height: 1;
+  color: #5a4124;
+  white-space: nowrap !important;
+}
+
+.playerHungerMini.is-low {
+  filter: drop-shadow(0 0 4px rgba(200, 63, 48, 0.35));
+  border-color: rgba(163, 67, 52, 0.62);
+}
+
+.playerHungerMini.is-low::before {
+  color: #8d3228;
+}
+
+.hungerPip {
+  width: auto !important;
+  min-width: 0 !important;
+  height: auto !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  filter: saturate(0.76) brightness(0.84);
+  font-size: 13px;
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.hungerPip.on {
+  filter: saturate(1.08) brightness(1.02);
+}
+
+.hungerPip.off {
+  opacity: 0.26;
+}
+
+body.user-mode .hungerPip {
+  cursor: default;
+}
+
+.statusChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  border: 1px solid rgba(137, 84, 48, 0.58);
+  background: linear-gradient(180deg, rgba(255, 240, 208, 0.86), rgba(238, 212, 165, 0.82));
+  color: #472e17;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.statusChip.statusMore {
+  background: linear-gradient(180deg, rgba(236, 222, 196, 0.88), rgba(220, 197, 151, 0.82));
+  color: #5a4127;
+}
+
+.statusChip.status-stun { background: linear-gradient(180deg, #ffd56e, #e9b640); color: #4c350f; border-color: rgba(151, 106, 25, 0.7); }
+.statusChip.status-silence { background: linear-gradient(180deg, #d3d5de, #b0b4c2); color: #2f3340; border-color: rgba(86, 92, 110, 0.62); }
+.statusChip.status-half_blind { background: linear-gradient(180deg, #ffe29d, #efc364); color: #4f3815; border-color: rgba(149, 101, 36, 0.68); }
+.statusChip.status-blind { background: linear-gradient(180deg, #5f6372, #3d4150); color: #eef0f5; border-color: rgba(29, 33, 44, 0.78); }
+.statusChip.status-fracture { background: linear-gradient(180deg, #f6c1a0, #e29266); color: #572d15; border-color: rgba(140, 71, 35, 0.7); }
+.statusChip.status-weaken { background: linear-gradient(180deg, #dfd1b6, #c2b18f); color: #4d3d26; border-color: rgba(114, 90, 53, 0.66); }
+.statusChip.status-shrink { background: linear-gradient(180deg, #c7cef3, #96a5dd); color: #25335f; border-color: rgba(70, 90, 152, 0.65); }
+.statusChip.status-poison { background: linear-gradient(180deg, #8de186, #4fb85a); color: #143d1f; border-color: rgba(31, 112, 49, 0.72); }
+.statusChip.status-burn { background: linear-gradient(180deg, #ffb27f, #e05a2e); color: #4f180f; border-color: rgba(143, 47, 23, 0.74); }
+.statusChip.status-frost { background: linear-gradient(180deg, #c9ebff, #8cc7ee); color: #1f4763; border-color: rgba(58, 116, 156, 0.64); }
+.statusChip.status-shock { background: linear-gradient(180deg, #ffe887, #f0ca3e); color: #4f3d10; border-color: rgba(158, 122, 21, 0.72); }
+.statusChip.status-breathless { background: linear-gradient(180deg, #f7d8b2, #dfb07a); color: #5a3818; border-color: rgba(133, 85, 40, 0.68); }
+.statusChip.status-bleed { background: linear-gradient(180deg, #f39a99, #cc4f53); color: #fff1f1; border-color: rgba(116, 33, 37, 0.76); }
+.statusChip.status-hunger { background: linear-gradient(180deg, #ffd38a, #e99a43); color: #4e2f0f; border-color: rgba(145, 83, 23, 0.74); }
+.statusChip.status-giant { background: linear-gradient(180deg, #d6c8ff, #a88be8); color: #2e2157; border-color: rgba(94, 71, 156, 0.74); }
+.statusChip.status-focus { background: linear-gradient(180deg, #9fd0ff, #5c9ee6); color: #103a66; border-color: rgba(46, 90, 152, 0.74); }
+
+.statusExpandBtn {
+  width: auto;
+  min-width: 0;
+  padding: 2px 8px;
+  border-radius: 999px !important;
+  border: 1px solid rgba(129, 84, 48, 0.62) !important;
+  background: linear-gradient(180deg, rgba(246, 231, 201, 0.92), rgba(232, 205, 158, 0.88)) !important;
+  color: #4a2f19 !important;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.2;
+  box-shadow: none !important;
+}
+
+.statusEmpty {
+  display: inline-block;
+  font-size: 11px;
+  color: #6d5232;
+  font-weight: 700;
+  padding: 2px 0;
+}
+
+.statusGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.statusToggleBtn {
+  width: auto;
+  min-width: 0;
+  padding: 7px 10px;
+  font-size: 12px;
+  line-height: 1.2;
+  border-radius: 999px !important;
+  border: 1px solid rgba(129, 84, 48, 0.62) !important;
+  background: linear-gradient(180deg, rgba(246, 231, 201, 0.9), rgba(232, 205, 158, 0.86)) !important;
+  color: #4a2f19 !important;
+  box-shadow: none !important;
+}
+
+.statusToggleBtn.active {
+  border-color: rgba(144, 54, 43, 0.82) !important;
+  background: linear-gradient(180deg, rgba(223, 103, 88, 0.92), rgba(170, 60, 48, 0.9)) !important;
+  color: #fff5ed !important;
+}
+
+.statusToggleBtn.status-stun.active { background: linear-gradient(180deg, #ffd56e, #e9b640) !important; color: #4c350f !important; border-color: rgba(151, 106, 25, 0.78) !important; }
+.statusToggleBtn.status-silence.active { background: linear-gradient(180deg, #d3d5de, #b0b4c2) !important; color: #2f3340 !important; border-color: rgba(86, 92, 110, 0.72) !important; }
+.statusToggleBtn.status-half_blind.active { background: linear-gradient(180deg, #ffe29d, #efc364) !important; color: #4f3815 !important; border-color: rgba(149, 101, 36, 0.76) !important; }
+.statusToggleBtn.status-blind.active { background: linear-gradient(180deg, #5f6372, #3d4150) !important; color: #eef0f5 !important; border-color: rgba(29, 33, 44, 0.84) !important; }
+.statusToggleBtn.status-fracture.active { background: linear-gradient(180deg, #f6c1a0, #e29266) !important; color: #572d15 !important; border-color: rgba(140, 71, 35, 0.78) !important; }
+.statusToggleBtn.status-weaken.active { background: linear-gradient(180deg, #dfd1b6, #c2b18f) !important; color: #4d3d26 !important; border-color: rgba(114, 90, 53, 0.74) !important; }
+.statusToggleBtn.status-shrink.active { background: linear-gradient(180deg, #c7cef3, #96a5dd) !important; color: #25335f !important; border-color: rgba(70, 90, 152, 0.74) !important; }
+.statusToggleBtn.status-poison.active { background: linear-gradient(180deg, #8de186, #4fb85a) !important; color: #143d1f !important; border-color: rgba(31, 112, 49, 0.82) !important; }
+.statusToggleBtn.status-burn.active { background: linear-gradient(180deg, #ffb27f, #e05a2e) !important; color: #4f180f !important; border-color: rgba(143, 47, 23, 0.84) !important; }
+.statusToggleBtn.status-frost.active { background: linear-gradient(180deg, #c9ebff, #8cc7ee) !important; color: #1f4763 !important; border-color: rgba(58, 116, 156, 0.74) !important; }
+.statusToggleBtn.status-shock.active { background: linear-gradient(180deg, #ffe887, #f0ca3e) !important; color: #4f3d10 !important; border-color: rgba(158, 122, 21, 0.82) !important; }
+.statusToggleBtn.status-breathless.active { background: linear-gradient(180deg, #f7d8b2, #dfb07a) !important; color: #5a3818 !important; border-color: rgba(133, 85, 40, 0.78) !important; }
+.statusToggleBtn.status-bleed.active { background: linear-gradient(180deg, #f39a99, #cc4f53) !important; color: #fff1f1 !important; border-color: rgba(116, 33, 37, 0.84) !important; }
+.statusToggleBtn.status-hunger.active { background: linear-gradient(180deg, #ffd38a, #e99a43) !important; color: #4e2f0f !important; border-color: rgba(145, 83, 23, 0.84) !important; }
+.statusToggleBtn.status-giant.active { background: linear-gradient(180deg, #d6c8ff, #a88be8) !important; color: #2e2157 !important; border-color: rgba(94, 71, 156, 0.84) !important; }
+.statusToggleBtn.status-focus.active { background: linear-gradient(180deg, #9fd0ff, #5c9ee6) !important; color: #103a66 !important; border-color: rgba(46, 90, 152, 0.84) !important; }
+
+.monsterTemplatePreview {
+  margin-top: 8px;
+}
+

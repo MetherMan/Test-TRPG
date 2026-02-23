@@ -1,0 +1,87 @@
+﻿/* User monster panel layout: compact card + memo area with multiline support. */
+
+#monsterNote {
+  min-height: 84px;
+  resize: vertical;
+  line-height: 1.4;
+}
+
+#activeMonsterRuntimeList textarea {
+  min-height: 84px;
+  resize: vertical;
+  line-height: 1.4;
+}
+
+body.user-mode #monsterOpsPanel #activeMonsterRuntimeList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: stretch;
+}
+
+body.user-mode #monsterOpsPanel #activeMonsterRuntimeList .monsterOpsCard {
+  flex: 1 1 560px;
+  min-width: min(100%, 340px);
+  max-width: 920px;
+  margin-top: 0 !important;
+}
+
+body.user-mode #monsterOpsPanel .monsterUserLayout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+
+body.user-mode #monsterOpsPanel .monsterUserInjuryCol {
+  width: 220px;
+  max-width: 100%;
+}
+
+body.user-mode #monsterOpsPanel .monsterUserInjuryCol .monsterInjuryBoard {
+  width: 100%;
+}
+
+body.user-mode #monsterOpsPanel .monsterUserMemoCol {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+body.user-mode #monsterOpsPanel .monsterUserMemoTitle {
+  font-size: 14px;
+  font-weight: 900;
+  color: #4a2f17;
+  line-height: 1.2;
+}
+
+body.user-mode #monsterOpsPanel .monsterUserMemo {
+  white-space: pre-wrap;
+  word-break: break-word;
+  min-height: 248px;
+  max-height: 320px;
+  overflow: auto;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(126, 90, 51, 0.56);
+  background: linear-gradient(180deg, rgba(252, 245, 230, 0.95), rgba(238, 221, 187, 0.9));
+  color: #4a321a;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+@media (max-width: 980px) {
+  body.user-mode #monsterOpsPanel .monsterUserLayout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  body.user-mode #monsterOpsPanel .monsterUserInjuryCol {
+    width: auto;
+  }
+
+  body.user-mode #monsterOpsPanel .monsterUserMemo {
+    min-height: 140px;
+    max-height: none;
+  }
+}

@@ -1,0 +1,798 @@
+2026/02/18-12:28:59.620 538 Reusing MANIFEST C:\Users\c\AppData\Local\Google\Chrome\User Data\Default\Local Storage\leveldb/MANIFEST-021787
+2026/02/18-12:28:59.625 538 Recovering log #25422
+2026/02/18-12:28:59.630 538 Reusing old log C:\Users\c\AppData\Local\Google\Chrome\User Data\Default\Local Storage\leveldb/025422.log 
+2026/02/18-12:43:21.282 6aac Level-0 table #25426: started
+2026/02/18-12:43:21.296 6aac Level-0 table #25426: 343878 bytes OK
+2026/02/18-12:43:21.297 6aac Delete type=0 #25422
+2026/02/18-12:56:49.326 6aac Level-0 table #25428: started
+2026/02/18-12:56:49.330 6aac Level-0 table #25428: 32187 bytes OK
+2026/02/18-12:56:49.331 6aac Delete type=0 #25425
+2026/02/18-12:58:51.074 6aac Level-0 table #25430: started
+2026/02/18-12:58:51.081 6aac Level-0 table #25430: 336677 bytes OK
+2026/02/18-12:58:51.082 6aac Delete type=0 #25427
+2026/02/18-12:58:51.082 6aac Compacting 4@0 + 3@1 files
+2026/02/18-12:58:51.098 6aac Generated table #25431@0: 1439 keys, 2112818 bytes
+2026/02/18-12:58:51.124 6aac Generated table #25432@0: 9947 keys, 2105506 bytes
+2026/02/18-12:58:51.147 6aac Generated table #25433@0: 23638 keys, 1357751 bytes
+2026/02/18-12:58:51.147 6aac Compacted 4@0 + 3@1 files => 5576075 bytes
+2026/02/18-12:58:51.147 6aac compacted to: files[ 0 5 11 0 0 0 0 ]
+2026/02/18-12:58:51.148 6aac Delete type=2 #25419
+2026/02/18-12:58:51.148 6aac Delete type=2 #25420
+2026/02/18-12:58:51.148 6aac Delete type=2 #25421
+2026/02/18-12:58:51.148 6aac Delete type=2 #25423
+2026/02/18-12:58:51.148 6aac Delete type=2 #25426
+2026/02/18-12:58:51.148 6aac Delete type=2 #25428
+2026/02/18-12:58:51.148 6aac Delete type=2 #25430
+2026/02/18-12:59:15.243 6aac Level-0 table #25435: started
+2026/02/18-12:59:15.252 6aac Level-0 table #25435: 336467 bytes OK
+2026/02/18-12:59:15.253 6aac Delete type=0 #25429
+2026/02/18-13:00:28.390 6aac Level-0 table #25437: started
+2026/02/18-13:00:28.396 6aac Level-0 table #25437: 169280 bytes OK
+2026/02/18-13:00:28.397 6aac Delete type=0 #25434
+2026/02/18-13:00:35.669 6aac Level-0 table #25439: started
+2026/02/18-13:00:35.676 6aac Level-0 table #25439: 337721 bytes OK
+2026/02/18-13:00:35.677 6aac Delete type=0 #25436
+2026/02/18-13:00:53.820 6aac Level-0 table #25441: started
+2026/02/18-13:00:53.826 6aac Level-0 table #25441: 337721 bytes OK
+2026/02/18-13:00:53.827 6aac Delete type=0 #25438
+2026/02/18-13:00:53.827 6aac Compacting 4@0 + 1@1 files
+2026/02/18-13:00:53.843 6aac Generated table #25442@0: 1439 keys, 2113835 bytes
+2026/02/18-13:00:53.844 6aac Compacted 4@0 + 1@1 files => 2113835 bytes
+2026/02/18-13:00:53.844 6aac compacted to: files[ 0 5 11 0 0 0 0 ]
+2026/02/18-13:00:53.845 6aac Delete type=2 #25431
+2026/02/18-13:00:53.845 6aac Delete type=2 #25435
+2026/02/18-13:00:53.845 6aac Delete type=2 #25437
+2026/02/18-13:00:53.845 6aac Delete type=2 #25439
+2026/02/18-13:00:53.845 6aac Delete type=2 #25441
+2026/02/18-13:03:25.246 6aac Level-0 table #25444: started
+2026/02/18-13:03:25.253 6aac Level-0 table #25444: 336590 bytes OK
+2026/02/18-13:03:25.254 6aac Delete type=0 #25440
+2026/02/18-13:38:33.149 6aac Level-0 table #25446: started
+2026/02/18-13:38:33.156 6aac Level-0 table #25446: 337180 bytes OK
+2026/02/18-13:38:33.157 6aac Delete type=0 #25443
+2026/02/18-13:57:08.266 6aac Level-0 table #25448: started
+2026/02/18-13:57:08.272 6aac Level-0 table #25448: 347985 bytes OK
+2026/02/18-13:57:08.274 6aac Delete type=0 #25445
+2026/02/18-14:01:16.436 6aac Level-0 table #25450: started
+2026/02/18-14:01:16.442 6aac Level-0 table #25450: 28306 bytes OK
+2026/02/18-14:01:16.443 6aac Delete type=0 #25447
+2026/02/18-14:01:16.444 6aac Compacting 4@0 + 3@1 files
+2026/02/18-14:01:16.465 6aac Generated table #25451@0: 1478 keys, 2122790 bytes
+2026/02/18-14:01:16.492 6aac Generated table #25452@0: 10969 keys, 2104394 bytes
+2026/02/18-14:01:16.517 6aac Generated table #25453@0: 22613 keys, 1334976 bytes
+2026/02/18-14:01:16.517 6aac Compacted 4@0 + 3@1 files => 5562160 bytes
+2026/02/18-14:01:16.517 6aac compacted to: files[ 0 5 11 0 0 0 0 ]
+2026/02/18-14:01:16.518 6aac Delete type=2 #25432
+2026/02/18-14:01:16.518 6aac Delete type=2 #25433
+2026/02/18-14:01:16.518 6aac Delete type=2 #25442
+2026/02/18-14:01:16.518 6aac Delete type=2 #25444
+2026/02/18-14:01:16.518 6aac Delete type=2 #25446
+2026/02/18-14:01:16.518 6aac Delete type=2 #25448
+2026/02/18-14:01:16.518 6aac Delete type=2 #25450
+2026/02/18-14:03:52.779 6aac Level-0 table #25455: started
+2026/02/18-14:03:52.786 6aac Level-0 table #25455: 308998 bytes OK
+2026/02/18-14:03:52.788 6aac Delete type=0 #25449
+2026/02/18-14:21:53.884 6aac Level-0 table #25457: started
+2026/02/18-14:21:53.890 6aac Level-0 table #25457: 61217 bytes OK
+2026/02/18-14:21:53.891 6aac Delete type=0 #25454
+2026/02/18-14:22:03.874 6aac Level-0 table #25459: started
+2026/02/18-14:22:03.882 6aac Level-0 table #25459: 563590 bytes OK
+2026/02/18-14:22:03.884 6aac Delete type=0 #25456
+2026/02/18-14:23:41.246 6aac Level-0 table #25461: started
+2026/02/18-14:23:41.254 6aac Level-0 table #25461: 542047 bytes OK
+2026/02/18-14:23:41.256 6aac Delete type=0 #25458
+2026/02/18-14:23:41.256 6aac Compacting 4@0 + 3@1 files
+2026/02/18-14:23:41.274 6aac Generated table #25462@0: 1463 keys, 2134611 bytes
+2026/02/18-14:23:41.301 6aac Generated table #25463@0: 9087 keys, 2305625 bytes
+2026/02/18-14:23:41.328 6aac Generated table #25464@0: 24523 keys, 1662739 bytes
+2026/02/18-14:23:41.329 6aac Compacted 4@0 + 3@1 files => 6102975 bytes
+2026/02/18-14:23:41.329 6aac compacted to: files[ 0 5 11 0 0 0 0 ]
+2026/02/18-14:23:41.330 6aac Delete type=2 #25451
+2026/02/18-14:23:41.330 6aac Delete type=2 #25452
+2026/02/18-14:23:41.330 6aac Delete type=2 #25453
+2026/02/18-14:23:41.330 6aac Delete type=2 #25455
+2026/02/18-14:23:41.331 6aac Delete type=2 #25457
+2026/02/18-14:23:41.331 6aac Delete type=2 #25459
+2026/02/18-14:23:41.331 6aac Delete type=2 #25461
+2026/02/18-14:29:30.228 6aac Level-0 table #25466: started
+2026/02/18-14:29:30.243 6aac Level-0 table #25466: 569979 bytes OK
+2026/02/18-14:29:30.245 6aac Delete type=0 #25460
+2026/02/18-14:46:58.181 6aac Level-0 table #25468: started
+2026/02/18-14:46:58.190 6aac Level-0 table #25468: 417886 bytes OK
+2026/02/18-14:46:58.192 6aac Delete type=0 #25465
+2026/02/18-14:49:32.247 6aac Level-0 table #25470: started
+2026/02/18-14:49:32.259 6aac Level-0 table #25470: 388080 bytes OK
+2026/02/18-14:49:32.261 6aac Delete type=0 #25467
+2026/02/18-15:11:34.865 6aac Level-0 table #25472: started
+2026/02/18-15:11:34.873 6aac Level-0 table #25472: 541897 bytes OK
+2026/02/18-15:11:34.874 6aac Delete type=0 #25469
+2026/02/18-15:11:34.875 6aac Compacting 4@0 + 3@1 files
+2026/02/18-15:11:34.896 6aac Generated table #25473@0: 1473 keys, 2104001 bytes
+2026/02/18-15:11:34.922 6aac Generated table #25474@0: 9128 keys, 2400816 bytes
+2026/02/18-15:11:34.948 6aac Generated table #25475@0: 24524 keys, 1949606 bytes
+2026/02/18-15:11:34.948 6aac Compacted 4@0 + 3@1 files => 6454423 bytes
+2026/02/18-15:11:34.949 6aac compacted to: files[ 0 5 11 0 0 0 0 ]
+2026/02/18-15:11:34.950 6aac Delete type=2 #25462
+2026/02/18-15:11:34.950 6aac Delete type=2 #25463
+2026/02/18-15:11:34.950 6aac Delete type=2 #25464
+2026/02/18-15:11:34.950 6aac Delete type=2 #25466
+2026/02/18-15:11:34.950 6aac Delete type=2 #25468
+2026/02/18-15:11:34.950 6aac Delete type=2 #25470
+2026/02/18-15:11:34.950 6aac Delete type=2 #25472
+2026/02/18-15:11:45.826 6aac Level-0 table #25477: started
+2026/02/18-15:11:45.836 6aac Level-0 table #25477: 269332 bytes OK
+2026/02/18-15:11:45.838 6aac Delete type=0 #25471
+2026/02/18-15:13:51.249 6aac Level-0 table #25479: started
+2026/02/18-15:13:51.255 6aac Level-0 table #25479: 560013 bytes OK
+2026/02/18-15:13:51.256 6aac Delete type=0 #25476
+2026/02/18-15:20:45.008 6aac Level-0 table #25481: started
+2026/02/18-15:20:45.015 6aac Level-0 table #25481: 552523 bytes OK
+2026/02/18-15:20:45.016 6aac Delete type=0 #25478
+2026/02/18-15:21:06.275 6aac Level-0 table #25483: started
+2026/02/18-15:21:06.282 6aac Level-0 table #25483: 556179 bytes OK
+2026/02/18-15:21:06.283 6aac Delete type=0 #25480
+2026/02/18-15:21:06.283 6aac Compacting 4@0 + 1@1 files
+2026/02/18-15:21:06.306 6aac Generated table #25484@0: 1473 keys, 2120193 bytes
+2026/02/18-15:21:06.306 6aac Compacted 4@0 + 1@1 files => 2120193 bytes
+2026/02/18-15:21:06.307 6aac compacted to: files[ 0 5 11 0 0 0 0 ]
+2026/02/18-15:21:06.308 6aac Delete type=2 #25473
+2026/02/18-15:21:06.308 6aac Delete type=2 #25477
+2026/02/18-15:21:06.308 6aac Delete type=2 #25479
+2026/02/18-15:21:06.308 6aac Delete type=2 #25481
+2026/02/18-15:21:06.308 6aac Delete type=2 #25483
+2026/02/18-15:22:03.180 6aac Level-0 table #25486: started
+2026/02/18-15:22:03.187 6aac Level-0 table #25486: 558903 bytes OK
+2026/02/18-15:22:03.188 6aac Delete type=0 #25482
+2026/02/18-15:22:56.568 6aac Level-0 table #25488: started
+2026/02/18-15:22:56.575 6aac Level-0 table #25488: 559129 bytes OK
+2026/02/18-15:22:56.576 6aac Delete type=0 #25485
+2026/02/18-15:23:53.257 6aac Level-0 table #25490: started
+2026/02/18-15:23:53.267 6aac Level-0 table #25490: 569213 bytes OK
+2026/02/18-15:23:53.268 6aac Delete type=0 #25487
+2026/02/18-15:44:18.975 6aac Level-0 table #25492: started
+2026/02/18-15:44:18.982 6aac Level-0 table #25492: 566625 bytes OK
+2026/02/18-15:44:18.983 6aac Delete type=0 #25489
+2026/02/18-15:44:18.984 6aac Compacting 4@0 + 2@1 files
+2026/02/18-15:44:19.004 6aac Generated table #25493@0: 1474 keys, 2123525 bytes
+2026/02/18-15:44:19.029 6aac Generated table #25494@0: 9128 keys, 2400824 bytes
+2026/02/18-15:44:19.029 6aac Compacted 4@0 + 2@1 files => 4524349 bytes
+2026/02/18-15:44:19.029 6aac compacted to: files[ 0 5 11 0 0 0 0 ]
+2026/02/18-15:44:19.030 6aac Delete type=2 #25474
+2026/02/18-15:44:19.030 6aac Delete type=2 #25484
+2026/02/18-15:44:19.030 6aac Delete type=2 #25486
+2026/02/18-15:44:19.030 6aac Delete type=2 #25488
+2026/02/18-15:44:19.030 6aac Delete type=2 #25490
+2026/02/18-15:44:19.031 6aac Delete type=2 #25492
+2026/02/18-15:44:45.473 6aac Level-0 table #25496: started
+2026/02/18-15:44:45.480 6aac Level-0 table #25496: 555873 bytes OK
+2026/02/18-15:44:45.481 6aac Delete type=0 #25491
+2026/02/18-15:44:50.977 6aac Level-0 table #25498: started
+2026/02/18-15:44:50.984 6aac Level-0 table #25498: 555611 bytes OK
+2026/02/18-15:44:50.985 6aac Delete type=0 #25495
+2026/02/18-15:45:06.997 6aac Level-0 table #25500: started
+2026/02/18-15:45:07.003 6aac Level-0 table #25500: 555605 bytes OK
+2026/02/18-15:45:07.005 6aac Delete type=0 #25497
+2026/02/18-15:46:50.038 6aac Level-0 table #25502: started
+2026/02/18-15:46:50.044 6aac Level-0 table #25502: 557122 bytes OK
+2026/02/18-15:46:50.046 6aac Delete type=0 #25499
+2026/02/18-15:46:50.047 6aac Compacting 4@0 + 1@1 files
+2026/02/18-15:46:50.072 6aac Generated table #25503@0: 1474 keys, 2124460 bytes
+2026/02/18-15:46:50.072 6aac Compacted 4@0 + 1@1 files => 2124460 bytes
+2026/02/18-15:46:50.073 6aac compacted to: files[ 0 5 11 0 0 0 0 ]
+2026/02/18-15:46:50.074 6aac Delete type=2 #25493
+2026/02/18-15:46:50.074 6aac Delete type=2 #25496
+2026/02/18-15:46:50.074 6aac Delete type=2 #25498
+2026/02/18-15:46:50.074 6aac Delete type=2 #25500
+2026/02/18-15:46:50.074 6aac Delete type=2 #25502
+2026/02/18-15:48:08.475 6aac Level-0 table #25505: started
+2026/02/18-15:48:08.485 6aac Level-0 table #25505: 541900 bytes OK
+2026/02/18-15:48:08.487 6aac Delete type=0 #25501
+2026/02/18-16:03:17.856 6aac Level-0 table #25507: started
+2026/02/18-16:03:17.863 6aac Level-0 table #25507: 546070 bytes OK
+2026/02/18-16:03:17.865 6aac Delete type=0 #25504
+2026/02/18-16:03:46.218 6aac Level-0 table #25509: started
+2026/02/18-16:03:46.226 6aac Level-0 table #25509: 541553 bytes OK
+2026/02/18-16:03:46.227 6aac Delete type=0 #25506
+2026/02/18-16:04:01.258 6aac Level-0 table #25511: started
+2026/02/18-16:04:01.267 6aac Level-0 table #25511: 537711 bytes OK
+2026/02/18-16:04:01.268 6aac Delete type=0 #25508
+2026/02/18-16:04:01.269 6aac Compacting 4@0 + 3@1 files
+2026/02/18-16:04:01.289 6aac Generated table #25512@0: 1489 keys, 2106280 bytes
+2026/02/18-16:04:01.314 6aac Generated table #25513@0: 9128 keys, 2400709 bytes
+2026/02/18-16:04:01.339 6aac Generated table #25514@0: 24524 keys, 1949610 bytes
+2026/02/18-16:04:01.340 6aac Compacted 4@0 + 3@1 files => 6456599 bytes
+2026/02/18-16:04:01.340 6aac compacted to: files[ 0 5 11 0 0 0 0 ]
+2026/02/18-16:04:01.341 6aac Delete type=2 #25475
+2026/02/18-16:04:01.341 6aac Delete type=2 #25494
+2026/02/18-16:04:01.341 6aac Delete type=2 #25503
+2026/02/18-16:04:01.341 6aac Delete type=2 #25505
+2026/02/18-16:04:01.341 6aac Delete type=2 #25507
+2026/02/18-16:04:01.341 6aac Delete type=2 #25509
+2026/02/18-16:04:01.341 6aac Delete type=2 #25511
+2026/02/18-16:04:54.165 6aac Level-0 table #25516: started
+2026/02/18-16:04:54.178 6aac Level-0 table #25516: 536836 bytes OK
+2026/02/18-16:04:54.180 6aac Delete type=0 #25510
+2026/02/18-16:07:02.599 6aac Level-0 table #25518: started
+2026/02/18-16:07:02.606 6aac Level-0 table #25518: 543614 bytes OK
+2026/02/18-16:07:02.608 6aac Delete type=0 #25515
+2026/02/18-16:14:32.523 6aac Level-0 table #25520: started
+2026/02/18-16:14:32.533 6aac Level-0 table #25520: 56114 bytes OK
+2026/02/18-16:14:32.535 6aac Delete type=0 #25517
+2026/02/18-16:16:04.259 6aac Level-0 table #25522: started
+2026/02/18-16:16:04.267 6aac Level-0 table #25522: 536206 bytes OK
+2026/02/18-16:16:04.269 6aac Delete type=0 #25519
+2026/02/18-16:16:04.269 6aac Compacting 4@0 + 3@1 files
+2026/02/18-16:16:04.289 6aac Generated table #25523@0: 1489 keys, 2107374 bytes
+2026/02/18-16:16:04.314 6aac Generated table #25524@0: 9128 keys, 2400709 bytes
+2026/02/18-16:16:04.339 6aac Generated table #25525@0: 24524 keys, 1949625 bytes
+2026/02/18-16:16:04.340 6aac Compacted 4@0 + 3@1 files => 6457708 bytes
+2026/02/18-16:16:04.340 6aac compacted to: files[ 0 5 11 0 0 0 0 ]
+2026/02/18-16:16:04.341 6aac Delete type=2 #25512
+2026/02/18-16:16:04.341 6aac Delete type=2 #25513
+2026/02/18-16:16:04.341 6aac Delete type=2 #25514
+2026/02/18-16:16:04.341 6aac Delete type=2 #25516
+2026/02/18-16:16:04.341 6aac Delete type=2 #25518
+2026/02/18-16:16:04.341 6aac Delete type=2 #25520
+2026/02/18-16:16:04.341 6aac Delete type=2 #25522
+2026/02/18-16:16:24.193 6aac Level-0 table #25527: started
+2026/02/18-16:16:24.200 6aac Level-0 table #25527: 544518 bytes OK
+2026/02/18-16:16:24.201 6aac Delete type=0 #25521
+2026/02/18-16:16:30.130 6aac Level-0 table #25529: started
+2026/02/18-16:16:30.148 6aac Level-0 table #25529: 2833894 bytes OK
+2026/02/18-16:16:30.150 6aac Delete type=0 #25526
+2026/02/18-16:19:49.247 6aac Level-0 table #25531: started
+2026/02/18-16:19:49.272 6aac Level-0 table #25531: 2833896 bytes OK
+2026/02/18-16:19:49.274 6aac Delete type=0 #25528
+2026/02/18-16:39:23.305 6aac Level-0 table #25533: started
+2026/02/18-16:39:23.312 6aac Level-0 table #25533: 33223 bytes OK
+2026/02/18-16:39:23.314 6aac Delete type=0 #25530
+2026/02/18-16:39:23.315 6aac Compacting 4@0 + 3@1 files
+2026/02/18-16:39:23.348 6aac Generated table #25534@0: 815 keys, 3335498 bytes
+2026/02/18-16:39:23.371 6aac Generated table #25535@0: 8024 keys, 2103656 bytes
+2026/02/18-16:39:23.396 6aac Generated table #25536@0: 4862 keys, 2102366 bytes
+2026/02/18-16:39:23.416 6aac Generated table #25537@0: 21440 keys, 1229920 bytes
+2026/02/18-16:39:23.416 6aac Compacted 4@0 + 3@1 files => 8771440 bytes
+2026/02/18-16:39:23.417 6aac compacted to: files[ 0 6 11 0 0 0 0 ]
+2026/02/18-16:39:23.418 6aac Delete type=2 #25523
+2026/02/18-16:39:23.418 6aac Delete type=2 #25524
+2026/02/18-16:39:23.418 6aac Delete type=2 #25525
+2026/02/18-16:39:23.418 6aac Delete type=2 #25527
+2026/02/18-16:39:23.418 6aac Delete type=2 #25529
+2026/02/18-16:39:23.418 6aac Delete type=2 #25531
+2026/02/18-16:39:23.418 6aac Delete type=2 #25533
+2026/02/18-17:04:35.919 6aac Level-0 table #25539: started
+2026/02/18-17:04:35.927 6aac Level-0 table #25539: 34336 bytes OK
+2026/02/18-17:04:35.928 6aac Delete type=0 #25532
+2026/02/18-17:04:54.636 6aac Level-0 table #25541: started
+2026/02/18-17:04:54.665 6aac Level-0 table #25541: 3114709 bytes OK
+2026/02/18-17:04:54.667 6aac Delete type=0 #25538
+2026/02/18-17:05:55.044 6aac Level-0 table #25543: started
+2026/02/18-17:05:55.052 6aac Level-0 table #25543: 53204 bytes OK
+2026/02/18-17:05:55.053 6aac Delete type=0 #25540
+2026/02/18-17:06:05.059 6aac Level-0 table #25545: started
+2026/02/18-17:06:05.082 6aac Level-0 table #25545: 2880781 bytes OK
+2026/02/18-17:06:05.084 6aac Delete type=0 #25542
+2026/02/18-17:06:05.085 6aac Compacting 4@0 + 4@1 files
+2026/02/18-17:06:05.121 6aac Generated table #25546@0: 815 keys, 3388302 bytes
+2026/02/18-17:06:05.143 6aac Generated table #25547@0: 7972 keys, 2103955 bytes
+2026/02/18-17:06:05.167 6aac Generated table #25548@0: 4666 keys, 2102991 bytes
+2026/02/18-17:06:05.189 6aac Generated table #25549@0: 21688 keys, 1235668 bytes
+2026/02/18-17:06:05.189 6aac Compacted 4@0 + 4@1 files => 8830916 bytes
+2026/02/18-17:06:05.190 6aac compacted to: files[ 0 6 11 0 0 0 0 ]
+2026/02/18-17:06:05.191 6aac Delete type=2 #25534
+2026/02/18-17:06:05.191 6aac Delete type=2 #25535
+2026/02/18-17:06:05.191 6aac Delete type=2 #25536
+2026/02/18-17:06:05.191 6aac Delete type=2 #25537
+2026/02/18-17:06:05.191 6aac Delete type=2 #25539
+2026/02/18-17:06:05.191 6aac Delete type=2 #25541
+2026/02/18-17:06:05.191 6aac Delete type=2 #25543
+2026/02/18-17:06:05.191 6aac Delete type=2 #25545
+2026/02/18-17:08:21.030 6aac Level-0 table #25551: started
+2026/02/18-17:08:21.050 6aac Level-0 table #25551: 2880789 bytes OK
+2026/02/18-17:08:21.052 6aac Delete type=0 #25544
+2026/02/18-17:08:26.806 6aac Level-0 table #25553: started
+2026/02/18-17:08:26.825 6aac Level-0 table #25553: 2843746 bytes OK
+2026/02/18-17:08:26.827 6aac Delete type=0 #25550
+2026/02/18-17:09:17.806 6aac Level-0 table #25555: started
+2026/02/18-17:09:17.832 6aac Level-0 table #25555: 2845490 bytes OK
+2026/02/18-17:09:17.834 6aac Delete type=0 #25552
+2026/02/18-17:09:23.315 6aac Level-0 table #25557: started
+2026/02/18-17:09:23.333 6aac Level-0 table #25557: 2849769 bytes OK
+2026/02/18-17:09:23.334 6aac Delete type=0 #25554
+2026/02/18-17:09:23.335 6aac Compacting 4@0 + 1@1 files
+2026/02/18-17:09:23.377 6aac Generated table #25558@0: 815 keys, 3331402 bytes
+2026/02/18-17:09:23.378 6aac Compacted 4@0 + 1@1 files => 3331402 bytes
+2026/02/18-17:09:23.378 6aac compacted to: files[ 0 6 11 0 0 0 0 ]
+2026/02/18-17:09:23.379 6aac Delete type=2 #25546
+2026/02/18-17:09:23.379 6aac Delete type=2 #25551
+2026/02/18-17:09:23.379 6aac Delete type=2 #25553
+2026/02/18-17:09:23.379 6aac Delete type=2 #25555
+2026/02/18-17:09:23.380 6aac Delete type=2 #25557
+2026/02/18-17:11:39.254 6aac Level-0 table #25560: started
+2026/02/18-17:11:39.265 6aac Level-0 table #25560: 48831 bytes OK
+2026/02/18-17:11:39.267 6aac Delete type=0 #25556
+2026/02/18-17:17:28.408 6aac Level-0 table #25562: started
+2026/02/18-17:17:28.428 6aac Level-0 table #25562: 2863026 bytes OK
+2026/02/18-17:17:28.430 6aac Delete type=0 #25559
+2026/02/18-17:17:34.961 6aac Level-0 table #25564: started
+2026/02/18-17:17:34.980 6aac Level-0 table #25564: 2831301 bytes OK
+2026/02/18-17:17:34.981 6aac Delete type=0 #25561
+2026/02/18-17:27:39.354 6aac Level-0 table #25566: started
+2026/02/18-17:27:39.360 6aac Level-0 table #25566: 53968 bytes OK
+2026/02/18-17:27:39.362 6aac Delete type=0 #25563
+2026/02/18-17:27:39.362 6aac Compacting 4@0 + 4@1 files
+2026/02/18-17:27:39.397 6aac Generated table #25567@0: 815 keys, 3331401 bytes
+2026/02/18-17:27:39.418 6aac Generated table #25568@0: 7973 keys, 2104613 bytes
+2026/02/18-17:27:39.444 6aac Generated table #25569@0: 4666 keys, 2102991 bytes
+2026/02/18-17:27:39.464 6aac Generated table #25570@0: 21699 keys, 1235860 bytes
+2026/02/18-17:27:39.464 6aac Compacted 4@0 + 4@1 files => 8774865 bytes
+2026/02/18-17:27:39.464 6aac compacted to: files[ 0 6 11 0 0 0 0 ]
+2026/02/18-17:27:39.465 6aac Delete type=2 #25547
+2026/02/18-17:27:39.465 6aac Delete type=2 #25548
+2026/02/18-17:27:39.465 6aac Delete type=2 #25549
+2026/02/18-17:27:39.465 6aac Delete type=2 #25558
+2026/02/18-17:27:39.465 6aac Delete type=2 #25560
+2026/02/18-17:27:39.465 6aac Delete type=2 #25562
+2026/02/18-17:27:39.465 6aac Delete type=2 #25564
+2026/02/18-17:27:39.465 6aac Delete type=2 #25566
+2026/02/18-17:40:06.244 6aac Level-0 table #25572: started
+2026/02/18-17:40:06.252 6aac Level-0 table #25572: 51633 bytes OK
+2026/02/18-17:40:06.254 6aac Delete type=0 #25565
+2026/02/18-17:44:02.129 6aac Level-0 table #25574: started
+2026/02/18-17:44:02.152 6aac Level-0 table #25574: 2969043 bytes OK
+2026/02/18-17:44:02.154 6aac Delete type=0 #25571
+2026/02/18-17:44:22.247 6aac Level-0 table #25576: started
+2026/02/18-17:44:22.266 6aac Level-0 table #25576: 2920528 bytes OK
+2026/02/18-17:44:22.268 6aac Delete type=0 #25573
+2026/02/18-17:48:11.309 6aac Level-0 table #25578: started
+2026/02/18-17:48:11.329 6aac Level-0 table #25578: 2947889 bytes OK
+2026/02/18-17:48:11.331 6aac Delete type=0 #25575
+2026/02/18-17:48:11.332 6aac Compacting 4@0 + 4@1 files
+2026/02/18-17:48:11.372 6aac Generated table #25579@0: 815 keys, 3423278 bytes
+2026/02/18-17:48:11.392 6aac Generated table #25580@0: 7973 keys, 2105049 bytes
+2026/02/18-17:48:11.421 6aac Generated table #25581@0: 4666 keys, 2102991 bytes
+2026/02/18-17:48:11.443 6aac Generated table #25582@0: 21710 keys, 1236008 bytes
+2026/02/18-17:48:11.443 6aac Compacted 4@0 + 4@1 files => 8867326 bytes
+2026/02/18-17:48:11.443 6aac compacted to: files[ 0 6 11 0 0 0 0 ]
+2026/02/18-17:48:11.444 6aac Delete type=2 #25567
+2026/02/18-17:48:11.444 6aac Delete type=2 #25568
+2026/02/18-17:48:11.444 6aac Delete type=2 #25569
+2026/02/18-17:48:11.444 6aac Delete type=2 #25570
+2026/02/18-17:48:11.444 6aac Delete type=2 #25572
+2026/02/18-17:48:11.444 6aac Delete type=2 #25574
+2026/02/18-17:48:11.444 6aac Delete type=2 #25576
+2026/02/18-17:48:11.444 6aac Delete type=2 #25578
+2026/02/18-17:54:24.270 6aac Level-0 table #25584: started
+2026/02/18-17:54:24.289 6aac Level-0 table #25584: 2811386 bytes OK
+2026/02/18-17:54:24.290 6aac Delete type=0 #25577
+2026/02/18-17:54:30.238 6aac Level-0 table #25586: started
+2026/02/18-17:54:30.256 6aac Level-0 table #25586: 2819774 bytes OK
+2026/02/18-17:54:30.257 6aac Delete type=0 #25583
+2026/02/18-17:56:05.053 6aac Level-0 table #25588: started
+2026/02/18-17:56:05.071 6aac Level-0 table #25588: 2931879 bytes OK
+2026/02/18-17:56:05.073 6aac Delete type=0 #25585
+2026/02/18-17:56:30.259 6aac Level-0 table #25590: started
+2026/02/18-17:56:30.264 6aac Level-0 table #25590: 48531 bytes OK
+2026/02/18-17:56:30.266 6aac Delete type=0 #25587
+2026/02/18-17:56:30.266 6aac Compacting 4@0 + 4@1 files
+2026/02/18-17:56:30.305 6aac Generated table #25591@0: 815 keys, 3423754 bytes
+2026/02/18-17:56:30.325 6aac Generated table #25592@0: 7973 keys, 2105178 bytes
+2026/02/18-17:56:30.348 6aac Generated table #25593@0: 4666 keys, 2102991 bytes
+2026/02/18-17:56:30.368 6aac Generated table #25594@0: 21714 keys, 1235985 bytes
+2026/02/18-17:56:30.368 6aac Compacted 4@0 + 4@1 files => 8867908 bytes
+2026/02/18-17:56:30.369 6aac compacted to: files[ 0 6 11 0 0 0 0 ]
+2026/02/18-17:56:30.370 6aac Delete type=2 #25579
+2026/02/18-17:56:30.370 6aac Delete type=2 #25580
+2026/02/18-17:56:30.370 6aac Delete type=2 #25581
+2026/02/18-17:56:30.370 6aac Delete type=2 #25582
+2026/02/18-17:56:30.370 6aac Delete type=2 #25584
+2026/02/18-17:56:30.370 6aac Delete type=2 #25586
+2026/02/18-17:56:30.370 6aac Delete type=2 #25588
+2026/02/18-17:56:30.370 6aac Delete type=2 #25590
+2026/02/18-18:00:30.272 6aac Level-0 table #25596: started
+2026/02/18-18:00:30.318 6aac Level-0 table #25596: 2925194 bytes OK
+2026/02/18-18:00:30.321 6aac Delete type=0 #25589
+2026/02/18-18:01:30.244 6aac Level-0 table #25598: started
+2026/02/18-18:01:30.292 6aac Level-0 table #25598: 2935031 bytes OK
+2026/02/18-18:01:30.294 6aac Delete type=0 #25595
+2026/02/18-18:04:14.691 6aac Level-0 table #25600: started
+2026/02/18-18:04:14.709 6aac Level-0 table #25600: 2857003 bytes OK
+2026/02/18-18:04:14.711 6aac Delete type=0 #25597
+2026/02/18-18:12:08.298 6aac Level-0 table #25602: started
+2026/02/18-18:12:08.315 6aac Level-0 table #25602: 2852734 bytes OK
+2026/02/18-18:12:08.317 6aac Delete type=0 #25599
+2026/02/18-18:12:08.318 6aac Compacting 4@0 + 4@1 files
+2026/02/18-18:12:08.361 6aac Generated table #25603@0: 815 keys, 3368653 bytes
+2026/02/18-18:12:08.382 6aac Generated table #25604@0: 7973 keys, 2105180 bytes
+2026/02/18-18:12:08.407 6aac Generated table #25605@0: 4666 keys, 2102991 bytes
+2026/02/18-18:12:08.428 6aac Generated table #25606@0: 21723 keys, 1236070 bytes
+2026/02/18-18:12:08.428 6aac Compacted 4@0 + 4@1 files => 8812894 bytes
+2026/02/18-18:12:08.429 6aac compacted to: files[ 0 6 11 0 0 0 0 ]
+2026/02/18-18:12:08.429 6aac Delete type=2 #25591
+2026/02/18-18:12:08.430 6aac Delete type=2 #25592
+2026/02/18-18:12:08.430 6aac Delete type=2 #25593
+2026/02/18-18:12:08.430 6aac Delete type=2 #25594
+2026/02/18-18:12:08.430 6aac Delete type=2 #25596
+2026/02/18-18:12:08.430 6aac Delete type=2 #25598
+2026/02/18-18:12:08.430 6aac Delete type=2 #25600
+2026/02/18-18:12:08.430 6aac Delete type=2 #25602
+2026/02/18-18:12:18.296 6aac Level-0 table #25608: started
+2026/02/18-18:12:18.314 6aac Level-0 table #25608: 2925711 bytes OK
+2026/02/18-18:12:18.316 6aac Delete type=0 #25601
+2026/02/18-18:14:28.248 6aac Level-0 table #25610: started
+2026/02/18-18:14:28.255 6aac Level-0 table #25610: 48272 bytes OK
+2026/02/18-18:14:28.256 6aac Delete type=0 #25607
+2026/02/18-18:26:30.261 6aac Level-0 table #25612: started
+2026/02/18-18:26:30.299 6aac Level-0 table #25612: 2825932 bytes OK
+2026/02/18-18:26:30.301 6aac Delete type=0 #25609
+2026/02/18-18:32:38.884 6aac Level-0 table #25614: started
+2026/02/18-18:32:38.900 6aac Level-0 table #25614: 2855807 bytes OK
+2026/02/18-18:32:38.901 6aac Delete type=0 #25611
+2026/02/18-18:32:38.902 6aac Compacting 4@0 + 4@1 files
+2026/02/18-18:32:38.940 6aac Generated table #25615@0: 815 keys, 3351023 bytes
+2026/02/18-18:32:38.960 6aac Generated table #25616@0: 7973 keys, 2105062 bytes
+2026/02/18-18:32:38.983 6aac Generated table #25617@0: 4666 keys, 2102991 bytes
+2026/02/18-18:32:39.005 6aac Generated table #25618@0: 21735 keys, 1236277 bytes
+2026/02/18-18:32:39.005 6aac Compacted 4@0 + 4@1 files => 8795353 bytes
+2026/02/18-18:32:39.005 6aac compacted to: files[ 0 6 11 0 0 0 0 ]
+2026/02/18-18:32:39.006 6aac Delete type=2 #25603
+2026/02/18-18:32:39.006 6aac Delete type=2 #25604
+2026/02/18-18:32:39.006 6aac Delete type=2 #25605
+2026/02/18-18:32:39.006 6aac Delete type=2 #25606
+2026/02/18-18:32:39.006 6aac Delete type=2 #25608
+2026/02/18-18:32:39.006 6aac Delete type=2 #25610
+2026/02/18-18:32:39.006 6aac Delete type=2 #25612
+2026/02/18-18:32:39.007 6aac Delete type=2 #25614
+2026/02/18-18:33:14.747 6aac Level-0 table #25620: started
+2026/02/18-18:33:14.777 6aac Level-0 table #25620: 2919532 bytes OK
+2026/02/18-18:33:14.781 6aac Delete type=0 #25613
+2026/02/18-18:49:30.272 6aac Level-0 table #25622: started
+2026/02/18-18:49:30.291 6aac Level-0 table #25622: 2961944 bytes OK
+2026/02/18-18:49:30.293 6aac Delete type=0 #25619
+2026/02/18-18:49:46.370 6aac Level-0 table #25624: started
+2026/02/18-18:49:46.392 6aac Level-0 table #25624: 2924462 bytes OK
+2026/02/18-18:49:46.394 6aac Delete type=0 #25621
+2026/02/18-18:50:16.709 6aac Level-0 table #25626: started
+2026/02/18-18:50:16.737 6aac Level-0 table #25626: 2926147 bytes OK
+2026/02/18-18:50:16.739 6aac Delete type=0 #25623
+2026/02/18-18:50:16.740 6aac Compacting 4@0 + 4@1 files
+2026/02/18-18:50:16.814 6aac Generated table #25627@0: 815 keys, 3402551 bytes
+2026/02/18-18:50:16.846 6aac Generated table #25628@0: 7973 keys, 2105062 bytes
+2026/02/18-18:50:16.882 6aac Generated table #25629@0: 4666 keys, 2102991 bytes
+2026/02/18-18:50:16.914 6aac Generated table #25630@0: 21745 keys, 1236243 bytes
+2026/02/18-18:50:16.914 6aac Compacted 4@0 + 4@1 files => 8846847 bytes
+2026/02/18-18:50:16.915 6aac compacted to: files[ 0 6 11 0 0 0 0 ]
+2026/02/18-18:50:16.916 6aac Delete type=2 #25615
+2026/02/18-18:50:16.916 6aac Delete type=2 #25616
+2026/02/18-18:50:16.916 6aac Delete type=2 #25617
+2026/02/18-18:50:16.916 6aac Delete type=2 #25618
+2026/02/18-18:50:16.916 6aac Delete type=2 #25620
+2026/02/18-18:50:16.916 6aac Delete type=2 #25622
+2026/02/18-18:50:16.916 6aac Delete type=2 #25624
+2026/02/18-18:50:16.916 6aac Delete type=2 #25626
+2026/02/18-19:09:58.191 6aac Level-0 table #25632: started
+2026/02/18-19:09:58.236 6aac Level-0 table #25632: 2960230 bytes OK
+2026/02/18-19:09:58.238 6aac Delete type=0 #25625
+2026/02/18-19:14:40.253 6aac Level-0 table #25634: started
+2026/02/18-19:14:40.290 6aac Level-0 table #25634: 2931981 bytes OK
+2026/02/18-19:14:40.291 6aac Delete type=0 #25631
+2026/02/18-20:07:26.745 6aac Level-0 table #25636: started
+2026/02/18-20:07:26.762 6aac Level-0 table #25636: 2940843 bytes OK
+2026/02/18-20:07:26.763 6aac Delete type=0 #25633
+2026/02/18-20:18:30.253 6aac Level-0 table #25638: started
+2026/02/18-20:18:30.258 6aac Level-0 table #25638: 58413 bytes OK
+2026/02/18-20:18:30.259 6aac Delete type=0 #25635
+2026/02/18-20:18:30.260 6aac Compacting 4@0 + 4@1 files
+2026/02/18-20:18:30.308 6aac Generated table #25639@0: 815 keys, 3435471 bytes
+2026/02/18-20:18:30.332 6aac Generated table #25640@0: 7973 keys, 2105180 bytes
+2026/02/18-20:18:30.356 6aac Generated table #25641@0: 4666 keys, 2102991 bytes
+2026/02/18-20:18:30.376 6aac Generated table #25642@0: 21795 keys, 1236720 bytes
+2026/02/18-20:18:30.376 6aac Compacted 4@0 + 4@1 files => 8880362 bytes
+2026/02/18-20:18:30.377 6aac compacted to: files[ 0 6 11 0 0 0 0 ]
+2026/02/18-20:18:30.378 6aac Delete type=2 #25627
+2026/02/18-20:18:30.378 6aac Delete type=2 #25628
+2026/02/18-20:18:30.378 6aac Delete type=2 #25629
+2026/02/18-20:18:30.378 6aac Delete type=2 #25630
+2026/02/18-20:18:30.378 6aac Delete type=2 #25632
+2026/02/18-20:18:30.378 6aac Delete type=2 #25634
+2026/02/18-20:18:30.378 6aac Delete type=2 #25636
+2026/02/18-20:18:30.378 6aac Delete type=2 #25638
+2026/02/18-20:20:30.257 6aac Level-0 table #25644: started
+2026/02/18-20:20:30.290 6aac Level-0 table #25644: 2934257 bytes OK
+2026/02/18-20:20:30.292 6aac Delete type=0 #25637
+2026/02/18-20:21:30.307 6aac Level-0 table #25646: started
+2026/02/18-20:21:30.324 6aac Level-0 table #25646: 2960561 bytes OK
+2026/02/18-20:21:30.325 6aac Delete type=0 #25643
+2026/02/18-20:25:30.369 6aac Level-0 table #25648: started
+2026/02/18-20:25:30.386 6aac Level-0 table #25648: 2947495 bytes OK
+2026/02/18-20:25:30.388 6aac Delete type=0 #25645
+2026/02/18-20:25:58.587 6aac Level-0 table #25650: started
+2026/02/18-20:25:58.604 6aac Level-0 table #25650: 2924676 bytes OK
+2026/02/18-20:25:58.605 6aac Delete type=0 #25647
+2026/02/18-20:25:58.606 6aac Compacting 4@0 + 4@1 files
+2026/02/18-20:25:58.649 6aac Generated table #25651@0: 815 keys, 3432136 bytes
+2026/02/18-20:25:58.668 6aac Generated table #25652@0: 7973 keys, 2105180 bytes
+2026/02/18-20:25:58.691 6aac Generated table #25653@0: 4666 keys, 2102991 bytes
+2026/02/18-20:25:58.710 6aac Generated table #25654@0: 21800 keys, 1237019 bytes
+2026/02/18-20:25:58.710 6aac Compacted 4@0 + 4@1 files => 8877326 bytes
+2026/02/18-20:25:58.711 6aac compacted to: files[ 0 6 11 0 0 0 0 ]
+2026/02/18-20:25:58.712 6aac Delete type=2 #25639
+2026/02/18-20:25:58.712 6aac Delete type=2 #25640
+2026/02/18-20:25:58.712 6aac Delete type=2 #25641
+2026/02/18-20:25:58.712 6aac Delete type=2 #25642
+2026/02/18-20:25:58.712 6aac Delete type=2 #25644
+2026/02/18-20:25:58.712 6aac Delete type=2 #25646
+2026/02/18-20:25:58.712 6aac Delete type=2 #25648
+2026/02/18-20:25:58.712 6aac Delete type=2 #25650
+2026/02/18-20:51:30.625 6aac Level-0 table #25656: started
+2026/02/18-20:51:30.647 6aac Level-0 table #25656: 2923252 bytes OK
+2026/02/18-20:51:30.648 6aac Delete type=0 #25649
+2026/02/18-21:00:41.253 6aac Level-0 table #25658: started
+2026/02/18-21:00:41.271 6aac Level-0 table #25658: 2924837 bytes OK
+2026/02/18-21:00:41.272 6aac Delete type=0 #25655
+2026/02/18-21:02:30.284 6aac Level-0 table #25660: started
+2026/02/18-21:02:30.313 6aac Level-0 table #25660: 2975766 bytes OK
+2026/02/18-21:02:30.315 6aac Delete type=0 #25657
+2026/02/18-21:03:30.258 6aac Level-0 table #25662: started
+2026/02/18-21:03:30.276 6aac Level-0 table #25662: 2942946 bytes OK
+2026/02/18-21:03:30.277 6aac Delete type=0 #25659
+2026/02/18-21:03:30.278 6aac Compacting 4@0 + 4@1 files
+2026/02/18-21:03:30.325 6aac Generated table #25663@0: 815 keys, 3468396 bytes
+2026/02/18-21:03:30.344 6aac Generated table #25664@0: 7973 keys, 2105137 bytes
+2026/02/18-21:03:30.368 6aac Generated table #25665@0: 4666 keys, 2102991 bytes
+2026/02/18-21:03:30.386 6aac Generated table #25666@0: 21821 keys, 1237116 bytes
+2026/02/18-21:03:30.386 6aac Compacted 4@0 + 4@1 files => 8913640 bytes
+2026/02/18-21:03:30.386 6aac compacted to: files[ 0 6 11 0 0 0 0 ]
+2026/02/18-21:03:30.387 6aac Delete type=2 #25651
+2026/02/18-21:03:30.387 6aac Delete type=2 #25652
+2026/02/18-21:03:30.387 6aac Delete type=2 #25653
+2026/02/18-21:03:30.387 6aac Delete type=2 #25654
+2026/02/18-21:03:30.387 6aac Delete type=2 #25656
+2026/02/18-21:03:30.387 6aac Delete type=2 #25658
+2026/02/18-21:03:30.387 6aac Delete type=2 #25660
+2026/02/18-21:03:30.387 6aac Delete type=2 #25662
+2026/02/18-21:05:04.254 6aac Level-0 table #25668: started
+2026/02/18-21:05:04.270 6aac Level-0 table #25668: 2944190 bytes OK
+2026/02/18-21:05:04.272 6aac Delete type=0 #25661
+2026/02/18-21:05:30.246 6aac Level-0 table #25670: started
+2026/02/18-21:05:30.262 6aac Level-0 table #25670: 2912756 bytes OK
+2026/02/18-21:05:30.264 6aac Delete type=0 #25667
+2026/02/18-21:06:19.826 6aac Level-0 table #25672: started
+2026/02/18-21:06:19.846 6aac Level-0 table #25672: 2914004 bytes OK
+2026/02/18-21:06:19.848 6aac Delete type=0 #25669
+2026/02/18-21:07:30.255 6aac Level-0 table #25674: started
+2026/02/18-21:07:30.295 6aac Level-0 table #25674: 2917827 bytes OK
+2026/02/18-21:07:30.297 6aac Delete type=0 #25671
+2026/02/18-21:07:30.299 6aac Compacting 4@0 + 4@1 files
+2026/02/18-21:07:30.386 6aac Generated table #25675@0: 815 keys, 3438280 bytes
+2026/02/18-21:07:30.415 6aac Generated table #25676@0: 7973 keys, 2105137 bytes
+2026/02/18-21:07:30.450 6aac Generated table #25677@0: 4666 keys, 2102991 bytes
+2026/02/18-21:07:30.481 6aac Generated table #25678@0: 21823 keys, 1237141 bytes
+2026/02/18-21:07:30.481 6aac Compacted 4@0 + 4@1 files => 8883549 bytes
+2026/02/18-21:07:30.481 6aac compacted to: files[ 0 6 11 0 0 0 0 ]
+2026/02/18-21:07:30.482 6aac Delete type=2 #25663
+2026/02/18-21:07:30.482 6aac Delete type=2 #25664
+2026/02/18-21:07:30.483 6aac Delete type=2 #25665
+2026/02/18-21:07:30.483 6aac Delete type=2 #25666
+2026/02/18-21:07:30.483 6aac Delete type=2 #25668
+2026/02/18-21:07:30.483 6aac Delete type=2 #25670
+2026/02/18-21:07:30.483 6aac Delete type=2 #25672
+2026/02/18-21:07:30.483 6aac Delete type=2 #25674
+2026/02/18-21:10:30.249 538 Level-0 table #25680: started
+2026/02/18-21:10:30.258 538 Level-0 table #25680: 224465 bytes OK
+2026/02/18-21:10:30.259 538 Delete type=0 #25673
+2026/02/18-21:20:01.257 6aac Level-0 table #25682: started
+2026/02/18-21:20:01.263 6aac Level-0 table #25682: 221644 bytes OK
+2026/02/18-21:20:01.264 6aac Delete type=0 #25679
+2026/02/18-21:20:45.253 6aac Level-0 table #25684: started
+2026/02/18-21:20:45.260 6aac Level-0 table #25684: 329355 bytes OK
+2026/02/18-21:20:45.261 6aac Delete type=0 #25681
+2026/02/18-21:22:25.482 6aac Level-0 table #25686: started
+2026/02/18-21:22:25.487 6aac Level-0 table #25686: 329012 bytes OK
+2026/02/18-21:22:25.488 6aac Delete type=0 #25683
+2026/02/18-21:22:25.489 6aac Compacting 4@0 + 4@1 files
+2026/02/18-21:22:25.513 6aac Generated table #25687@0: 817 keys, 3439383 bytes
+2026/02/18-21:22:25.530 6aac Generated table #25688@0: 1269 keys, 2103084 bytes
+2026/02/18-21:22:25.556 6aac Generated table #25689@0: 8539 keys, 2290118 bytes
+2026/02/18-21:22:25.578 6aac Generated table #25690@0: 24666 keys, 1383517 bytes
+2026/02/18-21:22:25.578 6aac Compacted 4@0 + 4@1 files => 9216102 bytes
+2026/02/18-21:22:25.578 6aac compacted to: files[ 0 6 11 0 0 0 0 ]
+2026/02/18-21:22:25.579 6aac Delete type=2 #25675
+2026/02/18-21:22:25.579 6aac Delete type=2 #25676
+2026/02/18-21:22:25.579 6aac Delete type=2 #25677
+2026/02/18-21:22:25.579 6aac Delete type=2 #25678
+2026/02/18-21:22:25.579 6aac Delete type=2 #25680
+2026/02/18-21:22:25.579 6aac Delete type=2 #25682
+2026/02/18-21:22:25.579 6aac Delete type=2 #25684
+2026/02/18-21:22:25.579 6aac Delete type=2 #25686
+2026/02/18-21:22:49.129 6aac Level-0 table #25692: started
+2026/02/18-21:22:49.135 6aac Level-0 table #25692: 329896 bytes OK
+2026/02/18-21:22:49.136 6aac Delete type=0 #25685
+2026/02/18-21:23:24.915 6aac Level-0 table #25694: started
+2026/02/18-21:23:24.919 6aac Level-0 table #25694: 330011 bytes OK
+2026/02/18-21:23:24.920 6aac Delete type=0 #25691
+2026/02/18-21:23:30.292 6aac Level-0 table #25696: started
+2026/02/18-21:23:30.303 6aac Level-0 table #25696: 330174 bytes OK
+2026/02/18-21:23:30.305 6aac Delete type=0 #25693
+2026/02/18-21:24:30.274 6aac Level-0 table #25698: started
+2026/02/18-21:24:30.285 6aac Level-0 table #25698: 330330 bytes OK
+2026/02/18-21:24:30.286 6aac Delete type=0 #25695
+2026/02/18-21:24:30.287 6aac Compacting 4@0 + 4@1 files
+2026/02/18-21:24:30.328 6aac Generated table #25699@0: 817 keys, 3439382 bytes
+2026/02/18-21:24:30.355 6aac Generated table #25700@0: 1106 keys, 2100369 bytes
+2026/02/18-21:24:30.395 6aac Generated table #25701@0: 8702 keys, 2293494 bytes
+2026/02/18-21:24:30.429 6aac Generated table #25702@0: 24667 keys, 1383509 bytes
+2026/02/18-21:24:30.429 6aac Compacted 4@0 + 4@1 files => 9216754 bytes
+2026/02/18-21:24:30.429 6aac compacted to: files[ 0 6 11 0 0 0 0 ]
+2026/02/18-21:24:30.430 6aac Delete type=2 #25687
+2026/02/18-21:24:30.430 6aac Delete type=2 #25688
+2026/02/18-21:24:30.430 6aac Delete type=2 #25689
+2026/02/18-21:24:30.431 6aac Delete type=2 #25690
+2026/02/18-21:24:30.431 6aac Delete type=2 #25692
+2026/02/18-21:24:30.431 6aac Delete type=2 #25694
+2026/02/18-21:24:30.431 6aac Delete type=2 #25696
+2026/02/18-21:24:30.431 6aac Delete type=2 #25698
+2026/02/18-21:25:08.243 6aac Level-0 table #25704: started
+2026/02/18-21:25:08.248 6aac Level-0 table #25704: 330458 bytes OK
+2026/02/18-21:25:08.249 6aac Delete type=0 #25697
+2026/02/18-21:26:28.853 6aac Level-0 table #25706: started
+2026/02/18-21:26:28.859 6aac Level-0 table #25706: 330072 bytes OK
+2026/02/18-21:26:28.860 6aac Delete type=0 #25703
+2026/02/18-21:28:30.254 6aac Level-0 table #25708: started
+2026/02/18-21:28:30.260 6aac Level-0 table #25708: 331183 bytes OK
+2026/02/18-21:28:30.264 6aac Delete type=0 #25705
+2026/02/18-21:29:00.437 6aac Level-0 table #25710: started
+2026/02/18-21:29:00.447 6aac Level-0 table #25710: 331665 bytes OK
+2026/02/18-21:29:00.449 6aac Delete type=0 #25707
+2026/02/18-21:29:00.449 6aac Compacting 4@0 + 4@1 files
+2026/02/18-21:29:00.495 6aac Generated table #25711@0: 817 keys, 3439380 bytes
+2026/02/18-21:29:00.521 6aac Generated table #25712@0: 1106 keys, 2101711 bytes
+2026/02/18-21:29:00.564 6aac Generated table #25713@0: 8702 keys, 2293494 bytes
+2026/02/18-21:29:00.599 6aac Generated table #25714@0: 24670 keys, 1383571 bytes
+2026/02/18-21:29:00.600 6aac Compacted 4@0 + 4@1 files => 9218156 bytes
+2026/02/18-21:29:00.600 6aac compacted to: files[ 0 6 11 0 0 0 0 ]
+2026/02/18-21:29:00.601 6aac Delete type=2 #25699
+2026/02/18-21:29:00.602 6aac Delete type=2 #25700
+2026/02/18-21:29:00.602 6aac Delete type=2 #25701
+2026/02/18-21:29:00.602 6aac Delete type=2 #25702
+2026/02/18-21:29:00.602 6aac Delete type=2 #25704
+2026/02/18-21:29:00.602 6aac Delete type=2 #25706
+2026/02/18-21:29:00.602 6aac Delete type=2 #25708
+2026/02/18-21:29:00.602 6aac Delete type=2 #25710
+2026/02/18-21:30:30.252 6aac Level-0 table #25716: started
+2026/02/18-21:30:30.257 6aac Level-0 table #25716: 331884 bytes OK
+2026/02/18-21:30:30.258 6aac Delete type=0 #25709
+2026/02/18-21:30:47.249 6aac Level-0 table #25718: started
+2026/02/18-21:30:47.260 6aac Level-0 table #25718: 332578 bytes OK
+2026/02/18-21:30:47.261 6aac Delete type=0 #25715
+2026/02/18-21:31:30.248 6aac Level-0 table #25720: started
+2026/02/18-21:31:30.254 6aac Level-0 table #25720: 332156 bytes OK
+2026/02/18-21:31:30.255 6aac Delete type=0 #25717
+2026/02/18-21:33:30.244 6aac Level-0 table #25722: started
+2026/02/18-21:33:30.249 6aac Level-0 table #25722: 332934 bytes OK
+2026/02/18-21:33:30.251 6aac Delete type=0 #25719
+2026/02/18-21:33:30.251 6aac Compacting 4@0 + 4@1 files
+2026/02/18-21:33:30.281 6aac Generated table #25723@0: 817 keys, 3439384 bytes
+2026/02/18-21:33:30.299 6aac Generated table #25724@0: 1106 keys, 2102978 bytes
+2026/02/18-21:33:30.327 6aac Generated table #25725@0: 8702 keys, 2293494 bytes
+2026/02/18-21:33:30.349 6aac Generated table #25726@0: 24672 keys, 1383556 bytes
+2026/02/18-21:33:30.349 6aac Compacted 4@0 + 4@1 files => 9219412 bytes
+2026/02/18-21:33:30.350 6aac compacted to: files[ 0 6 11 0 0 0 0 ]
+2026/02/18-21:33:30.350 6aac Delete type=2 #25711
+2026/02/18-21:33:30.351 6aac Delete type=2 #25712
+2026/02/18-21:33:30.351 6aac Delete type=2 #25713
+2026/02/18-21:33:30.351 6aac Delete type=2 #25714
+2026/02/18-21:33:30.351 6aac Delete type=2 #25716
+2026/02/18-21:33:30.351 6aac Delete type=2 #25718
+2026/02/18-21:33:30.351 6aac Delete type=2 #25720
+2026/02/18-21:33:30.351 6aac Delete type=2 #25722
+2026/02/18-21:35:10.237 6aac Level-0 table #25728: started
+2026/02/18-21:35:10.247 6aac Level-0 table #25728: 333888 bytes OK
+2026/02/18-21:35:10.248 6aac Delete type=0 #25721
+2026/02/18-21:35:30.256 6aac Level-0 table #25730: started
+2026/02/18-21:35:30.262 6aac Level-0 table #25730: 432056 bytes OK
+2026/02/18-21:35:30.263 6aac Delete type=0 #25727
+2026/02/18-21:50:51.279 6aac Level-0 table #25732: started
+2026/02/18-21:50:51.296 6aac Level-0 table #25732: 432895 bytes OK
+2026/02/18-21:50:51.298 6aac Delete type=0 #25729
+2026/02/18-21:51:30.264 6aac Level-0 table #25734: started
+2026/02/18-21:51:30.271 6aac Level-0 table #25734: 433045 bytes OK
+2026/02/18-21:51:30.272 6aac Delete type=0 #25731
+2026/02/18-21:51:30.273 6aac Compacting 4@0 + 4@1 files
+2026/02/18-21:51:30.301 6aac Generated table #25735@0: 817 keys, 3439383 bytes
+2026/02/18-21:51:30.320 6aac Generated table #25736@0: 736 keys, 2108933 bytes
+2026/02/18-21:51:30.348 6aac Generated table #25737@0: 9072 keys, 2383999 bytes
+2026/02/18-21:51:30.371 6aac Generated table #25738@0: 24682 keys, 1383789 bytes
+2026/02/18-21:51:30.371 6aac Compacted 4@0 + 4@1 files => 9316104 bytes
+2026/02/18-21:51:30.371 6aac compacted to: files[ 0 6 11 0 0 0 0 ]
+2026/02/18-21:51:30.372 6aac Delete type=2 #25723
+2026/02/18-21:51:30.373 6aac Delete type=2 #25724
+2026/02/18-21:51:30.373 6aac Delete type=2 #25725
+2026/02/18-21:51:30.373 6aac Delete type=2 #25726
+2026/02/18-21:51:30.373 6aac Delete type=2 #25728
+2026/02/18-21:51:30.373 6aac Delete type=2 #25730
+2026/02/18-21:51:30.373 6aac Delete type=2 #25732
+2026/02/18-21:51:30.373 6aac Delete type=2 #25734
+2026/02/18-21:56:30.254 6aac Level-0 table #25740: started
+2026/02/18-21:56:30.260 6aac Level-0 table #25740: 539433 bytes OK
+2026/02/18-21:56:30.262 6aac Delete type=0 #25733
+2026/02/18-21:56:51.366 6aac Level-0 table #25742: started
+2026/02/18-21:56:51.371 6aac Level-0 table #25742: 334234 bytes OK
+2026/02/18-21:56:51.372 6aac Delete type=0 #25739
+2026/02/18-21:58:30.237 6aac Level-0 table #25744: started
+2026/02/18-21:58:30.243 6aac Level-0 table #25744: 436018 bytes OK
+2026/02/18-21:58:30.244 6aac Delete type=0 #25741
+2026/02/18-21:58:48.128 6aac Level-0 table #25746: started
+2026/02/18-21:58:48.135 6aac Level-0 table #25746: 604648 bytes OK
+2026/02/18-21:58:48.136 6aac Delete type=0 #25743
+2026/02/18-21:58:48.136 6aac Compacting 4@0 + 4@1 files
+2026/02/18-21:58:48.162 6aac Generated table #25747@0: 817 keys, 3439383 bytes
+2026/02/18-21:58:48.180 6aac Generated table #25748@0: 720 keys, 2100936 bytes
+2026/02/18-21:58:48.204 6aac Generated table #25749@0: 9087 keys, 2282012 bytes
+2026/02/18-21:58:48.227 6aac Generated table #25750@0: 24688 keys, 1664750 bytes
+2026/02/18-21:58:48.227 6aac Compacted 4@0 + 4@1 files => 9487081 bytes
+2026/02/18-21:58:48.228 6aac compacted to: files[ 0 6 11 0 0 0 0 ]
+2026/02/18-21:58:48.228 6aac Delete type=2 #25735
+2026/02/18-21:58:48.228 6aac Delete type=2 #25736
+2026/02/18-21:58:48.228 6aac Delete type=2 #25737
+2026/02/18-21:58:48.228 6aac Delete type=2 #25738
+2026/02/18-21:58:48.228 6aac Delete type=2 #25740
+2026/02/18-21:58:48.228 6aac Delete type=2 #25742
+2026/02/18-21:58:48.228 6aac Delete type=2 #25744
+2026/02/18-21:58:48.229 6aac Delete type=2 #25746
+2026/02/18-22:01:30.250 6aac Level-0 table #25752: started
+2026/02/18-22:01:30.260 6aac Level-0 table #25752: 790059 bytes OK
+2026/02/18-22:01:30.261 6aac Delete type=0 #25745
+2026/02/18-22:05:16.256 6aac Level-0 table #25754: started
+2026/02/18-22:05:16.268 6aac Level-0 table #25754: 919518 bytes OK
+2026/02/18-22:05:16.270 6aac Delete type=0 #25751
+2026/02/18-22:05:30.259 6aac Level-0 table #25756: started
+2026/02/18-22:05:30.272 6aac Level-0 table #25756: 907616 bytes OK
+2026/02/18-22:05:30.273 6aac Delete type=0 #25753
+2026/02/18-22:15:18.258 6aac Level-0 table #25758: started
+2026/02/18-22:15:18.269 6aac Level-0 table #25758: 917965 bytes OK
+2026/02/18-22:15:18.270 6aac Delete type=0 #25755
+2026/02/18-22:15:18.271 6aac Compacting 4@0 + 4@1 files
+2026/02/18-22:15:18.308 6aac Generated table #25759@0: 817 keys, 3439383 bytes
+2026/02/18-22:15:18.336 6aac Generated table #25760@0: 694 keys, 2101964 bytes
+2026/02/18-22:15:18.370 6aac Generated table #25761@0: 9112 keys, 2296720 bytes
+2026/02/18-22:15:18.404 6aac Generated table #25762@0: 24698 keys, 1951776 bytes
+2026/02/18-22:15:18.404 6aac Compacted 4@0 + 4@1 files => 9789843 bytes
+2026/02/18-22:15:18.405 6aac compacted to: files[ 0 6 11 0 0 0 0 ]
+2026/02/18-22:15:18.406 6aac Delete type=2 #25747
+2026/02/18-22:15:18.406 6aac Delete type=2 #25748
+2026/02/18-22:15:18.407 6aac Delete type=2 #25749
+2026/02/18-22:15:18.407 6aac Delete type=2 #25750
+2026/02/18-22:15:18.407 6aac Delete type=2 #25752
+2026/02/18-22:15:18.407 6aac Delete type=2 #25754
+2026/02/18-22:15:18.407 6aac Delete type=2 #25756
+2026/02/18-22:15:18.407 6aac Delete type=2 #25758
+2026/02/18-22:15:18.414 6aac Compacting 1@1 + 9@2 files
+2026/02/18-22:15:18.459 6aac Generated table #25763@1: 5659 keys, 2478368 bytes
+2026/02/18-22:15:18.496 6aac Generated table #25764@1: 658 keys, 2212618 bytes
+2026/02/18-22:15:18.528 6aac Generated table #25765@1: 837 keys, 2166278 bytes
+2026/02/18-22:15:18.557 6aac Generated table #25766@1: 852 keys, 2176733 bytes
+2026/02/18-22:15:18.587 6aac Generated table #25767@1: 539 keys, 2391056 bytes
+2026/02/18-22:15:18.620 6aac Generated table #25768@1: 701 keys, 2452540 bytes
+2026/02/18-22:15:18.651 6aac Generated table #25769@1: 1873 keys, 2314735 bytes
+2026/02/18-22:15:18.678 6aac Generated table #25770@1: 1366 keys, 2203764 bytes
+2026/02/18-22:15:18.705 6aac Generated table #25771@1: 712 keys, 2104211 bytes
+2026/02/18-22:15:18.713 6aac Generated table #25772@1: 31 keys, 625354 bytes
+2026/02/18-22:15:18.713 6aac Compacted 1@1 + 9@2 files => 21125657 bytes
+2026/02/18-22:15:18.714 6aac compacted to: files[ 0 5 12 0 0 0 0 ]
+2026/02/18-22:15:18.715 6aac Delete type=2 #25345
+2026/02/18-22:15:18.715 6aac Delete type=2 #25346
+2026/02/18-22:15:18.715 6aac Delete type=2 #25347
+2026/02/18-22:15:18.715 6aac Delete type=2 #25348
+2026/02/18-22:15:18.715 6aac Delete type=2 #25349
+2026/02/18-22:15:18.715 6aac Delete type=2 #25350
+2026/02/18-22:15:18.715 6aac Delete type=2 #25351
+2026/02/18-22:15:18.715 6aac Delete type=2 #25352
+2026/02/18-22:15:18.715 6aac Delete type=2 #25353
+2026/02/18-22:15:18.715 6aac Delete type=2 #25760
+2026/02/18-22:15:30.242 6aac Level-0 table #25774: started
+2026/02/18-22:15:30.256 6aac Level-0 table #25774: 908291 bytes OK
+2026/02/18-22:15:30.258 6aac Delete type=0 #25757
+2026/02/18-22:19:30.268 538 Level-0 table #25776: started
+2026/02/18-22:19:30.295 538 Level-0 table #25776: 2950488 bytes OK
+2026/02/18-22:19:30.297 538 Delete type=0 #25773

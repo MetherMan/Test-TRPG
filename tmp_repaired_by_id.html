@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>????? TRPG: GM ?�Z?? + 3?? ??? + ????? ????</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&amp;family=Noto+Sans+KR:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="/meranoder_plasma_helper_3pc_d20.css?v=20260219-24" rel="stylesheet"/>
+<link href="/styles/monster_hp_status.css?v=20260219-5" rel="stylesheet"/>
+<link href="/styles/panel_hierarchy_and_texture_fix.css" rel="stylesheet"/>
+<link href="/styles/player_strip_layout.css?v=20260219-17" rel="stylesheet"/>
+<link href="/styles/monster_user_layout.css" rel="stylesheet"/>
+</head>
+<body>
+<header>
+<div class="headerTop">
+<div class="headerIntro">
+<div class="headerTitleRow">
+<h1>TRPG ?????</h1>
+<button class="adminAuthBtn" id="adminAuthBtn" type="button">???? &lt;-</button>
+</div>
+<p>
+</p>
+</div>
+<div class="box headerJudgePanel" id="judgeBasicPanel">
+<div class="t">???? ????</div>
+<div class="grid2" style="margin-top:8px;">
+<div>
+<label>기본 DC</label>
+<input id="dc" min="1" type="number" value="12"/>
+</div>
+<div>
+<label>적 회피 보정</label>
+<input id="enemyEva" type="number" value="0"/>
+</div>
+</div>
+<div class="dcToggleRow">
+<label class="checkboxLine" for="showDcToUsers">
+<input checked="" id="showDcToUsers" type="checkbox"/>
+<span>?��?????? ??? DC ????</span>
+</label>
+</div>
+</div>
+<div class="box headerWhisper">
+<div class="t">???? to GM</div>
+<div class="small" id="whisperLogList" style="margin-top:8px;max-height:180px;overflow:auto;"></div>
+<div id="whisperTargetWrap" style="margin-top:8px;">
+<label>??? ?��????</label>
+<select id="whisperTargetSlot">
+<option value="0">User1 (PC1)</option>
+<option value="1">User2 (PC2)</option>
+<option value="2">User3 (PC3)</option>
+</select>
+</div>
+<div style="margin-top:8px;">
+<label>????? ???</label>
+<input id="whisperInput" maxlength="180" placeholder="????? ?? ??? ??" type="text"/>
+</div>
+<div class="btnRow" style="margin-top:8px;align-items:flex-end;">
+<button id="whisperSendBtn" type="button">??? ??</button>
+</div>
+</div>
+<div class="box headerChat">
+<div class="t">???? ?��? / a??</div>
+<div class="small" id="chatLogList" style="margin-top:8px;max-height:180px;overflow:auto;"></div>
+<div class="grid2" style="margin-top:8px;">
+<div>
+<label>메시지 입력</label>
+<input id="chatInput" maxlength="180" placeholder="메시지 입력 후 전송" type="text"/>
+</div>
+<div class="btnRow" style="align-items:flex-end;">
+<button id="chatSendBtn" type="button">전송</button>
+<button id="chatClearBtn" type="button">로그 클리어</button>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main>
+<section class="card" id="gmCard">
+<div class="cardHeadLine">
+<h2 id="gmCardTitle">GM 밸런스 계수</h2>
+<div aria-label="GM ?? ??" class="panelTagTabs" id="gmPanelTabs" role="tablist">
+<button aria-selected="true" class="panelTagBtn active" id="gmPanelTabBalance" role="tab" type="button">???</button>
+<button aria-selected="false" class="panelTagBtn" id="gmPanelTabMonster" role="tab" type="button">???</button>
+</div>
+</div>
+<p class="muted" id="gmCardDesc">아래 계수는 PC 3명에게 공통 적용됩니다.</p>
+<div class="box monsterCategoryPanel" id="monsterOpsPanel" style="display:none;">
+<div class="t" id="monsterPanelTitle">몬스터 운영</div>
+<p class="small" id="monsterPanelDesc" style="margin:8px 0 0;">현재 전투 몬스터를 등록/관리합니다.</p>
+<div id="monsterAdminControls">
+<div class="grid3" style="margin-top:8px;">
+<div>
+<label>템플릿 불러오기</label>
+<select id="activeMonsterTemplateSelect"></select>
+</div>
+<div class="btnRow" style="align-items:flex-end;">
+<button id="activeMonsterCreateFromTemplateBtn" type="button">템플릿으로 등록</button>
+</div>
+<div>
+<label>???? ??? ????</label>
+<select id="activeMonsterFocusSelect"></select>
+</div>
+</div>
+<div class="btnRow" style="margin-top:8px;">
+<button id="encounterApplyBtn" type="button">?? ??</button>
+<button id="encounterHideBtn" type="button">?? ??</button>
+</div>
+<p class="small" id="encounterPublishStatus" style="margin:8px 0 0;"></p>
+<p class="small" style="margin:8px 0 0;">????? ????? ????? ?? [???? ????]?? ?????? ???? ??? ????????.</p>
+</div>
+<div class="small" id="activeMonsterRuntimeList" style="margin-top:8px;"></div>
+</div>
+<div class="box" id="monsterPanel" style="margin-top:10px;display:none;">
+<details open="">
+<summary>[???? ???��?] ????</summary>
+<div class="grid3" style="margin-top:8px;">
+<div>
+<label>이름</label>
+<input id="monsterName" placeholder="예: 늪지 오우거" type="text"/>
+</div>
+<div>
+<label>분류</label>
+<select id="monsterKind">
+<option value="single">단일 몬스터</option>
+<option value="swarm">몬스터 무리</option>
+</select>
+</div>
+<div>
+<label>체력(선택)</label>
+<input id="monsterHp" min="1" type="number" value="20"/>
+</div>
+<div>
+<label>DC</label>
+<input id="monsterDc" min="1" type="number" value="12"/>
+</div>
+<div>
+<label>회피</label>
+<input id="monsterEvaInput" type="number" value="0"/>
+</div>
+<div>
+<label>메모</label>
+<textarea id="monsterNote" maxlength="500" placeholder="특수 규칙" rows="3"></textarea>
+</div>
+</div>
+<div class="box mediaUploadBox" style="margin-top:8px;">
+<label>???? ?????</label>
+<div class="mediaUploadRow">
+<input accept="image/*" class="mediaFileInput" id="monsterImageFile" type="file"/>
+<div class="mediaUploadBtns">
+<button id="applyMonsterImageBtn" type="button">????</button>
+<button id="clearMonsterImageBtn" type="button">????</button>
+</div>
+<img alt="??? ??? ????" class="monsterTemplatePreview" id="monsterImagePreview"/>
+</div>
+</div>
+<div class="btnRow" style="margin-top:8px;">
+<button id="monsterCreateBtn" type="button">몬스터 템플릿 저장</button>
+<button id="monsterCancelEditBtn" style="display:none;" type="button">?? ??</button>
+</div>
+</details>
+<details open="" style="margin-top:8px;">
+<summary>???? ??? ???</summary>
+<div class="grid3" style="margin-top:8px;">
+<div>
+<label>대상 모드</label>
+<select id="encounterMode">
+<option value="single">하나의 몬스터</option>
+<option value="swarm">몬스터 무리</option>
+<option value="per_player">플레이어별 몬스터</option>
+</select>
+</div>
+<div>
+<label>공용 대상</label>
+<select id="encounterSharedMonster"></select>
+</div>
+<div>
+<label>무리 수(무리 모드)</label>
+<input id="encounterSwarmCount" min="1" type="number" value="3"/>
+</div>
+</div>
+<div class="grid3" style="margin-top:8px;">
+<div>
+<label>PC1 대상</label>
+<select id="encounterPcMonster0"></select>
+</div>
+<div>
+<label>PC2 대상</label>
+<select id="encounterPcMonster1"></select>
+</div>
+<div>
+<label>PC3 대상</label>
+<select id="encounterPcMonster2"></select>
+</div>
+</div>
+</details>
+<details open="" style="margin-top:8px;">
+<summary>???? ???��? ???</summary>
+<div class="small" id="monsterTemplateList" style="margin-top:8px;"></div>
+</details>
+</div>
+<div class="realtimePanel" id="realtimePanel">
+<h2 style="margin:0 0 8px;">??��? ????</h2>
+<p class="small" style="margin:0 0 8px;">???? ?????? ???? [?��???? ?��???] ?????? ????????.</p>
+<div class="adminTools" id="adminTools">
+<div class="grid2">
+<div>
+<label>현재 PC 피해 적용</label>
+<input id="damageAmount" min="0" type="number" value="1"/>
+</div>
+<div>
+<label>현재 PC 회복 적용</label>
+<input id="healAmount" min="0" type="number" value="1"/>
+</div>
+</div>
+<div class="btnRow" style="margin-top:8px;">
+<button id="applyDamageBtn" type="button">피해 적용</button>
+<button id="applyHealBtn" type="button">회복 적용</button>
+<button id="pushLocalToServerBtn" type="button">?? ? ??? ??</button>
+</div>
+<div class="muted" style="margin-top:10px;">?????? ???? / ????? ????</div>
+<div class="grid3" style="margin-top:8px;">
+<div>
+<label>대상 유저</label>
+<select id="adminTargetSlot">
+<option value="0">User1 (PC1)</option>
+<option value="1">User2 (PC2)</option>
+<option value="2">User3 (PC3)</option>
+</select>
+</div>
+<div>
+<label>지급 포인트</label>
+<input id="grantPointsAmount" min="0" type="number" value="1"/>
+</div>
+<div class="btnRow" style="align-items:flex-end;">
+<button id="grantPointsBtn" type="button">포인트 지급</button>
+</div>
+</div>
+<div class="grid3" style="margin-top:8px;">
+<div>
+<label>조정 스탯</label>
+<select id="adminStatName">
+<option value="hp">체력</option>
+<option value="str">근력</option>
+<option value="dex">민첩</option>
+<option value="int">지능</option>
+<option value="plasmaPower">플라즈마 위력</option>
+<option value="cha">매력</option>
+<option value="pool">플라즈마 총량</option>
+<option value="plasmaNow">현재 플라즈마</option>
+<option value="alwaysHit">상시 적중 보정</option>
+<option value="alwaysPow">??? ???? ????</option>
+</select>
+</div>
+<div>
+<label>설정 값</label>
+<input id="adminStatValue" min="0" type="number" value="20"/>
+</div>
+<div class="btnRow" style="align-items:flex-end;">
+<button id="adminSetStatBtn" type="button">스탯 반영</button>
+</div>
+</div>
+<div class="grid3" style="margin-top:8px;">
+<div>
+<label>?o??? ???(??? ?��????)</label>
+<div class="btnRow" style="align-items:flex-end;">
+<button id="adminPlasmaPlusOneBtn" type="button">+1 회복</button>
+<button id="adminPlasmaFullBtn" type="button">풀회복</button>
+</div>
+</div>
+</div>
+<div class="grid3" style="margin-top:8px;">
+<div>
+<label>골드 지급/회수량</label>
+<input id="adminGoldAmount" min="1" type="number" value="10"/>
+</div>
+<div class="btnRow" style="align-items:flex-end;">
+<button id="grantGoldBtn" type="button">골드 지급</button>
+<button id="takeGoldBtn" type="button">골드 회수</button>
+</div>
+</div>
+<div class="sideHint">?????? ????/?��? ?????? ???? ???? ?�ԥ�??? ????????.</div>
+<div class="muted" style="margin-top:10px;">?��???? ?????? ?????</div>
+<div class="grid3" style="margin-top:8px;">
+<div class="box">
+<label>User1 이미지</label>
+<input accept="image/*" id="avatarFile0" type="file"/>
+<div class="btnRow" style="margin-top:8px;">
+<button id="applyAvatar0" type="button">적용</button>
+<button id="clearAvatar0" type="button">삭제</button>
+</div>
+</div>
+<div class="box">
+<label>User2 이미지</label>
+<input accept="image/*" id="avatarFile1" type="file"/>
+<div class="btnRow" style="margin-top:8px;">
+<button id="applyAvatar1" type="button">적용</button>
+<button id="clearAvatar1" type="button">삭제</button>
+</div>
+</div>
+<div class="box">
+<label>User3 이미지</label>
+<input accept="image/*" id="avatarFile2" type="file"/>
+<div class="btnRow" style="margin-top:8px;">
+<button id="applyAvatar2" type="button">적용</button>
+<button id="clearAvatar2" type="button">삭제</button>
+</div>
+</div>
+</div>
+</div>
+<div class="userHint">??????? ??? ???? ??��? ?????????. ?��????? ??? ??????��? ?????? ????? ?? ??????.</div>
+</div>
+<div id="gmBalanceControls">
+<div class="box">
+<div class="t">GM ???? ???? ????</div>
+<p class="small" style="margin:8px 0 0;">??? ???? ??? ???��? ???????.</p>
+<div class="grid3" style="margin-top:8px;">
+<div><label>??? ????: N??</label><input id="gm_str_step" min="1" type="number" value="3"/></div>
+<div><label>??? ????: ??????</label><input id="gm_str_gain" min="0" type="number" value="1"/></div>
+<div><label>??�� DC: N??</label><input id="gm_dex_dc_step" min="1" type="number" value="4"/></div>
+<div><label>??�� DC: ??????</label><input id="gm_dex_dc_gain" min="0" type="number" value="1"/></div>
+<div><label>??�� ????: N??</label><input id="gm_dex_hit_step" min="1" type="number" value="10"/></div>
+<div><label>??�� ????: ??????</label><input id="gm_dex_hit_gain" min="0" type="number" value="1"/></div>
+<div><label>???? ????: N??</label><input id="gm_int_hit_step" min="1" type="number" value="4"/></div>
+<div><label>???? ????: ??????</label><input id="gm_int_hit_gain" min="0" type="number" value="1"/></div>
+<div><label>???? ???: N??</label><input id="gm_int_eff_step" min="1" type="number" value="4"/></div>
+<div><label>???? ???: ??? +%</label><input id="gm_int_eff_chance" min="0" type="number" value="10"/></div>
+<div><label>?o??? ????: N??</label><input id="gm_plasma_pow_step" min="1" type="number" value="3"/></div>
+<div><label>?o??? ????: ??????</label><input id="gm_plasma_pow_gain" min="0" type="number" value="2"/></div>
+</div>
+<div class="grid3" style="margin-top:8px;">
+<div><label>??? ?????(??)</label><input id="gm_pool_base" min="1" type="number" value="5"/></div>
+<div><label>??? ???? ?????</label><input id="gm_pool_start" min="1" type="number" value="4"/></div>
+<div><label>??? ????: N??</label><input id="gm_pool_step" min="1" type="number" value="4"/></div>
+<div><label>??? ????: ??????</label><input id="gm_pool_gain" min="1" type="number" value="1"/></div>
+</div>
+<div style="margin-top:8px;">
+<label>??? ????? ????</label>
+<input id="gm_cha_guide" maxlength="160" type="text" value="NPC ????/???? ?????? GM ?? ????"/>
+</div>
+<p class="small" style="margin:8px 0 0;">?o??? ??? ???: <b>pool ?? ?????</b>??? pool ???, ?? ??? <b>????? + floor((pool-?????)/N) * ??????</b></p>
+</div>
+<div class="btnRow" style="margin-top:10px;">
+<button id="saveBtn" type="button">로컬 저장</button>
+<button id="loadBtn" type="button">로컬 불러오기</button>
+<button id="resetAllBtn" type="button">전체 초기화</button>
+</div>
+<details class="themeCustomizer" style="margin-top:10px;">
+<summary>??? ???? ��???????��</summary>
+<div class="grid3" style="margin-top:8px;">
+<div><label>??? ???</label><input id="themeBgTop" type="color" value="#2a1b12"/></div>
+<div><label>??? ???</label><input id="themeBgMid" type="color" value="#22170f"/></div>
+<div><label>??? ???</label><input id="themeBgBottom" type="color" value="#1a110b"/></div>
+<div><label>???? ????(?��?)</label><input id="themeSurface" type="color" value="#f4e7cd"/></div>
+<div><label>?? ????</label><input id="themeText" type="color" value="#3a241b"/></div>
+<div><label>???? ????</label><input id="themeMuted" type="color" value="#6d4f43"/></div>
+<div><label>??????(???/??)</label><input id="themeAccent" type="color" value="#9b6835"/></div>
+<div>
+<label>???</label>
+<div class="btnRow" style="align-items:center;">
+<input id="themeBrightness" max="120" min="60" step="1" style="flex:1 1 auto;" type="range" value="100"/>
+<b class="themeBrightnessValue" id="themeBrightnessValue">100%</b>
+</div>
+</div>
+<div>
+<label>????? ???? ???</label>
+<select disabled="" id="themeImageMode">
+<option selected="" value="texture">???oo?? ???(????)</option>
+</select>
+</div>
+<div>
+<label>??? ????(px)</label>
+<input id="themeImageTileW" max="4096" min="80" step="1" type="number" value="1000"/>
+</div>
+<div>
+<label>??? ????(px)</label>
+<input id="themeImageTileH" max="4096" min="80" step="1" type="number" value="1000"/>
+</div>
+<div>
+<label>???o ???</label>
+<div class="btnRow" style="align-items:center;">
+<input id="themeImageBrightness" max="180" min="40" step="1" style="flex:1 1 auto;" type="range" value="100"/>
+<b class="themeBrightnessValue" id="themeImageBrightnessValue">100%</b>
+</div>
+</div>
+<div>
+<label>???o a??</label>
+<div class="btnRow" style="align-items:center;">
+<input id="themeImageSaturation" max="200" min="0" step="1" style="flex:1 1 auto;" type="range" value="100"/>
+<b class="themeBrightnessValue" id="themeImageSaturationValue">100%</b>
+</div>
+</div>
+<div>
+<label>??? ????? ???��?</label>
+<input accept="image/*" id="themeImageFile" type="file"/>
+</div>
+<div class="btnRow" style="align-items:flex-end;">
+<button id="themeImageApplyBtn" type="button">??? ??</button>
+<button id="themeImageDefaultBtn" type="button">?? ??? ??</button>
+</div>
+</div>
+<div class="btnRow" style="margin-top:8px;">
+<button id="themeResetBtn" type="button">?? ??? ??</button>
+</div>
+<div class="box" style="margin-top:10px;">
+<div class="t">GM ???? ????? ????/????</div>
+<div class="grid3" style="margin-top:8px;">
+<div><label>????? ??u ??</label><input id="diceBodyColor" type="color" value="#f3e4be"/></div>
+<div><label>???? ??</label><input id="diceEdgeColor" type="color" value="#5b3a1f"/></div>
+<div><label>???? ??</label><input id="diceTextColor" type="color" value="#2b180b"/></div>
+<div><label>???? ????? ??</label><input id="diceTextOutlineColor" type="color" value="#fcf1d5"/></div>
+<div>
+<label>??? ????</label>
+<select id="diceTextureStyle">
+<option selected="" value="clean">???</option>
+<option value="grain">????</option>
+<option value="worn">????</option>
+<option value="metal">???(?��??)</option>
+</select>
+</div>
+<div>
+<label>?????</label>
+<div class="btnRow" style="align-items:center;">
+<input id="diceRoughness" max="100" min="0" step="1" style="flex:1 1 auto;" type="range" value="46"/>
+<b class="themeBrightnessValue" id="diceRoughnessValue">46%</b>
+</div>
+</div>
+<div>
+<label>????</label>
+<div class="btnRow" style="align-items:center;">
+<input id="diceMetalness" max="100" min="0" step="1" style="flex:1 1 auto;" type="range" value="3"/>
+<b class="themeBrightnessValue" id="diceMetalnessValue">3%</b>
+</div>
+</div>
+<div>
+<label>???? ?��?</label>
+<div class="btnRow" style="align-items:center;">
+<input id="diceRollDuration" max="3500" min="700" step="50" style="flex:1 1 auto;" type="range" value="1500"/>
+<b class="themeBrightnessValue" id="diceRollDurationValue">1500ms</b>
+</div>
+</div>
+<div>
+<label>???? ????</label>
+<div class="btnRow" style="align-items:center;">
+<input id="diceRollPower" max="250" min="70" step="1" style="flex:1 1 auto;" type="range" value="150"/>
+<b class="themeBrightnessValue" id="diceRollPowerValue">150%</b>
+</div>
+</div>
+</div>
+<div class="btnRow" style="margin-top:8px;">
+<button id="diceAppearanceResetBtn" type="button">??? ??? ??</button>
+</div>
+</div>
+</details>
+<details>
+<summary>JSON ???????? / ???????? (?�Z?? + 3PC + ????)</summary>
+<p class="muted">???? ?????? JSON???? ?????? ?? ??????.</p>
+<div class="split">
+<div>
+<label>내보내기 JSON</label>
+<textarea id="exportBox" readonly=""></textarea>
+<div class="btnRow" style="margin-top:8px;">
+<button id="copyJsonBtn" type="button">복사</button>
+<button id="refreshExportBtn" type="button">새로고침</button>
+</div>
+</div>
+<div>
+<label>가져오기 JSON</label>
+<textarea id="importBox" placeholder="여기에 JSON을 붙여넣으세요"></textarea>
+<div class="btnRow" style="margin-top:8px;">
+<button id="importBtn" type="button">가져오기 적용</button>
+</div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section class="card" id="pcBattleCard">
+<div style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start;">
+<div>
+<h2 style="margin:0;">PC 3?? ??? + ?????</h2>
+<p class="muted" style="margin:6px 0 0;">?????? PC?? ????? ?????? ???��? ???/?????????.</p>
+</div>
+<div class="btnRow" id="pcQuickBar" style="align-items:center;">
+<div style="display:flex;align-items:center;gap:6px;">
+<label class="small" for="pcQuickDamageTarget" style="margin:0;white-space:nowrap;">???</label>
+<select id="pcQuickDamageTarget" style="width:200px;padding:8px 10px;">
+<option value="pc_active">???? PC</option>
+</select>
+</div>
+<div style="display:flex;align-items:center;gap:6px;">
+<label class="small" for="pcQuickDamageAmount" style="margin:0;white-space:nowrap;">????</label>
+<input id="pcQuickDamageAmount" min="0" style="width:82px;padding:8px 10px;" type="number" value="1"/>
+</div>
+<button id="pcQuickDamageBtn" type="button">?? ??</button>
+<button id="pcQuickHealBtn" type="button">?? ??</button>
+<button aria-label="?? PC ???" class="pcResetIconBtn" id="pcResetBtn" title="?? PC ???" type="button">현재 PC 초기화</button>
+</div>
+</div>
+<div class="tabs" id="pcTabs">
+<div class="tab active" data-pc="0">PC1</div>
+<div class="tab" data-pc="1">PC2</div>
+<div class="tab" data-pc="2">PC3</div>
+</div>
+<div aria-live="polite" class="userCombatOverview" id="userCombatOverview">
+<div class="userCombatCol enemyCol">
+<div class="userCombatTitle">???? ????</div>
+<div class="userCombatList" id="userCombatEnemyList"></div>
+</div>
+<div class="userCombatCol allyCol">
+<div class="userCombatTitle">?��???? ????</div>
+<div class="userCombatList" id="userCombatAllyList"></div>
+</div>
+</div>
+<div class="playerStrip" id="playerStrip">
+<div class="playerCard active" data-slot="0" id="playerCard0">
+<img alt="User1 이미지" class="avatar" id="avatar0"/>
+<div class="playerMeta">
+<div class="name" id="playerName0">User1</div>
+<div class="hp" id="playerHp0">HP 0</div>
+<div class="playerHpBar"><span class="playerHpBarFill" id="playerHpBar0"></span></div>
+<div aria-label="플라즈마 잔량" class="playerPlasmaMini" id="playerPlasma0"></div>
+<div aria-label="????? ??????" class="playerHungerMini" id="playerHunger0"></div>
+<div aria-label="???????" class="playerStatusMini" id="playerStatus0"></div>
+<div class="alwaysModBox">
+<div class="small">??u???</div>
+<div class="alwaysModRow">
+<span class="alwaysModLabel">????</span>
+<div class="alwaysModCtrls">
+<button aria-label="User1 상시보정 감소" id="alwaysDown0" type="button">-</button>
+<b id="alwaysHit0">+0</b>
+<button aria-label="User1 상시보정 증가" id="alwaysUp0" type="button">+</button>
+</div>
+</div>
+<div class="alwaysModRow">
+<span class="alwaysModLabel">????</span>
+<div class="alwaysModCtrls">
+<button aria-label="User1 ??? ???? ???? ????" id="alwaysPowDown0" type="button">-</button>
+<b id="alwaysPow0">+0</b>
+<button aria-label="User1 ??? ???? ???? ????" id="alwaysPowUp0" type="button">+</button>
+</div>
+</div>
+<div class="alwaysModRow alwaysDistanceRow">
+<span class="alwaysModLabel">???</span>
+<select aria-label="User1 ?????? ???" class="distanceQuickSelect" id="distanceQuick0">
+<option value="very_close">?? ??</option>
+<option selected="" value="close">??</option>
+<option value="far">???</option>
+<option value="very_far">?? ???</option>
+</select>
+</div>
+</div>
+</div>
+<div class="playerRightCol">
+<div aria-label="User1 ???? ????" class="injuryBoardWrap" id="injuryBoard0"></div>
+</div>
+</div>
+<div class="playerCard" data-slot="1" id="playerCard1">
+<img alt="User2 이미지" class="avatar" id="avatar1"/>
+<div class="playerMeta">
+<div class="name" id="playerName1">User2</div>
+<div class="hp" id="playerHp1">HP 0</div>
+<div class="playerHpBar"><span class="playerHpBarFill" id="playerHpBar1"></span></div>
+<div aria-label="플라즈마 잔량" class="playerPlasmaMini" id="playerPlasma1"></div>
+<div aria-label="????? ??????" class="playerHungerMini" id="playerHunger1"></div>
+<div aria-label="???????" class="playerStatusMini" id="playerStatus1"></div>
+<div class="alwaysModBox">
+<div class="small">??u???</div>
+<div class="alwaysModRow">
+<span class="alwaysModLabel">????</span>
+<div class="alwaysModCtrls">
+<button aria-label="User2 상시보정 감소" id="alwaysDown1" type="button">-</button>
+<b id="alwaysHit1">+0</b>
+<button aria-label="User2 상시보정 증가" id="alwaysUp1" type="button">+</button>
+</div>
+</div>
+<div class="alwaysModRow">
+<span class="alwaysModLabel">????</span>
+<div class="alwaysModCtrls">
+<button aria-label="User2 ??? ???? ???? ????" id="alwaysPowDown1" type="button">-</button>
+<b id="alwaysPow1">+0</b>
+<button aria-label="User2 ??? ???? ???? ????" id="alwaysPowUp1" type="button">+</button>
+</div>
+</div>
+<div class="alwaysModRow alwaysDistanceRow">
+<span class="alwaysModLabel">???</span>
+<select aria-label="User2 ?????? ???" class="distanceQuickSelect" id="distanceQuick1">
+<option value="very_close">?? ??</option>
+<option selected="" value="close">??</option>
+<option value="far">???</option>
+<option value="very_far">?? ???</option>
+</select>
+</div>
+</div>
+</div>
+<div class="playerRightCol">
+<div aria-label="User2 ???? ????" class="injuryBoardWrap" id="injuryBoard1"></div>
+</div>
+</div>
+<div class="playerCard" data-slot="2" id="playerCard2">
+<img alt="User3 이미지" class="avatar" id="avatar2"/>
+<div class="playerMeta">
+<div class="name" id="playerName2">User3</div>
+<div class="hp" id="playerHp2">HP 0</div>
+<div class="playerHpBar"><span class="playerHpBarFill" id="playerHpBar2"></span></div>
+<div aria-label="플라즈마 잔량" class="playerPlasmaMini" id="playerPlasma2"></div>
+<div aria-label="????? ??????" class="playerHungerMini" id="playerHunger2"></div>
+<div aria-label="???????" class="playerStatusMini" id="playerStatus2"></div>
+<div class="alwaysModBox">
+<div class="small">??u???</div>
+<div class="alwaysModRow">
+<span class="alwaysModLabel">????</span>
+<div class="alwaysModCtrls">
+<button aria-label="User3 상시보정 감소" id="alwaysDown2" type="button">-</button>
+<b id="alwaysHit2">+0</b>
+<button aria-label="User3 상시보정 증가" id="alwaysUp2" type="button">+</button>
+</div>
+</div>
+<div class="alwaysModRow">
+<span class="alwaysModLabel">????</span>
+<div class="alwaysModCtrls">
+<button aria-label="User3 ??? ???? ???? ????" id="alwaysPowDown2" type="button">-</button>
+<b id="alwaysPow2">+0</b>
+<button aria-label="User3 ??? ???? ???? ????" id="alwaysPowUp2" type="button">+</button>
+</div>
+</div>
+<div class="alwaysModRow alwaysDistanceRow">
+<span class="alwaysModLabel">???</span>
+<select aria-label="User3 ?????? ???" class="distanceQuickSelect" id="distanceQuick2">
+<option value="very_close">?? ??</option>
+<option selected="" value="close">??</option>
+<option value="far">???</option>
+<option value="very_far">?? ???</option>
+</select>
+</div>
+</div>
+</div>
+<div class="playerRightCol">
+<div aria-label="User3 ???? ????" class="injuryBoardWrap" id="injuryBoard2"></div>
+</div>
+</div>
+</div>
+<div class="dicePanel">
+<div class="diceStage" id="diceStage">
+<div aria-hidden="true" class="dice3dViewport" id="dice3dViewport"></div>
+<div class="diceTop">
+<div class="diceHint">??????? ??????? ??????? ????????</div>
+<div class="diceResult">
+<span>????:</span>
+<span class="badge" id="judgeBadge">-</span>
+<span class="badge" id="sumBadge">d20+보정</span>
+</div>
+</div>
+<div class="diceWrap" id="diceWrap">
+<div class="dice" id="diceFace">20</div>
+<div class="diceSub" id="diceSub">준비</div>
+</div>
+<div aria-live="polite" class="diceTotalFx neutral" id="diceTotalFx">+</div>
+</div>
+<div class="box">
+<div class="t">????? ????</div>
+<div class="small" style="margin-top:8px;">????????? <b>1d20 ????</b>????.</div>
+<div class="diceControlStack" style="margin-top:8px;">
+<button id="rollHitBtn" type="button">적중 굴림 (1d20)</button>
+<div class="diceDamageRow">
+<button id="rollDamageBtn" type="button">피해 굴림 (선택 주사위)</button>
+<div class="diceDamageSelect">
+<label>??????? ?????</label>
+<select id="damageDiceSides">
+<option value="4">1d4</option>
+<option selected="" value="6">1d6</option>
+<option value="8">1d8</option>
+<option value="10">1d10 (d4+d6)</option>
+<option value="12">1d12</option>
+<option value="20">1d20</option>
+</select>
+</div>
+</div>
+</div>
+<div class="pill" style="margin-top:8px;"><span>???? ??????? ????</span><b id="currentHitMod">+0</b></div>
+<div class="pill" style="margin-top:8px;"><span>?��???? ??? DC</span><b id="playerTargetDc">?</b></div>
+</div>
+</div>
+<div class="grid2" style="margin-top:10px;">
+<div class="box" id="pcStatsBox">
+<div class="t">? ???? ?</div>
+<div style="margin-top:8px;">
+<label>캐릭터 이름</label>
+<input id="pc_name" maxlength="24" type="text" value="User1"/>
+</div>
+<div class="grid2" style="margin-top:8px;">
+<div><label>체력</label><input id="sta_hp" max="999" min="0" type="number" value="20"/></div>
+<div><label>근력</label><input id="sta_str" max="999" min="0" type="number" value="5"/></div>
+<div><label>민첩</label><input id="sta_dex" max="999" min="0" type="number" value="5"/></div>
+<div><label>지능</label><input id="sta_int" max="999" min="0" type="number" value="5"/></div>
+<div><label>플라즈마 위력</label><input id="sta_plasma_power" max="999" min="0" type="number" value="5"/></div>
+<div><label>매력</label><input id="sta_cha" max="999" min="0" type="number" value="5"/></div>
+<div><label>플라즈마 총량</label><input id="sta_pool" max="9999" min="1" type="number" value="5"/></div>
+</div>
+<div class="t" style="margin-top:10px;">?? ???? ????</div>
+<div class="pill" style="margin-top:8px;"><span>???? ??? ?????</span><b id="skillPointLeft">0</b></div>
+<div class="grid2" style="margin-top:8px;">
+<div>
+<label>이름 변경</label>
+<input id="nameInput" maxlength="24" type="text" value="User1">
+</input></div>
+<div class="btnRow" style="align-items:flex-end;">
+<button id="applyNameBtn" type="button">이름 적용</button>
+</div>
+</div>
+<div class="grid2" style="margin-top:8px;">
+<div>
+<label>강화할 스탯</label>
+<select id="pointStat">
+<option value="hp">체력</option>
+<option value="str">근력</option>
+<option value="dex">민첩</option>
+<option value="int">지능</option>
+<option value="plasmaPower">플라즈마 위력</option>
+<option value="cha">매력</option>
+<option value="pool">플라즈마 총량</option>
+</select>
+</div>
+<div class="btnRow" style="align-items:flex-end;">
+<button id="spendPointBtn" type="button">포인트 +1</button>
+</div>
+</div>
+<p class="small" style="margin:10px 0 0;">
+          ?��????? ???? ????? ?????????? ?????? ?��? ?? ??????.
+        </p>
+<p class="small" style="margin:6px 0 0;">
+          ??? ?????: NPC ?????? ????/???? ?????? GM ?????? ??????? ?????????.
+        </p>
+</div>
+<div class="box" id="actionSetupBox">
+<div class="t">?? ????</div>
+<div class="small actionGuideText" style="margin-top:6px;">???? ??? 2???? ????????: ???? / ??????</div>
+<div class="actionPresetWrap" style="margin-top:8px;">
+<label style="margin-bottom:6px;">?? ????</label>
+<div class="actionPresetRow">
+<button class="actionPresetBtn" data-user-allowed="1" id="actionModeAttack" type="button">??</button>
+<button class="actionPresetBtn" data-user-allowed="1" id="actionModeItem" type="button">???</button>
+</div>
+</div>
+<div class="pill actionSummaryPill" style="margin-top:8px;">
+<span>??? ??</span>
+<b id="actionSetupSummary">???? ?? ???? ?? ???? ?? ?? ??? ???? ?? Lv 1</b>
+</div>
+<details id="actionAdvancedDetails" style="margin-top:10px;">
+<summary>?o??? ??? - ????</summary>
+<div class="box" style="margin-top:8px;">
+<div class="box" id="plasmaPanel" style="margin-top:2px;">
+<div class="t">?o??? ??????</div>
+<div class="plasmaOrbs" id="plasmaOrbs" style="margin-top:8px;"></div>
+<div class="plasmaMeta">
+<div class="pill"><span>???? / ???</span><b id="plasmaEnergyText">0 / 0</b></div>
+<div class="pill"><span>???? ??? ???</span><b id="plasmaCapText">1</b></div>
+</div>
+<div class="small" id="plasmaExtraMeta" style="margin-top:8px;">형태 규칙: 단일(위력 +1), 범위(적중 +1/위력 -1), 잔존(0), 안정화(레이어로 생긴 음수 적중 상쇄)</div>
+</div>
+<div class="small" id="plasmaSkillList" style="margin-top:10px;"></div>
+</div>
+</details>
+<details id="plasmaSkillCreateDetails" style="margin-top:8px;">
+<summary>?o??? ??? ????</summary>
+<div class="box" style="margin-top:8px;">
+<div class="grid2" style="margin-top:2px;">
+<div>
+<label>??? ???</label>
+<input data-user-allowed="1" id="plasmaSkillName" maxlength="40" placeholder="?: ?? ?" type="text">
+</input></div>
+<div>
+<label>?? ?o??? ??�X</label>
+<input data-user-allowed="1" id="plasmaSkillBaseCost" max="99" min="1" type="number" value="1">
+</input></div>
+<div>
+<label>????</label>
+<select data-user-allowed="1" id="plasmaSkillRange">
+<option selected="" value="close">???? ???</option>
+<option value="far">????? ???</option>
+</select>
+</div>
+<div>
+<label>??? ?��?</label>
+<select data-user-allowed="1" id="plasmaSkillKind">
+<option selected="" value="strike">????</option>
+<option value="aoe">??????</option>
+<option value="buff">?????</option>
+</select>
+</div>
+<div id="plasmaBuffHitWrap">
+<label>??? ???? ????</label>
+<input data-user-allowed="1" id="plasmaSkillBuffHit" max="99" min="0" type="number" value="0">
+</input></div>
+<div id="plasmaBuffPowWrap">
+<label>??? ???? ????</label>
+<input data-user-allowed="1" id="plasmaSkillBuffPow" max="99" min="0" type="number" value="0">
+</input></div>
+</div>
+<div style="margin-top:8px;">
+<label>??? ????</label>
+<textarea data-user-allowed="1" id="plasmaSkillDesc" maxlength="180" placeholder="?? ??? ?? ??"></textarea>
+</div>
+<div class="btnRow" style="margin-top:8px; align-items:flex-end;">
+<button data-user-allowed="1" id="plasmaSkillSaveBtn" type="button">??? ??</button>
+</div>
+<div class="small muted" id="plasmaSkillSaveStatus" style="margin-top:6px;">???��? ????</div>
+</div>
+</details>
+<div aria-hidden="true" class="actionManualControls" id="actionManualControls">
+<select id="attackType">
+<option value="physical">물리</option>
+<option selected="" value="plasma">플라즈마</option>
+<option value="item">아이템</option>
+</select>
+<select id="distanceState">
+<option value="very_close">??? ????</option>
+<option selected="" value="close">근접</option>
+<option value="far">멈</option>
+<option value="very_far">매우멈</option>
+</select>
+<select id="shape">
+<option selected="" value="single">단일</option>
+<option value="spread">범위</option>
+<option value="place">잔존</option>
+<option value="stabilize">안정화</option>
+</select>
+<select id="intensity">
+<option value="high">강</option>
+<option selected="" value="mid">중</option>
+<option value="low">약</option>
+</select>
+<input id="multi" max="10" min="1" type="number" value="1">
+</input></div>
+</div>
+<div class="box calcResultBox">
+<div class="t">???? PC ??? ???</div>
+<div class="kpi" style="margin-top:8px;">
+<div class="box"><div class="t">???? ???</div><div class="v" id="hitBonus">+0</div></div>
+<div class="box"><div class="t">???? ???</div><div class="v" id="powBonus">+0</div></div>
+<div class="box"><div class="t">???</div><div class="v" id="note" style="font-size:12px;">-</div></div>
+</div>
+<div class="breakdown">
+<div class="muted" style="margin-bottom:8px;">??? ????</div>
+<div id="breakdown"></div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<button class="sideToggle left" id="adminDrawerToggle" type="button">▶ 운영자 인벤</button>
+<aside class="sideDrawer left" id="adminDrawer">
+<div class="sideDrawerHeader">
+<div>
+<h2 style="margin:0;">???? ?��???</h2>
+<span class="sideTag">[?????? ????]</span>
+</div>
+<button id="adminDrawerClose" type="button">닫기</button>
+</div>
+<div class="box">
+<details open="">
+<summary>[?????? ????] ???��? ????</summary>
+<div class="grid3" style="margin-top:8px;">
+<div>
+<label>템플릿 이름</label>
+<input id="adminItemName" placeholder="예: 회복 물약" type="text">
+</input></div>
+<div>
+<label>분류</label>
+<select id="adminItemType">
+<option value="consumable">소모품</option>
+<option value="item">아이템</option>
+</select>
+</div>
+<div>
+<label>기본 수량</label>
+<input id="adminItemBaseQty" min="1" type="number" value="1"/>
+</div>
+</div>
+<div style="margin-top:8px;">
+<label>설명</label>
+<textarea id="adminItemDesc" placeholder="효과/설명 입력"></textarea>
+</div>
+<div class="btnRow" style="margin-top:8px;">
+<button id="adminCreateItemBtn" type="button">템플릿 생성</button>
+<button id="adminCancelItemEditBtn" style="display:none;" type="button">?? ??</button>
+</div>
+</details>
+<details style="margin-top:8px;">
+<summary>???��? ????</summary>
+<div class="grid3" style="margin-top:8px;">
+<div>
+<label>지급할 템플릿</label>
+<select id="adminGrantTemplate"></select>
+</div>
+<div>
+<label>대상 유저</label>
+<select id="adminGrantSlot">
+<option value="0">User1</option>
+<option value="1">User2</option>
+<option value="2">User3</option>
+</select>
+</div>
+<div>
+<label>지급 수량</label>
+<input id="adminGrantQty" min="1" type="number" value="1"/>
+</div>
+</div>
+<div class="btnRow" style="margin-top:8px;">
+<button id="adminGrantItemBtn" type="button">선택 템플릿 지급</button>
+</div>
+</details>
+<details open="" style="margin-top:8px;">
+<summary>???��? ???</summary>
+<div class="box" style="margin-top:8px;">
+<div class="small" id="adminTemplateList" style="margin-top:2px;"></div>
+</div>
+</details>
+</div>
+<div class="box" id="adminInspectPanel" style="margin-top:10px;">
+<div class="t">?????? ?��???? ?��??? ???</div>
+<div class="grid3" style="margin-top:8px;">
+<div>
+<label>확인 대상</label>
+<select id="adminInspectSlot">
+<option value="0">User1</option>
+<option value="1">User2</option>
+<option value="2">User3</option>
+</select>
+</div>
+<div>
+<label>골드 조정량</label>
+<input id="adminInspectGoldAmount" min="1" type="number" value="10"/>
+</div>
+<div class="btnRow" style="align-items:flex-end;">
+<button id="adminInspectGoldAddBtn" type="button">골드 +</button>
+<button id="adminInspectGoldSubBtn" type="button">골드 -</button>
+</div>
+</div>
+<div class="pill" style="margin-top:8px;"><span>??? ???</span><b id="adminInspectGold">0</b></div>
+<div class="small" id="adminInspectInventory" style="margin-top:8px;"></div>
+<div class="box" style="margin-top:8px;">
+<div class="t">???? NPC ????</div>
+<div class="grid3" style="margin-top:8px;">
+<div>
+<label>NPC ???</label>
+<input id="adminNpcName" placeholder="?: ?? ??" type="text"/>
+</div>
+<div>
+<label>HP</label>
+<input id="adminNpcHp" min="1" type="number" value="10"/>
+</div>
+<div>
+<label>?o???</label>
+<input id="adminNpcPlasma" min="1" type="number" value="5"/>
+</div>
+<div>
+<label>???</label>
+<input id="adminNpcHunger" max="5" min="0" type="number" value="5"/>
+</div>
+<div>
+<label>???</label>
+<input id="adminNpcNote" placeholder="?: ?? ?? ??" type="text"/>
+</div>
+</div>
+<div class="box mediaUploadBox" style="margin-top:8px;">
+<label>NPC ?????</label>
+<div class="mediaUploadRow">
+<input accept="image/*" class="mediaFileInput" id="adminNpcImageFile" type="file"/>
+<div class="mediaUploadBtns">
+<button id="adminNpcImageApplyBtn" type="button">????</button>
+<button id="adminNpcImageClearBtn" type="button">????</button>
+</div>
+<img alt="NPC ??? ????" class="monsterTemplatePreview" id="adminNpcImagePreview"/>
+</div>
+</div>
+<div class="btnRow" style="margin-top:8px;">
+<button id="adminNpcAddBtn" type="button">?? NPC ??</button>
+</div>
+<div class="box" style="margin-top:8px;">
+<div class="t">NPC ???��?</div>
+<div class="grid2" style="margin-top:8px;">
+<div>
+<label>????? ???��?</label>
+<select id="adminNpcTemplateSelect"></select>
+</div>
+<div class="btnRow" style="align-items:flex-end;">
+<button id="adminNpcTemplateApplyBtn" type="button">? ????</button>
+<button id="adminNpcTemplateDeleteBtn" type="button">??? ??</button>
+</div>
+</div>
+<div class="btnRow" style="margin-top:8px;">
+<button id="adminNpcTemplateSaveBtn" type="button">?? ? ??? ??</button>
+</div>
+</div>
+<div class="small" id="adminInspectNpcList" style="margin-top:8px;"></div>
+</div>
+<div class="box" style="margin-top:8px;">
+<div class="t">??????? ?��?</div>
+<div class="statusGrid" id="adminStatusGrid" style="margin-top:8px;"></div>
+<div class="btnRow" style="margin-top:8px;">
+<button id="adminClearStatusBtn" type="button">???? ???</button>
+</div>
+</div>
+</div>
+</aside>
+<button class="sideToggle right" id="userDrawerToggle" type="button">유저 인벤 ◀</button>
+<aside class="sideDrawer right open" id="userDrawer">
+<div class="sideDrawerHeader">
+<div>
+<h2 style="margin:0;">?��???? ?��???</h2>
+<div class="sideHint">???? ?�ԥ�??? ??? ???/???/?????? ????????.</div>
+</div>
+<button id="userDrawerClose" type="button">닫기</button>
+</div>
+<div class="pill"><span>???</span><b id="userInventoryOwner">-</b></div>
+<div class="pill" style="margin-top:8px;"><span>???? ???</span><b id="userInventoryGold">0</b></div>
+<div class="pill" style="margin-top:8px;"><span>??? ????</span><b id="userEnemyLabel">수동 대상</b></div>
+<div class="box" style="margin-top:8px;">
+<div class="t">???? ???????</div>
+<div class="statusMiniWrap" id="userStatusBadges" style="margin-top:8px;"></div>
+</div>
+<div style="margin-top:8px;">
+<label style="font-size:12px;color:var(--muted);margin-bottom:6px;display:block;">메모장</label>
+<textarea id="userMemo" placeholder="기억할 내용, 단서, 계획 등을 기록" style="min-height:96px;"></textarea>
+</div>
+<div class="box" style="margin-top:10px;">
+<div class="t">?��??? / ????</div>
+<div class="grid2" style="margin-top:8px;">
+<div>
+<label>??? ????</label>
+<select data-user-allowed="1" id="inventoryFilterType">
+<option value="all">??u</option>
+<option value="item">??????</option>
+<option value="consumable">????</option>
+</select>
+</div>
+<div>
+<label>??? ???</label>
+<select data-user-allowed="1" id="inventoryGiveTarget"></select>
+</div>
+</div>
+<div class="small" id="inventoryList" style="margin-top:8px;"></div>
+</div>
+<div class="box" style="margin-top:10px;">
+<div class="t">???? NPC</div>
+<div class="small" id="userNpcList" style="margin-top:8px;"></div>
+</div>
+<div class="box userRealtimeDock" id="userRealtimeDock" style="margin-top:10px;">
+<div class="t">???? ????</div>
+<div class="grid2" style="margin-top:8px;">
+<div>
+<label>역할</label>
+<select id="roleMode">
+<option value="admin">관리자</option>
+<option selected="" value="user">유저</option>
+</select>
+</div>
+<div id="userSlotWrap" style="display:none;">
+<label>유저 슬롯</label>
+<select id="userSlot">
+<option value="0">User1 (PC1)</option>
+<option value="1">User2 (PC2)</option>
+<option value="2">User3 (PC3)</option>
+</select>
+</div>
+<div>
+<label>방 ID</label>
+<input id="roomId" type="text" value="trpg-room-1"/>
+</div>
+<div class="btnRow" style="align-items:flex-end;">
+<button id="connectBtn" type="button">연결</button>
+<button id="disconnectBtn" type="button">연결 해제</button>
+</div>
+</div>
+<div class="realtimeMeta userRealtimeMeta">
+<span class="status warn" id="netStatus">오프라인</span>
+<span class="small" id="presenceInfo">접속자: -</span>
+</div>
+</div>
+</aside>
+<div aria-hidden="true" class="diceRollOverlay" id="diceRollOverlay"></div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/assets/vendor/three.min.js?v=0.152.2-local"></script>
+<script>
+  if(!window.THREE){
+    document.write('<script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"><\\/script>');
+  }
+</script>
+<script>
+  if(!window.THREE){
+    document.write('<script src="https://unpkg.com/three@0.152.2/build/three.min.js"><\\/script>');
+  }
+</script>
+<script src="/injury_body_map.js"></script>
+<script src="/meranoder_plasma_helper_3pc_d20.js?v=20260219-59"></script>
+</body>
+</html>

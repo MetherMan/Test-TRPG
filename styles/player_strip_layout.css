@@ -1,0 +1,364 @@
+﻿/* Player strip layout v2: keep injury board + hunger + status readable. */
+
+/* GM view: show two cards per row by default. */
+body.admin-mode .playerStrip {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+/* Keep the strip layout stable even if GM opens the right user inventory drawer. */
+body.admin-mode.gm-user-drawer-open .playerStrip {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+.playerStrip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)) !important;
+  gap: 12px !important;
+  margin-bottom: 10px;
+}
+
+body.layout-compact .playerStrip {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+body.layout-ultra-compact .playerStrip {
+  grid-template-columns: 1fr !important;
+}
+
+@media (max-width: 760px) {
+  .playerStrip {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+.playerStrip .playerCard,
+.playerStrip .followerCard {
+  grid-template-columns: 54px minmax(0, 1fr) minmax(0, 1fr) !important;
+  grid-template-areas: "avatar meta right";
+  align-items: start !important;
+  padding: 10px 10px 9px !important;
+  container-type: inline-size;
+}
+
+.playerStrip .followerCard {
+  background: linear-gradient(180deg, rgba(248, 238, 214, 0.98), rgba(236, 217, 178, 0.96)) !important;
+  border: 1px solid rgba(126, 90, 51, 0.62) !important;
+  box-shadow: none !important;
+}
+
+.playerStrip .avatar,
+.playerStrip .followerAvatar {
+  width: 54px !important;
+  height: 54px !important;
+  border-radius: 50% !important;
+  object-fit: cover;
+  display: block;
+}
+
+.avatar {
+  grid-area: avatar;
+  align-self: start;
+  margin-top: 1px;
+}
+
+.playerMeta {
+  grid-area: meta;
+  display: grid !important;
+  grid-template-columns: minmax(46px, 1fr) auto;
+  grid-template-areas:
+    "name name"
+    "hp hp"
+    "hpbar hpbar"
+    "plasma hunger"
+    "status status"
+    "always always";
+  column-gap: 6px;
+  row-gap: 3px;
+}
+
+.playerMeta .name { grid-area: name; }
+.playerMeta .hp { grid-area: hp; }
+.playerHpBar { grid-area: hpbar; margin-top: 1px; }
+.playerPlasmaMini {
+  grid-area: plasma;
+  margin-top: 2px;
+  min-width: 46px;
+}
+.playerHungerMini { grid-area: hunger; justify-self: end; margin-top: 2px; }
+.playerStatusMini { grid-area: status; margin-top: 1px; }
+.playerMeta .alwaysModBox {
+  grid-area: always;
+  margin-top: 2px;
+}
+
+.playerStrip .followerMain .followerExtra {
+  grid-column: 1 / -1;
+  margin-top: 2px;
+}
+
+.playerStrip .playerRightCol {
+  grid-area: right;
+  width: auto !important;
+  min-width: 0 !important;
+  align-items: stretch !important;
+  gap: 6px !important;
+}
+
+.playerStrip .followerMain {
+  grid-area: meta;
+  min-width: 0;
+}
+
+.playerStrip .followerRightCol {
+  grid-area: right;
+  width: auto !important;
+  min-width: 0 !important;
+  align-items: stretch !important;
+  gap: 6px !important;
+}
+
+.playerStrip .injuryBoardWrap {
+  width: 100% !important;
+}
+
+.playerStrip .playerHungerMini {
+  min-width: 0 !important;
+  max-width: 100%;
+  overflow: visible;
+}
+
+.playerStrip .hungerPip {
+  font-size: 12px;
+}
+
+.playerStrip .followerHungerMini {
+  justify-self: end !important;
+}
+
+.playerStrip .distanceQuickSelect {
+  width: 96px;
+  min-width: 96px;
+}
+
+.playerStrip .followerExtra {
+  width: 100%;
+  min-width: 0 !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  gap: 4px !important;
+  display: flex;
+  flex-direction: column;
+}
+
+.playerStrip .followerExtra .followerOwner,
+.playerStrip .followerExtra .followerNote {
+  width: 100%;
+  margin: 0;
+}
+
+@container (max-width: 460px) {
+  .playerHungerMini {
+    padding: 2px 5px !important;
+    gap: 0 !important;
+  }
+
+  .playerHungerMini::before {
+    margin-right: 3px !important;
+    font-size: 9px !important;
+  }
+
+  .hungerPip {
+    font-size: 11px !important;
+  }
+}
+
+@container (max-width: 410px) {
+  .playerHungerMini {
+    padding: 1px 4px !important;
+  }
+
+  .playerHungerMini::before {
+    content: "" !important;
+    margin-right: 2px !important;
+  }
+
+  .hungerPip {
+    font-size: 10px !important;
+  }
+}
+
+.alwaysModBox {
+  min-width: 0 !important;
+  align-items: flex-start !important;
+  gap: 4px !important;
+}
+
+.alwaysModBox .small {
+  text-align: left !important;
+}
+
+.alwaysModCtrls {
+  justify-content: flex-start !important;
+}
+
+body.user-mode .alwaysModCtrls {
+  justify-content: flex-start !important;
+}
+
+body.user-mode .playerStrip .alwaysModBox {
+  align-items: flex-start !important;
+}
+
+body.user-mode .playerStrip .alwaysModRow {
+  justify-content: flex-start !important;
+}
+
+body.user-mode .playerStrip .alwaysModLabel {
+  text-align: left !important;
+}
+
+.playerStatusEditorInline {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 4px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.playerStatusAdminControls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.playerStatusInlineGrid {
+  max-height: 148px;
+  overflow: auto;
+  padding-right: 2px;
+  gap: 5px;
+}
+
+.playerStatusInlineGrid .statusToggleBtn {
+  padding: 5px 8px;
+  font-size: 11px;
+}
+
+.playerStatusEditorInline .statusToggleBtn {
+  width: auto;
+}
+
+.statusInlineToggleBtn,
+.statusInlineClearBtn {
+  font-size: 11px;
+}
+
+body.user-mode .playerStatusEditorInline {
+  display: none !important;
+}
+
+@media (max-width: 1180px) {
+  body.admin-mode .playerStrip {
+    grid-template-columns: 1fr !important;
+  }
+
+  .playerStrip .playerCard,
+  .playerStrip .followerCard {
+    grid-template-columns: 54px minmax(0, 1fr) !important;
+    grid-template-areas:
+      "avatar meta"
+      "right right";
+    row-gap: 8px;
+  }
+
+  .playerStrip .playerRightCol,
+  .playerStrip .followerRightCol {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+}
+
+body.layout-compact .playerStrip .playerCard,
+body.layout-compact .playerStrip .followerCard {
+  grid-template-columns: 54px minmax(0, 1fr) !important;
+  grid-template-areas:
+    "avatar meta"
+    "right right";
+  row-gap: 8px;
+}
+
+body.layout-compact .playerStrip .playerRightCol,
+body.layout-compact .playerStrip .followerRightCol {
+  width: 100% !important;
+  min-width: 0 !important;
+}
+
+/* User mode: enforce a single 4-card row and keep NPC cards on the same ratio as player cards. */
+body.user-mode .playerStrip {
+  grid-template-columns: repeat(4, minmax(300px, 1fr)) !important;
+  overflow-x: auto;
+  overflow-y: visible;
+  padding-bottom: 2px;
+}
+
+body.user-mode .playerStrip .playerCard,
+body.user-mode .playerStrip .followerCard {
+  grid-template-columns: 54px minmax(0, 1fr) minmax(0, 1fr) !important;
+  grid-template-areas: "avatar meta right" !important;
+  align-items: start !important;
+}
+
+body.user-mode .playerStrip .playerRightCol,
+body.user-mode .playerStrip .followerRightCol {
+  grid-area: right;
+  width: auto !important;
+  min-width: 0 !important;
+  align-items: stretch !important;
+}
+
+body.user-mode .playerStrip .followerInjuryBoard,
+body.user-mode .playerStrip .injuryBoardWrap {
+  width: 100% !important;
+}
+
+body.user-mode.layout-compact .playerStrip {
+  grid-template-columns: repeat(4, minmax(300px, 1fr)) !important;
+}
+
+body.user-mode.layout-compact .playerStrip .playerCard,
+body.user-mode.layout-compact .playerStrip .followerCard {
+  grid-template-columns: 54px minmax(0, 1fr) minmax(0, 1fr) !important;
+  grid-template-areas: "avatar meta right" !important;
+  row-gap: 0 !important;
+}
+
+body.user-mode.layout-compact .playerStrip .playerRightCol,
+body.user-mode.layout-compact .playerStrip .followerRightCol {
+  grid-column: auto !important;
+  width: auto !important;
+  min-width: 0 !important;
+}
+
+@media (max-width: 1180px) {
+  body.user-mode .playerStrip {
+    grid-template-columns: repeat(4, minmax(300px, 1fr)) !important;
+  }
+
+  body.user-mode .playerStrip .playerCard,
+  body.user-mode .playerStrip .followerCard {
+    grid-template-columns: 54px minmax(0, 1fr) minmax(0, 1fr) !important;
+    grid-template-areas: "avatar meta right" !important;
+    row-gap: 0 !important;
+  }
+
+  body.user-mode .playerStrip .playerRightCol,
+  body.user-mode .playerStrip .followerRightCol {
+    grid-column: auto !important;
+    width: auto !important;
+    min-width: 0 !important;
+  }
+}
+

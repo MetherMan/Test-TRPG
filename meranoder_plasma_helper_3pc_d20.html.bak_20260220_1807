@@ -1,0 +1,1066 @@
+﻿<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>硫붾씪?몃뜑 TRPG: GM 諛몃윴??+ 3???쒗듃 + ?ㅼ씠???ы띁</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&amp;family=Noto+Sans+KR:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="/meranoder_plasma_helper_3pc_d20.css?v=20260220-29" rel="stylesheet"/>
+<link href="/styles/monster_hp_status.css?v=20260219-5" rel="stylesheet"/>
+<link href="/styles/panel_hierarchy_and_texture_fix.css" rel="stylesheet"/>
+<link href="/styles/player_strip_layout.css?v=20260219-17" rel="stylesheet"/>
+<link href="/styles/monster_user_layout.css" rel="stylesheet"/>
+</head>
+<body>
+<header>
+<div class="headerTop">
+<div class="headerIntro">
+<div class="headerTitleRow">
+<h1>TRPG 硫붾윭留?/h1>
+<button class="adminAuthBtn" id="adminAuthBtn" type="button">愿由ъ옄??&lt;-</button>
+</div>
+<p>
+</p>
+</div>
+<div class="box headerJudgePanel" id="judgeBasicPanel"><div class="t">?먯젙 湲곗?</div><div class="grid2" style="margin-top:8px;">
+<div>
+<label>湲곕낯 DC</label>
+<input id="dc" min="1" type="number" value="12"/>
+</div>
+<div>
+<label>??DC 蹂댁젙</label>
+<input id="enemyEva" type="number" value="0"/>
+</div>
+</div><div class="dcToggleRow">
+<label class="checkboxLine" for="showDcToUsers">
+<input checked="" id="showDcToUsers" title="?뚮젅?댁뼱?먭쾶 紐⑺몴 DC瑜??쒖떆?좎? ?좏깮" type="checkbox"/>
+<span>?뚮젅?댁뼱?먭쾶 紐⑺몴 DC 怨듦컻</span>
+</label>
+</div></div>
+<div class="box headerWhisper">
+<div class="t">洹볦냽留?to GM</div>
+<div class="small" id="whisperLogList" style="margin-top:8px;max-height:180px;overflow:auto;"></div>
+<div id="whisperTargetWrap" style="margin-top:8px;">
+<label>????뚮젅?댁뼱</label>
+<select id="whisperTargetSlot">
+<option value="0">User1 (PC1)</option>
+<option value="1">User2 (PC2)</option>
+<option value="2">User3 (PC3)</option>
+</select>
+</div>
+<div style="margin-top:8px;">
+<label>硫붿떆吏 ?낅젰</label>
+<input id="whisperInput" maxlength="180" placeholder="?댁쁺?먯뿉寃?鍮꾨? 硫붿떆吏 ?꾩넚" type="text"/>
+</div>
+<div class="btnRow" style="margin-top:8px;align-items:flex-end;">
+<button id="whisperSendBtn" type="button">洹볦냽留??꾩넚</button>
+</div>
+</div>
+<div class="box headerChat">
+<div class="t">?몄뀡 濡쒓렇 / 梨꾪똿</div>
+<div class="small" id="chatLogList" style="margin-top:8px;max-height:180px;overflow:auto;"></div>
+<div class="grid2" style="margin-top:8px;">
+<div>
+<label>硫붿떆吏 ?낅젰</label>
+<input id="chatInput" maxlength="180" placeholder="硫붿떆吏 ?낅젰 ???꾩넚" type="text"/>
+</div>
+<div class="btnRow" style="align-items:flex-end;">
+<button id="chatSendBtn" type="button">?꾩넚</button>
+<button id="chatClearBtn" type="button">濡쒓렇 ?대━??/button>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main>
+<section class="card" id="gmCard"><div class="cardHeadLine">
+<h2 id="gmCardTitle">GM 諛몃윴??怨꾩닔</h2>
+<div aria-label="GM ?⑤꼸 ?꾪솚" class="panelTagTabs" id="gmPanelTabs" role="tablist">
+<button aria-selected="true" class="panelTagBtn active" id="gmPanelTabBalance" role="tab" type="button">諛몃윴??/button>
+<button aria-selected="false" class="panelTagBtn" id="gmPanelTabMonster" role="tab" type="button">紐ъ뒪??/button>
+</div>
+</div><p class="muted" id="gmCardDesc">?꾨옒 怨꾩닔??PC 3紐낆뿉寃?怨듯넻 ?곸슜?⑸땲??</p><div class="box monsterCategoryPanel" id="monsterOpsPanel" style="display:none;"><div class="t" id="monsterPanelTitle">紐ъ뒪???댁쁺</div><p class="small" id="monsterPanelDesc" style="margin:8px 0 0;">?꾩옱 ?꾪닾 紐ъ뒪?곕? ?깅줉/愿由ы빀?덈떎.</p><div id="monsterAdminControls"><div class="grid3" style="margin-top:8px;">
+<div>
+<label>異붽???紐ъ뒪???쒗뵆由?/label>
+<select id="activeMonsterTemplateSelect"></select>
+</div>
+<div class="btnRow" style="align-items:flex-end;">
+<button id="activeMonsterCreateFromTemplateBtn" type="button">紐ъ뒪??異붽?</button>
+</div>
+<div>
+<label>愿由?????꾪꽣</label>
+<select id="activeMonsterFocusSelect"></select>
+</div>
+</div><details open="" style="margin-top:8px;">
+<summary>紐ъ뒪???꾪닾 援ъ꽦</summary>
+<div class="grid3" style="margin-top:8px;">
+<div>
+<label>?꾪닾 援ъ꽦</label>
+<select id="encounterMode"><option value="single">?섎굹??紐ъ뒪??/option><option value="swarm">紐ъ뒪??臾대━</option><option value="per_player">?뚮젅?댁뼱蹂?紐ъ뒪??/option></select>
+</div>
+<div>
+<label>怨듯넻 ???/label>
+<select id="encounterSharedMonster"></select>
+</div>
+<div>
+<label>臾대━ ??臾대━ ?꾩슜)</label>
+<input id="encounterSwarmCount" min="1" type="number" value="3"/>
+</div>
+</div>
+<div class="grid3" style="margin-top:8px;">
+<div>
+<label>PC1 ???/label>
+<select id="encounterPcMonster0"></select>
+</div>
+<div>
+<label>PC2 ???/label>
+<select id="encounterPcMonster1"></select>
+</div>
+<div>
+<label>PC3 ???/label>
+<select id="encounterPcMonster2"></select>
+</div>
+</div>
+</details><div class="btnRow" style="margin-top:8px;">
+<button id="encounterApplyBtn" type="button">?꾪닾 ?곸슜</button>
+<button id="encounterHideBtn" type="button">?꾪닾 ?④?</button>
+</div><p class="small" id="encounterPublishStatus" style="margin:8px 0 0;"></p><p class="small" id="playerMonsterTargetStatus" style="margin:6px 0 0;"></p></div><div class="small" id="activeMonsterRuntimeList" style="margin-top:8px;"></div></div><div class="box" id="monsterPanel" style="margin-top:10px;display:none;"><details open="">
+<summary>[紐ъ뒪???쒗뵆由? ?앹꽦</summary>
+<div class="grid3" style="margin-top:8px;">
+<div>
+<label>?대쫫</label>
+<input id="monsterName" placeholder="?? ?れ? ?ㅼ슦嫄? type="text"/>
+</div>
+<div>
+<label>遺꾨쪟</label>
+<select id="monsterKind"><option value="single">?⑥씪 紐ъ뒪??/option><option value="swarm">紐ъ뒪??臾대━</option></select>
+</div>
+<div>
+<label>泥대젰(?좏깮)</label>
+<input id="monsterHp" min="1" type="number" value="20"/>
+</div>
+<div>
+<label>DC</label>
+<input id="monsterDc" min="1" type="number" value="12"/>
+</div>
+<div>
+<label for="monsterDcPublic">DC 공개</label>
+<select id="monsterDcPublic">
+<option selected="" value="0">비공개</option>
+<option value="1">공개</option>
+</select>
+</div>
+<div>
+<label>?뚰뵾</label>
+<input id="monsterEvaInput" type="number" value="0"/>
+</div>
+<div>
+<label>DC 蹂대꼫??/label>
+<input id="monsterDcBonus" max="99" min="-99" type="number" value="0"/>
+</div>
+<div>
+<label>?곸쨷蹂댁젙</label>
+<input id="monsterAttackHitBonus" max="99" min="-99" type="number" value="0"/>
+</div>
+<div>
+<label>異붽? ?곕?吏</label>
+<input id="monsterExtraDamage" max="999" min="-999" type="number" value="0"/>
+</div>
+<div>
+<label>硫붾え</label>
+<textarea id="monsterNote" maxlength="500" placeholder="?뱀닔 洹쒖튃 (以꾨컮轅??덉슜)" rows="3"></textarea>
+</div>
+</div>
+<div class="box mediaUploadBox" style="margin-top:8px;">
+<label>紐ъ뒪???대?吏</label>
+<div class="mediaUploadRow">
+<input accept="image/*" class="mediaFileInput" id="monsterImageFile" type="file"/>
+<div class="mediaUploadBtns">
+<button id="applyMonsterImageBtn" type="button">?곸슜</button>
+<button id="clearMonsterImageBtn" type="button">?쒓굅</button>
+</div>
+<img alt="紐ъ뒪???대?吏 誘몃━蹂닿린" class="monsterTemplatePreview" id="monsterImagePreview"/>
+</div>
+</div>
+<div class="btnRow" style="margin-top:8px;">
+<button id="monsterCreateBtn" type="button">紐ъ뒪???쒗뵆由????/button>
+<button id="monsterCancelEditBtn" style="display:none;" type="button">?섏젙 痍⑥냼</button>
+</div>
+</details><details open="" style="margin-top:8px;">
+<summary>紐ъ뒪???쒗뵆由?紐⑸줉</summary>
+<div class="small" id="monsterTemplateList" style="margin-top:8px;"></div>
+</details></div><div class="realtimePanel" id="realtimePanel"><h2 style="margin:0 0 8px;">?ㅼ떆媛??댁쁺</h2><p class="small" style="margin:0 0 8px;">鍮좊Ⅸ 議곗옉? ?섎떒 [?뚮젅?댁뼱 ?몃깽?좊━]?먯꽌 媛?ν빀?덈떎.</p><div class="adminTools" id="adminTools"><div class="grid2">
+<div>
+<label>鍮좊Ⅸ PC ?쇳빐 ?섏튂</label>
+<input id="damageAmount" min="0" type="number" value="1"/>
+</div>
+<div>
+<label>鍮좊Ⅸ PC ?뚮났 ?섏튂</label>
+<input id="healAmount" min="0" type="number" value="1"/>
+</div>
+</div><div class="btnRow" style="margin-top:8px;">
+<button id="applyDamageBtn" type="button">?쇳빐 ?곸슜</button>
+<button id="applyHealBtn" type="button">?뚮났 ?곸슜</button>
+<button id="pushLocalToServerBtn" type="button">濡쒖뺄 媛??쒕쾭???곸슜</button>
+</div><div class="muted" style="margin-top:10px;">愿由ъ옄 ?ㅽ꺈 / ?ъ씤???ㅼ젙</div><div class="grid3" style="margin-top:8px;">
+<div>
+<label>????뚮젅?댁뼱</label>
+<select id="adminTargetSlot">
+<option value="0">User1 (PC1)</option>
+<option value="1">User2 (PC2)</option>
+<option value="2">User3 (PC3)</option>
+</select>
+</div>
+<div>
+<label>吏湲??ъ씤??/label>
+<input id="grantPointsAmount" min="0" type="number" value="1"/>
+</div>
+<div class="btnRow" style="align-items:flex-end;">
+<button id="grantPointsBtn" type="button">?ъ씤??吏湲?/button>
+</div>
+</div><div class="grid3" style="margin-top:8px;">
+<div>
+<label>?섏젙 ??ぉ</label>
+<select id="adminStatName"><option value="hp">泥대젰</option><option value="str">洹쇰젰</option><option value="dex">誘쇱꺽</option><option value="int">吏??/option><option value="plasmaPower">?뚮씪利덈쭏 ?꾨젰</option><option value="cha">留ㅻ젰</option><option value="pool">?뚮씪利덈쭏 珥앸웾</option><option value="plasmaNow">?꾩옱 ?뚮씪利덈쭏</option><option value="alwaysHit">?곸떆 ?곸쨷 蹂댁젙</option><option value="alwaysPow">?곸떆 ?꾨젰 蹂댁젙</option></select>
+</div>
+<div>
+<label>?섏젙 媛?/label>
+<input id="adminStatValue" min="0" type="number" value="20"/>
+</div>
+<div class="btnRow" style="align-items:flex-end;">
+<button id="adminSetStatBtn" type="button">?ㅽ꺈 諛섏쁺</button>
+</div>
+</div><div class="grid3" style="margin-top:8px;">
+<div>
+<label>?뚮씪利덈쭏 ?뚮났 (????좎?)</label>
+<div class="btnRow" style="align-items:flex-end;">
+<button id="adminPlasmaPlusOneBtn" type="button">+1 ?뚮났</button>
+<button id="adminPlasmaFullBtn" type="button">??뚮났</button>
+</div>
+</div>
+</div><div class="grid3" style="margin-top:8px;">
+<div>
+<label>怨⑤뱶 吏湲??뚯닔??/label>
+<input id="adminGoldAmount" min="1" type="number" value="10"/>
+</div>
+<div class="btnRow" style="align-items:flex-end;">
+<button id="grantGoldBtn" type="button">怨⑤뱶 吏湲?/button>
+<button id="takeGoldBtn" type="button">怨⑤뱶 ?뚯닔</button>
+</div>
+</div><div class="sideHint">吏湲??뚯닔 ?댁뿭? ?몄뀡 濡쒓렇???④퍡 湲곕줉?⑸땲??</div><div class="muted" style="margin-top:10px;">?좎?蹂??꾨줈???대?吏</div><div class="grid3" style="margin-top:8px;">
+<div class="box">
+<label>User1 </label>
+<input accept="image/*" id="avatarFile0" type="file"/>
+<div class="btnRow" style="margin-top:8px;">
+<button id="applyAvatar0" type="button">?곸슜</button>
+<button id="clearAvatar0" type="button">?쒓굅</button>
+</div>
+</div>
+<div class="box">
+<label>User2 </label>
+<input accept="image/*" id="avatarFile1" type="file"/>
+<div class="btnRow" style="margin-top:8px;">
+<button id="applyAvatar1" type="button">?곸슜</button>
+<button id="clearAvatar1" type="button">?쒓굅</button>
+</div>
+</div>
+<div class="box">
+<label>User3 </label>
+<input accept="image/*" id="avatarFile2" type="file"/>
+<div class="btnRow" style="margin-top:8px;">
+<button id="applyAvatar2" type="button">?곸슜</button>
+<button id="clearAvatar2" type="button">?쒓굅</button>
+</div>
+</div>
+</div></div><div class="userHint">?댁쁺?먭? 諛붽씔 媛믪? ?ㅼ떆媛??숆린?붾맗?덈떎. ?뚮젅?댁뼱???ㅽ궗 ?ъ씤?몃쭔 ?ъ슜?????덉뒿?덈떎.</div></div><div id="gmBalanceControls"><div class="box">
+<div class="t">GM ?뱀꽦 蹂대꼫??梨꾨꼸</div>
+<p class="small" style="margin:8px 0 0;">??梨꾨꼸? 怨듦꺽 ?좏삎蹂??뱀꽦 蹂대꼫?ㅻ? 吏곸젒 ?ㅼ젙?⑸땲?? 蹂寃?利됱떆 ?ㅼ떆媛?諛섏쁺?⑸땲??</p>
+<div class="grid3" style="margin-top:8px;">
+<div><label>洹쇰젰 ?곸쨷: N??/label><input id="gm_str_step" min="1" type="number" value="3"/></div>
+<div><label>洹쇰젰 ?곸쨷: 利앷?媛?/label><input id="gm_str_gain" min="0" type="number" value="1"/></div>
+<div><label>誘쇱꺽 DC: N??/label><input id="gm_dex_dc_step" min="1" type="number" value="4"/></div>
+<div><label>誘쇱꺽 DC: 利앷?媛?/label><input id="gm_dex_dc_gain" min="0" type="number" value="1"/></div>
+<div><label>誘쇱꺽 ?곸쨷: N??/label><input id="gm_dex_hit_step" min="1" type="number" value="10"/></div>
+<div><label>誘쇱꺽 ?곸쨷: 利앷?媛?/label><input id="gm_dex_hit_gain" min="0" type="number" value="1"/></div>
+<div><label>吏???곸쨷: N??/label><input id="gm_int_hit_step" min="1" type="number" value="4"/></div>
+<div><label>吏???곸쨷: 利앷?媛?/label><input id="gm_int_hit_gain" min="0" type="number" value="1"/></div>
+<div><label>吏???④낵: N??/label><input id="gm_int_eff_step" min="1" type="number" value="4"/></div>
+<div><label>吏???④낵: ?뺣쪧 +%</label><input id="gm_int_eff_chance" min="0" type="number" value="10"/></div>
+<div><label>?뚮씪利덈쭏 ?꾨젰: N??/label><input id="gm_plasma_pow_step" min="1" type="number" value="3"/></div>
+<div><label>?뚮씪利덈쭏 ?꾨젰: 利앷?媛?/label><input id="gm_plasma_pow_gain" min="0" type="number" value="2"/></div>
+<div><label>洹쇨굅由??꾨젰(洹쇰젰): N??/label><input id="gm_close_str_pow_step" min="1" type="number" value="3"/></div>
+<div><label>洹쇨굅由??꾨젰(洹쇰젰): 利앷?媛?/label><input id="gm_close_str_pow_gain" min="0" type="number" value="1"/></div>
+<div><label>洹쇨굅由??꾨젰(誘쇱꺽): N??/label><input id="gm_close_dex_pow_step" min="1" type="number" value="5"/></div>
+<div><label>洹쇨굅由??꾨젰(誘쇱꺽): 利앷?媛?/label><input id="gm_close_dex_pow_gain" min="0" type="number" value="1"/></div>
+<div><label>?먭굅由??꾨젰(?뚮씪利덈쭏): N??/label><input id="gm_far_plasma_pow_step" min="1" type="number" value="3"/></div>
+<div><label>?먭굅由??꾨젰(?뚮씪利덈쭏): 利앷?媛?/label><input id="gm_far_plasma_pow_gain" min="0" type="number" value="1"/></div>
+<div><label>?먭굅由??꾨젰(吏??: N??/label><input id="gm_far_int_pow_step" min="1" type="number" value="5"/></div>
+<div><label>?먭굅由??꾨젰(吏??: 利앷?媛?/label><input id="gm_far_int_pow_gain" min="0" type="number" value="1"/></div>
+</div>
+<div class="grid3" style="margin-top:8px;">
+<div><label>理쒕?移?湲곗?媛?/label><input id="gm_pool_base" min="1" type="number" value="5"/></div>
+<div><label>理쒕?移?利앷? ?쒖옉媛?/label><input id="gm_pool_start" min="1" type="number" value="4"/></div>
+<div><label>理쒕?移?利앷?: N??/label><input id="gm_pool_step" min="1" type="number" value="4"/></div>
+<div><label>理쒕?移?利앷?: 利앷?媛?/label><input id="gm_pool_gain" min="1" type="number" value="1"/></div>
+</div>
+<div style="margin-top:8px;">
+<label>留ㅻ젰 媛?대뱶 臾멸뎄</label>
+<input id="gm_cha_guide" maxlength="160" type="text" value="NPC ?대깽???묒긽 寃곌낵??GM ?щ웾?쇰줈 ?먮떒"/>
+</div>
+<p class="small" style="margin:8px 0 0;">?뚮씪利덈쭏 理쒕?移?怨꾩궛: pool 湲곗?媛믪쓣 湲곗??쇰줈, 珥덇낵 援ш컙? [?쒖옉媛?+ floor((pool-?쒖옉媛?/N) * 利앷?媛??쇰줈 怨꾩궛?⑸땲??<b>pool  </b><b> + floor((pool-)/N) * </b></p>
+</div><div class="btnRow" style="margin-top:10px;">
+<button id="saveBtn" type="button">濡쒖뺄 ???/button>
+<button id="loadBtn" type="button">濡쒖뺄 遺덈윭?ㅺ린</button>
+<button id="resetAllBtn" type="button">?꾩껜 珥덇린??/button>
+</div><details class="themeCustomizer" style="margin-top:10px;">
+<summary>?붾㈃ ?뚮쭏 而ㅼ뒪?곕쭏?댁쭠</summary>
+<div class="grid3" style="margin-top:8px;">
+<div><label>諛곌꼍 ?곷떒</label><input id="themeBgTop" type="color" value="#2a1b12"/></div>
+<div><label>諛곌꼍 以묐떒</label><input id="themeBgMid" type="color" value="#22170f"/></div>
+<div><label>諛곌꼍 ?섎떒</label><input id="themeBgBottom" type="color" value="#1a110b"/></div>
+<div><label>移대뱶 諛곌꼍(?⑤꼸)</label><input id="themeSurface" type="color" value="#f4e7cd"/></div>
+<div><label>湲곕낯 ?띿뒪??/label><input id="themeText" type="color" value="#3a241b"/></div>
+<div><label>蹂댁“ ?띿뒪??/label><input id="themeMuted" type="color" value="#6d4f43"/></div>
+<div><label>媛뺤“??踰꾪듉/留곹겕)</label><input id="themeAccent" type="color" value="#9b6835"/></div>
+<div>
+<label>諛앷린</label>
+<div class="btnRow" style="align-items:center;">
+<input id="themeBrightness" max="120" min="60" step="1" style="flex:1 1 auto;" type="range" value="100"/>
+<b class="themeBrightnessValue" id="themeBrightnessValue">100%</b>
+</div>
+</div>
+<div>
+<label>諛곌꼍 ?대?吏 紐⑤뱶</label>
+<select disabled="" id="themeImageMode">
+<option selected="" value="texture">?띿뒪泥??⑦꽩(怨좎젙)</option>
+</select>
+</div>
+<div>
+<label>????덈퉬(px)</label>
+<input id="themeImageTileW" max="4096" min="80" step="1" type="number" value="1000"/>
+</div>
+<div>
+<label>????믪씠(px)</label>
+<input id="themeImageTileH" max="4096" min="80" step="1" type="number" value="1000"/>
+</div>
+<div>
+<label>?띿뒪泥?諛앷린</label>
+<div class="btnRow" style="align-items:center;">
+<input id="themeImageBrightness" max="180" min="40" step="1" style="flex:1 1 auto;" type="range" value="100"/>
+<b class="themeBrightnessValue" id="themeImageBrightnessValue">100%</b>
+</div>
+</div>
+<div>
+<label>?띿뒪泥?梨꾨룄</label>
+<div class="btnRow" style="align-items:center;">
+<input id="themeImageSaturation" max="200" min="0" step="1" style="flex:1 1 auto;" type="range" value="100"/>
+<b class="themeBrightnessValue" id="themeImageSaturationValue">100%</b>
+</div>
+</div>
+<div>
+<label>諛곌꼍 ?대?吏 ?낅줈??/label>
+<input accept="image/*" id="themeImageFile" type="file"/>
+</div>
+<div class="btnRow" style="align-items:flex-end;">
+<button id="themeImageApplyBtn" type="button">?대?吏 ?곸슜</button>
+<button id="themeImageDefaultBtn" type="button">湲곕낯 ?대?吏 蹂듭썝</button>
+</div>
+</div>
+<div class="btnRow" style="margin-top:8px;">
+<button id="themeResetBtn" type="button">?뚮쭏 湲곕낯媛?蹂듭썝</button>
+</div>
+<div class="box" style="margin-top:10px;">
+<div class="t">GM 二쇱궗???명삎/吏덇컧</div>
+<div class="grid3" style="margin-top:8px;">
+<div><label>二쇱궗??蹂몄껜 ??/label><input id="diceBodyColor" type="color" value="#f3e4be"/></div>
+<div><label>紐⑥꽌由???/label><input id="diceEdgeColor" type="color" value="#5b3a1f"/></div>
+<div><label>?덇툑 ??/label><input id="diceTextColor" type="color" value="#2b180b"/></div>
+<div><label>?덇툑 ?멸낸????/label><input id="diceTextOutlineColor" type="color" value="#fcf1d5"/></div>
+<div>
+<label>?쒕㈃ 吏덇컧</label>
+<select id="diceTextureStyle">
+<option selected="" value="clean">湲곕낯</option>
+<option value="grain">嫄곗튇 吏덇컧</option>
+<option value="worn">留덈え</option>
+<option value="metal">湲덉냽愿?媛뺥븿)</option>
+</select>
+</div>
+<div>
+<label>嫄곗튌湲?/label>
+<div class="btnRow" style="align-items:center;">
+<input id="diceRoughness" max="100" min="0" step="1" style="flex:1 1 auto;" type="range" value="46"/>
+<b class="themeBrightnessValue" id="diceRoughnessValue">46%</b>
+</div>
+</div>
+<div>
+<label>湲덉냽媛?/label>
+<div class="btnRow" style="align-items:center;">
+<input id="diceMetalness" max="100" min="0" step="1" style="flex:1 1 auto;" type="range" value="3"/>
+<b class="themeBrightnessValue" id="diceMetalnessValue">3%</b>
+</div>
+</div>
+<div>
+<label>援대┝ ?쒓컙</label>
+<div class="btnRow" style="align-items:center;">
+<input id="diceRollDuration" max="3500" min="700" step="50" style="flex:1 1 auto;" type="range" value="1500"/>
+<b class="themeBrightnessValue" id="diceRollDurationValue">1500ms</b>
+</div>
+</div>
+<div>
+<label>援대┝ 媛뺣룄</label>
+<div class="btnRow" style="align-items:center;">
+<input id="diceRollPower" max="250" min="70" step="1" style="flex:1 1 auto;" type="range" value="150"/>
+<b class="themeBrightnessValue" id="diceRollPowerValue">150%</b>
+</div>
+</div>
+</div>
+<div class="btnRow" style="margin-top:8px;">
+<button id="diceAppearanceResetBtn" type="button">二쇱궗??湲곕낯媛?蹂듭썝</button>
+</div>
+</div>
+</details><details>
+<summary>JSON ?대낫?닿린 / 媛?몄삤湲?(諛몃윴??+ 3PC + ?곹깭)</summary>
+<p class="muted">媛숈? ?명똿??JSON?쇰줈 怨듭쑀?????덉뒿?덈떎.</p>
+<div class="split">
+<div>
+<label>?대낫?닿린 JSON</label>
+<textarea id="exportBox" readonly=""></textarea>
+<div class="btnRow" style="margin-top:8px;">
+<button id="copyJsonBtn" type="button">蹂듭궗</button>
+<button id="refreshExportBtn" type="button">?덈줈怨좎묠</button>
+</div>
+</div>
+<div>
+<label>媛?몄삤湲?JSON</label>
+<textarea id="importBox" placeholder="媛?몄삱 JSON???낅젰?섏꽭??></textarea>
+<div class="btnRow" style="margin-top:8px;">
+<button id="importBtn" type="button">媛?몄삤湲??곸슜</button>
+</div>
+</div>
+</div>
+</details></div></section>
+<section class="card" id="pcBattleCard">
+<div style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start;">
+<div>
+<h2 style="margin:0;">PC 3???쒗듃 + ?꾪닾</h2>
+<p class="muted" style="margin:6px 0 0;">?꾩옱 PC瑜??좏깮???ㅽ꺈??議곗젙?섍퀬 ?먯젙/?꾪닾瑜?吏꾪뻾?⑸땲??</p>
+</div>
+<div class="btnRow" id="pcQuickBar" style="align-items:center;">
+<div style="display:flex;align-items:center;gap:6px;">
+<label class="small" for="pcQuickDamageTarget" style="margin:0;white-space:nowrap;">???/label>
+<select id="pcQuickDamageTarget" style="width:200px;padding:8px 10px;">
+<option value="pc_active">?꾩옱 PC</option>
+</select>
+</div>
+<div style="display:flex;align-items:center;gap:6px;">
+<label class="small" for="pcQuickDamageAmount" style="margin:0;white-space:nowrap;">鍮좊Ⅸ PC ?뚮났 ?섏튂</label>
+<input id="pcQuickDamageAmount" min="0" style="width:82px;padding:8px 10px;" type="number" value="1"/>
+</div>
+<button id="pcQuickDamageBtn" type="button">?쇳빐 ?곸슜</button>
+<button id="pcQuickHealBtn" type="button">?뚮났 ?곸슜</button>
+<button aria-label="?꾩옱 PC 珥덇린?? class="pcResetIconBtn" id="pcResetBtn" title="?꾩옱 PC 珥덇린?? type="button">珥덇린??/button>
+</div>
+</div>
+<div class="tabs" id="pcTabs">
+<div class="tab active" data-pc="0">PC1</div>
+<div class="tab" data-pc="1">PC2</div>
+<div class="tab" data-pc="2">PC3</div>
+</div>
+<div aria-live="polite" class="userCombatOverview" id="userCombatOverview">
+<div class="userCombatCol enemyCol">
+<div class="userCombatTitle">?곷? 紐ъ뒪??/div>
+<div class="userCombatList" id="userCombatEnemyList"></div>
+</div>
+<div class="userCombatCol allyCol">
+<div class="userCombatTitle">?뚮젅?댁뼱 ?꾪솴</div>
+<div class="userCombatList" id="userCombatAllyList"></div>
+</div>
+</div>
+<div class="playerStrip" id="playerStrip">
+<div class="playerCard active" data-slot="0" id="playerCard0">
+<img alt="User1 ?대?吏" class="avatar" id="avatar0"/>
+<div class="playerMeta">
+<div class="name" id="playerName0">User1</div>
+<div class="hp" id="playerHp0">HP 0</div>
+<div class="playerHpBar"><span class="playerHpBarFill" id="playerHpBar0"></span></div>
+<div aria-label="?뚮씪利덈쭏 ?곹깭" class="playerPlasmaMini" id="playerPlasma0"></div>
+<div aria-label="?덇린 ?곹깭" class="playerHungerMini" id="playerHunger0"></div>
+<div aria-label="?곹깭?댁긽" class="playerStatusMini" id="playerStatus0"></div>
+<div class="alwaysModBox">
+<div class="small">?곸떆蹂댁젙</div>
+<div class="alwaysModRow">
+<span class="alwaysModLabel">?곸쨷</span>
+<div class="alwaysModCtrls">
+<button aria-label="User1 ?곸쨷 蹂댁젙 媛먯냼" id="alwaysDown0" type="button">-</button>
+<b id="alwaysHit0">+0</b>
+<button aria-label="User1 ?곸쨷 蹂댁젙 利앷?" id="alwaysUp0" type="button">+</button>
+</div>
+</div>
+<div class="alwaysModRow">
+<span class="alwaysModLabel">?꾨젰</span>
+<div class="alwaysModCtrls">
+<button aria-label="User1 ?꾨젰 蹂댁젙 媛먯냼" id="alwaysPowDown0" type="button">-</button>
+<b id="alwaysPow0">+0</b>
+<button aria-label="User1 ?꾨젰 蹂댁젙 利앷?" id="alwaysPowUp0" type="button">+</button>
+</div>
+</div>
+<div class="alwaysModRow alwaysDistanceRow">
+<span class="alwaysModLabel">??嫄곕━</span>
+<select aria-label="User1 嫄곕━ ?좏깮" class="distanceQuickSelect" id="distanceQuick0">
+<option value="very_close">留ㅼ슦 媛源뚯?</option>
+<option selected="" value="close">媛源뚯?</option>
+<option value="far">硫??/option>
+<option value="very_far">留ㅼ슦 硫??/option>
+</select>
+</div>
+<div class="alwaysModRow alwaysAttackRangeRow">
+<span class="alwaysModLabel">怨듦꺽 ???/span>
+<select aria-label="User1 怨듦꺽 ????좏깮" class="distanceQuickSelect" id="attackRangeQuick0">
+<option selected="" value="close">洹쇨굅由?/option>
+<option value="far">?먭굅由?/option>
+</select>
+</div>
+</div>
+</div>
+<div class="playerRightCol">
+<div aria-label="User1 遺???곹깭" class="injuryBoardWrap" id="injuryBoard0"></div>
+</div>
+</div>
+<div class="playerCard" data-slot="1" id="playerCard1">
+<img alt="User2 ?대?吏" class="avatar" id="avatar1"/>
+<div class="playerMeta">
+<div class="name" id="playerName1">User2</div>
+<div class="hp" id="playerHp1">HP 0</div>
+<div class="playerHpBar"><span class="playerHpBarFill" id="playerHpBar1"></span></div>
+<div aria-label="?뚮씪利덈쭏 ?곹깭" class="playerPlasmaMini" id="playerPlasma1"></div>
+<div aria-label="?덇린 ?곹깭" class="playerHungerMini" id="playerHunger1"></div>
+<div aria-label="?곹깭?댁긽" class="playerStatusMini" id="playerStatus1"></div>
+<div class="alwaysModBox">
+<div class="small">?곸떆蹂댁젙</div>
+<div class="alwaysModRow">
+<span class="alwaysModLabel">?곸쨷</span>
+<div class="alwaysModCtrls">
+<button aria-label="User2 ?곸쨷 蹂댁젙 媛먯냼" id="alwaysDown1" type="button">-</button>
+<b id="alwaysHit1">+0</b>
+<button aria-label="User2 ?곸쨷 蹂댁젙 利앷?" id="alwaysUp1" type="button">+</button>
+</div>
+</div>
+<div class="alwaysModRow">
+<span class="alwaysModLabel">?꾨젰</span>
+<div class="alwaysModCtrls">
+<button aria-label="User2 ?꾨젰 蹂댁젙 媛먯냼" id="alwaysPowDown1" type="button">-</button>
+<b id="alwaysPow1">+0</b>
+<button aria-label="User2 ?꾨젰 蹂댁젙 利앷?" id="alwaysPowUp1" type="button">+</button>
+</div>
+</div>
+<div class="alwaysModRow alwaysDistanceRow">
+<span class="alwaysModLabel">??嫄곕━</span>
+<select aria-label="User2 嫄곕━ ?좏깮" class="distanceQuickSelect" id="distanceQuick1">
+<option value="very_close">留ㅼ슦 媛源뚯?</option>
+<option selected="" value="close">媛源뚯?</option>
+<option value="far">硫??/option>
+<option value="very_far">留ㅼ슦 硫??/option>
+</select>
+</div>
+<div class="alwaysModRow alwaysAttackRangeRow">
+<span class="alwaysModLabel">怨듦꺽 ???/span>
+<select aria-label="User2 怨듦꺽 ????좏깮" class="distanceQuickSelect" id="attackRangeQuick1">
+<option selected="" value="close">洹쇨굅由?/option>
+<option value="far">?먭굅由?/option>
+</select>
+</div>
+</div>
+</div>
+<div class="playerRightCol">
+<div aria-label="User2 遺???곹깭" class="injuryBoardWrap" id="injuryBoard1"></div>
+</div>
+</div>
+<div class="playerCard" data-slot="2" id="playerCard2">
+<img alt="User3 ?대?吏" class="avatar" id="avatar2"/>
+<div class="playerMeta">
+<div class="name" id="playerName2">User3</div>
+<div class="hp" id="playerHp2">HP 0</div>
+<div class="playerHpBar"><span class="playerHpBarFill" id="playerHpBar2"></span></div>
+<div aria-label="?뚮씪利덈쭏 ?곹깭" class="playerPlasmaMini" id="playerPlasma2"></div>
+<div aria-label="?덇린 ?곹깭" class="playerHungerMini" id="playerHunger2"></div>
+<div aria-label="?곹깭?댁긽" class="playerStatusMini" id="playerStatus2"></div>
+<div class="alwaysModBox">
+<div class="small">?곸떆蹂댁젙</div>
+<div class="alwaysModRow">
+<span class="alwaysModLabel">?곸쨷</span>
+<div class="alwaysModCtrls">
+<button aria-label="User3 ?곸쨷 蹂댁젙 媛먯냼" id="alwaysDown2" type="button">-</button>
+<b id="alwaysHit2">+0</b>
+<button aria-label="User3 ?곸쨷 蹂댁젙 利앷?" id="alwaysUp2" type="button">+</button>
+</div>
+</div>
+<div class="alwaysModRow">
+<span class="alwaysModLabel">?꾨젰</span>
+<div class="alwaysModCtrls">
+<button aria-label="User3 ?꾨젰 蹂댁젙 媛먯냼" id="alwaysPowDown2" type="button">-</button>
+<b id="alwaysPow2">+0</b>
+<button aria-label="User3 ?꾨젰 蹂댁젙 利앷?" id="alwaysPowUp2" type="button">+</button>
+</div>
+</div>
+<div class="alwaysModRow alwaysDistanceRow">
+<span class="alwaysModLabel">??嫄곕━</span>
+<select aria-label="User3 嫄곕━ ?좏깮" class="distanceQuickSelect" id="distanceQuick2">
+<option value="very_close">留ㅼ슦 媛源뚯?</option>
+<option selected="" value="close">媛源뚯?</option>
+<option value="far">硫??/option>
+<option value="very_far">留ㅼ슦 硫??/option>
+</select>
+</div>
+<div class="alwaysModRow alwaysAttackRangeRow">
+<span class="alwaysModLabel">怨듦꺽 ???/span>
+<select aria-label="User3 怨듦꺽 ????좏깮" class="distanceQuickSelect" id="attackRangeQuick2">
+<option selected="" value="close">洹쇨굅由?/option>
+<option value="far">?먭굅由?/option>
+</select>
+</div>
+</div>
+</div>
+<div class="playerRightCol">
+<div aria-label="User3 遺???곹깭" class="injuryBoardWrap" id="injuryBoard2"></div>
+</div>
+</div>
+</div>
+<div class="dicePanel">
+<div class="diceStage" id="diceStage">
+<div aria-hidden="true" class="dice3dViewport" id="dice3dViewport"></div>
+<div class="diceTop">
+<div class="diceHint">?먯젙 踰꾪듉?쇰줈 二쇱궗?꾨? 援대젮 寃곌낵瑜??뺤씤?섏꽭??</div>
+<div class="diceResult">
+<span>?⑷퀎:</span>
+<span class="badge" id="judgeBadge">-</span>
+<span class="badge" id="sumBadge">d20+</span>
+</div>
+</div>
+<div class="diceWrap" id="diceWrap">
+<div class="dice" id="diceFace">20</div>
+<div class="diceSub" id="diceSub">以鍮?/div>
+</div>
+<div aria-live="polite" class="diceTotalFx neutral" id="diceTotalFx">+</div>
+</div>
+<div class="box">
+<div class="t">二쇱궗???먯젙</div>
+<div class="small" style="margin-top:8px;">?곸쨷?먯젙? 1d20 援대┝???ъ슜?⑸땲??<b>1d20 </b></div>
+<div class="diceControlStack" style="margin-top:8px;">
+<button id="rollHitBtn" type="button">?곸쨷?먯젙</button>
+<div class="diceDamageRow">
+<button id="rollDamageBtn" type="button">?쇳빐?먯젙</button>
+<div class="diceDamageSelect">
+<label>?쇳빐 二쇱궗??/label>
+<select id="damageDiceSides">
+<option value="4">1d4</option>
+<option selected="" value="6">1d6</option>
+<option value="8">1d8</option>
+<option value="10">1d10 (d4+d6)</option>
+<option value="12">1d12</option>
+<option value="20">1d20</option>
+</select>
+</div>
+</div>
+</div>
+<div class="pill" style="margin-top:8px;"><span>?꾩옱 ?곸쨷?먯젙 蹂댁젙</span><b id="currentHitMod">+0</b></div>
+<div class="pill" style="margin-top:8px;"><span>?뚮젅?댁뼱 紐⑺몴 DC</span><b id="playerTargetDc"></b></div>
+<div id="playerTargetMonsterWrap" style="margin-top:8px;">
+<label for="playerTargetMonsterSelect">?????紐ъ뒪??/label>
+<select data-user-allowed="1" id="playerTargetMonsterSelect"></select>
+<div class="small" id="playerTargetMonsterHelp" style="margin-top:4px;"></div>
+</div>
+</div>
+</div>
+<div class="grid2" style="margin-top:10px;">
+<div class="box" id="pcStatsBox">
+<div class="t">湲곕낯 ?ㅽ꺈</div>
+<div style="margin-top:8px;">
+<label>?대쫫</label>
+<input id="pc_name" maxlength="24" type="text" value="User1"/>
+</div>
+<div class="grid2" style="margin-top:8px;">
+<div><label>泥대젰</label><input id="sta_hp" max="999" min="0" type="number" value="20"/></div>
+<div><label>洹쇰젰</label><input id="sta_str" max="999" min="0" type="number" value="5"/></div>
+<div><label>誘쇱꺽</label><input id="sta_dex" max="999" min="0" type="number" value="5"/></div>
+<div><label>吏??/label><input id="sta_int" max="999" min="0" type="number" value="5"/></div>
+<div><label>?뚮씪利덈쭏 ?꾨젰</label><input id="sta_plasma_power" max="999" min="0" type="number" value="5"/></div>
+<div><label>留ㅻ젰</label><input id="sta_cha" max="999" min="0" type="number" value="5"/></div>
+<div><label>?뚮씪利덈쭏 珥앸웾</label><input id="sta_pool" max="9999" min="1" type="number" value="5"/></div>
+</div>
+<div class="t" style="margin-top:10px;">?ㅽ궗 ?ъ씤??/div>
+<div class="pill" style="margin-top:8px;"><span>?⑥? ?ㅽ궗 ?ъ씤??/span><b id="skillPointLeft">0</b></div>
+<div class="grid2" style="margin-top:8px;">
+<div>
+<label>?쒖떆 ?대쫫</label>
+<input id="nameInput" maxlength="24" type="text" value="User1"/>
+</div>
+<div class="btnRow" style="align-items:flex-end;">
+<button id="applyNameBtn" type="button">?대쫫 蹂寃?/button>
+</div>
+</div>
+<div class="grid2" style="margin-top:8px;">
+<div>
+<label>?ъ씤??遺꾨같</label>
+<select id="pointStat">
+<option value="hp">泥대젰</option>
+<option value="str">洹쇰젰</option>
+<option value="dex">誘쇱꺽</option>
+<option value="int">吏??/option>
+<option value="plasmaPower">?뚮씪利덈쭏 ?꾨젰</option>
+<option value="cha">留ㅻ젰</option>
+<option value="pool">?뚮씪利덈쭏 珥앸웾</option>
+</select>
+</div>
+<div class="btnRow" style="align-items:flex-end;">
+<button id="spendPointBtn" type="button">?ъ씤??+1</button>
+</div>
+</div>
+<p class="small" style="margin:10px 0 0;">?ъ씤?몃뒗 ?⑥? ?섏튂 ?댁뿉?쒕쭔 遺꾨같?????덉뒿?덈떎.</p>
+<p class="small" style="margin:6px 0 0;">李멸퀬: NPC ?꾪닾/?대깽???먯젙? GM ?щ웾?쇰줈 泥섎━?⑸땲??</p>
+</div>
+<div class="box" id="actionSetupBox">
+<div class="t">?됰룞 ?ㅼ젙</div>
+<div class="small actionGuideText" style="margin-top:6px;">?됰룞 ?④퀎 2媛吏瑜??좏깮?섏꽭?? 怨듦꺽 / ?꾩씠??/div>
+<div class="actionPresetWrap" style="margin-top:8px;">
+<label style="margin-bottom:6px;">鍮좊Ⅸ ?꾨━??/label>
+<div class="actionPresetRow">
+<button class="actionPresetBtn" data-user-allowed="1" id="actionModeAttack" type="button">怨듦꺽</button>
+<button class="actionPresetBtn" data-user-allowed="1" id="actionModeItem" type="button">?꾩씠??/button>
+</div>
+</div>
+<div class="pill actionSummaryPill" style="margin-top:8px;">
+<span>?꾩옱 ?ㅼ젙</span>
+<b id="actionSetupSummary">怨듦꺽 쨌 ?뚮씪利덈쭏 쨌 媛뺣룄 以?쨌 嫄곕━ 洹쇱젒 쨌 Lv 1</b>
+</div>
+<details id="actionAdvancedDetails" style="margin-top:10px;">
+<summary>?뚮씪利덈쭏 ?ㅽ궗 - ?뺣━</summary>
+<div class="box" style="margin-top:8px;">
+<div class="box" id="plasmaPanel" style="margin-top:2px;">
+<div class="t">?뚮씪利덈쭏 愿由?/div>
+<div class="plasmaOrbs" id="plasmaOrbs" style="margin-top:8px;"></div>
+<div class="plasmaMeta">
+<div class="pill"><span>?꾩옱 / 理쒕?</span><b id="plasmaEnergyText">0 / 0</b></div>
+<div class="pill"><span>?숈떆 ?ъ슜 ?쒕룄</span><b id="plasmaCapText">1</b></div>
+</div>
+<div class="small" id="plasmaExtraMeta" style="margin-top:8px;">?꾩옱 ?뚮씪利덈쭏 蹂댁쑀?됱엯?덈떎. ?쒗뵆由??곸슜 ???ъ슜?됱씠 ?먮룞 諛섏쁺?⑸땲??</div>
+</div>
+<div class="small" id="plasmaSkillList" style="margin-top:10px;"></div>
+</div>
+</details>
+<details id="plasmaSkillCreateDetails" style="margin-top:8px;">
+<summary>?뚮씪利덈쭏 ?ㅽ궗 ???/summary>
+<div class="box" style="margin-top:8px;">
+<div class="grid2" style="margin-top:2px;">
+<div>
+<label>湲곗닠 ?대쫫</label>
+<input data-user-allowed="1" id="plasmaSkillName" maxlength="40" placeholder="?? 踰덇컻 李? type="text"/>
+</div>
+<div>
+<label>湲곕낯 ?뚮씪利덈쭏 ?뚮え</label>
+<input data-user-allowed="1" id="plasmaSkillBaseCost" max="99" min="1" type="number" value="1"/>
+</div>
+<div>
+<label>湲곗닠 嫄곕━</label>
+<select data-user-allowed="1" id="plasmaSkillRange">
+<option selected="" value="close">洹쇨굅由?吏묒쨷</option>
+<option value="far">?먭굅由?吏묒쨷</option>
+</select>
+</div>
+<div>
+<label>湲곗닠 ?좏삎</label>
+<select data-user-allowed="1" id="plasmaSkillKind">
+<option selected="" value="strike">?寃⑺삎</option>
+<option value="aoe">踰붿쐞??/option>
+<option value="buff">媛뺥솕??/option>
+</select>
+</div>
+<div id="plasmaBuffHitWrap">
+<label>?곸쨷 蹂댁젙</label>
+<input data-user-allowed="1" id="plasmaSkillBuffHit" max="99" min="0" type="number" value="0"/>
+</div>
+<div id="plasmaBuffPowWrap">
+<label>?꾨젰 蹂댁젙</label>
+<input data-user-allowed="1" id="plasmaSkillBuffPow" max="99" min="0" type="number" value="0"/>
+</div>
+</div>
+<div style="margin-top:8px;">
+<label>湲곗닠 ?ㅻ챸</label>
+<textarea data-user-allowed="1" id="plasmaSkillDesc" maxlength="180" placeholder="?ㅽ궗 ?④낵瑜?媛꾨떒???낅젰"></textarea>
+</div>
+<div class="btnRow" style="margin-top:8px; align-items:flex-end;">
+<button data-user-allowed="1" id="plasmaSkillSaveBtn" type="button">?쒗뵆由????/button>
+</div>
+<div class="small muted" id="plasmaSkillSaveStatus" style="margin-top:6px;">?쒗뵆由?????湲?/div>
+</div>
+</details>
+<div aria-hidden="true" class="actionManualControls" id="actionManualControls">
+<select id="attackType"><option value="physical">臾쇰━</option><option selected="" value="plasma">?뚮씪利덈쭏</option><option value="item">?꾩씠??/option></select>
+<select id="distanceState">
+<option value="very_close">留ㅼ슦 媛源뚯?</option>
+<option selected="" value="close">媛源뚯?</option>
+<option value="far">硫??/option>
+<option value="very_far">留ㅼ슦 硫??/option>
+</select>
+<select id="attackRangeState">
+<option selected="" value="close">洹쇨굅由?/option>
+<option value="far">?먭굅由?/option>
+</select>
+<select id="shape"><option selected="" value="single">?⑥씪</option><option value="spread">?뺤궛</option><option value="place">?ㅼ튂</option><option value="stabilize">?덉젙??/option></select>
+<select id="intensity"><option value="high">??/option><option selected="" value="mid">以?/option><option value="low">??/option></select>
+<input id="multi" max="10" min="1" type="number" value="1"/>
+</div>
+</div>
+<div class="box calcResultBox">
+<div class="t">?꾩옱 PC 怨꾩궛 寃곌낵</div>
+<div class="kpi" style="margin-top:8px;">
+<div class="box"><div class="t">?곸쨷 蹂대꼫??/div><div class="v" id="hitBonus">+0</div></div>
+<div class="box"><div class="t">?꾨젰 蹂대꼫??/div><div class="v" id="powBonus">+0</div></div>
+<div class="box"><div class="t">鍮꾧퀬</div><div class="v" id="note" style="font-size:12px;">-</div></div>
+</div>
+<div class="breakdown">
+<div class="muted" style="margin-bottom:8px;">怨꾩궛 濡쒓렇</div>
+<div id="breakdown"></div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<button class="sideToggle left" id="adminDrawerToggle" type="button">? ?댁쁺???몃깽</button>
+<aside class="sideDrawer left" id="adminDrawer"><div class="sideDrawerHeader">
+<div>
+<h2 style="margin:0;">?댁쁺???몃깽?좊━</h2>
+<span class="sideTag">[?꾩씠???쒖옉]</span>
+</div>
+<button id="adminDrawerClose" type="button">?リ린</button>
+</div><div class="box">
+<details open="">
+<summary>[?꾩씠???쒗뵆由? ?앹꽦</summary>
+<div class="grid3" style="margin-top:8px;">
+<div>
+<label>?쒗뵆由??대쫫</label>
+<input id="adminItemName" placeholder="?? ?뚮났 臾쇱빟" type="text"/>
+</div>
+<div>
+<label>遺꾨쪟</label>
+<select id="adminItemType"><option value="consumable">?뚮え??/option><option value="item">?꾩씠??/option></select>
+</div>
+<div>
+<label>湲곕낯 ?섎웾</label>
+<input id="adminItemBaseQty" min="1" type="number" value="1"/>
+</div>
+</div>
+<div style="margin-top:8px;">
+<label>?ㅻ챸</label>
+<textarea id="adminItemDesc" placeholder="?④낵/?ㅻ챸 ?낅젰 (以꾨컮轅? Shift+Enter)"></textarea>
+</div>
+<div class="btnRow" style="margin-top:8px;">
+<button id="adminCreateItemBtn" type="button">?쒗뵆由????/button>
+<button id="adminCancelItemEditBtn" style="display:none;" type="button">?섏젙 痍⑥냼</button>
+</div>
+</details>
+<details style="margin-top:8px;">
+<summary>?쒗뵆由?吏湲?/summary>
+<div class="grid3" style="margin-top:8px;">
+<div>
+<label>吏湲됲븷 ?쒗뵆由?/label>
+<select id="adminGrantTemplate"></select>
+</div>
+<div>
+<label>????뚮젅?댁뼱</label>
+<select id="adminGrantSlot">
+<option value="0">User1</option>
+<option value="1">User2</option>
+<option value="2">User3</option>
+</select>
+</div>
+<div>
+<label>吏湲??섎웾</label>
+<input id="adminGrantQty" min="1" type="number" value="1"/>
+</div>
+</div>
+<div class="btnRow" style="margin-top:8px;">
+<button id="adminGrantItemBtn" type="button">?좏깮 ?쒗뵆由?吏湲?/button>
+</div>
+</details>
+<details open="" style="margin-top:8px;">
+<summary>?쒗뵆由?紐⑸줉</summary>
+<div class="box" style="margin-top:8px;">
+<div class="small" id="adminTemplateList" style="margin-top:2px;"></div>
+</div>
+</details>
+</div><div class="box" id="adminInspectPanel" style="margin-top:10px;"><div class="t">愿由ъ옄 ?좎? ?몃깽?좊━ ?뺤씤</div><div class="grid3" style="margin-top:8px;">
+<div>
+<label>?뺤씤 ???/label>
+<select id="adminInspectSlot">
+<option value="0">User1</option>
+<option value="1">User2</option>
+<option value="2">User3</option>
+</select>
+</div>
+<div>
+<label>怨⑤뱶 議곗젙??/label>
+<input id="adminInspectGoldAmount" min="1" type="number" value="10"/>
+</div>
+<div class="btnRow" style="align-items:flex-end;">
+<button id="adminInspectGoldAddBtn" type="button">怨⑤뱶 +</button>
+<button id="adminInspectGoldSubBtn" type="button">怨⑤뱶 -</button>
+</div>
+</div><div class="pill" style="margin-top:8px;"><span>?꾩옱 怨⑤뱶</span><b id="adminInspectGold">0</b></div><div class="small" id="adminInspectInventory" style="margin-top:8px;"></div><div class="box" style="margin-top:8px;">
+<div class="t">?숉뻾 NPC 愿由?/div>
+<div class="grid3" style="margin-top:8px;">
+<div>
+<label>NPC ?대쫫</label>
+<input id="adminNpcName" placeholder="?? 濡쒖뿏 寃쎈퉬" type="text"/>
+</div>
+<div>
+<label>HP</label>
+<input id="adminNpcHp" min="1" type="number" value="10"/>
+</div>
+<div>
+<label>?뚮씪利덈쭏</label>
+<input id="adminNpcPlasma" min="1" type="number" value="5"/>
+</div>
+<div>
+<label>?덇린</label>
+<input id="adminNpcHunger" max="5" min="0" type="number" value="5"/>
+</div>
+<div>
+<label>?곸쨷 蹂댁젙</label>
+<input id="adminNpcHitBonus" max="99" min="-99" type="number" value="0"/>
+</div>
+<div>
+<label>?꾨젰 蹂댁젙</label>
+<input id="adminNpcPowBonus" max="99" min="-99" type="number" value="0"/>
+</div>
+<div>
+<label>硫붾え</label>
+<input id="adminNpcNote" placeholder="?? 諛⑹뼱 ?쒖꽭 ?좎?" type="text"/>
+</div>
+</div>
+<div class="box mediaUploadBox" style="margin-top:8px;">
+<label>NPC ?대?吏</label>
+<div class="mediaUploadRow">
+<input accept="image/*" class="mediaFileInput" id="adminNpcImageFile" type="file"/>
+<div class="mediaUploadBtns">
+<button id="adminNpcImageApplyBtn" type="button">?곸슜</button>
+<button id="adminNpcImageClearBtn" type="button">?쒓굅</button>
+</div>
+<img alt="NPC ?대?吏 誘몃━蹂닿린" class="monsterTemplatePreview" id="adminNpcImagePreview"/>
+</div>
+</div>
+<div class="btnRow" style="margin-top:8px;">
+<button id="adminNpcAddBtn" type="button">?숉뻾 NPC 異붽?</button>
+</div>
+<div class="box" style="margin-top:8px;">
+<div class="t">NPC ?쒗뵆由?/div>
+<div class="grid2" style="margin-top:8px;">
+<div>
+<label>遺덈윭???쒗뵆由?/label>
+<select id="adminNpcTemplateSelect"></select>
+</div>
+<div class="btnRow" style="align-items:flex-end;">
+<button id="adminNpcTemplateApplyBtn" type="button">媛?遺덈윭?ㅺ린</button>
+<button id="adminNpcTemplateDeleteBtn" type="button">?쒗뵆由???젣</button>
+</div>
+</div>
+<div class="btnRow" style="margin-top:8px;">
+<button id="adminNpcTemplateSaveBtn" type="button">?꾩옱 媛??쒗뵆由????/button>
+</div>
+</div>
+<div class="small" id="adminInspectNpcList" style="margin-top:8px;"></div>
+</div><div class="box" style="margin-top:8px;">
+<div class="t">?곹깭?댁긽 ?ㅼ젙</div>
+<div class="statusGrid" id="adminStatusGrid" style="margin-top:8px;"></div>
+<div class="btnRow" style="margin-top:8px;">
+<button id="adminClearStatusBtn" type="button">?곹깭?댁긽 珥덇린??/button>
+</div>
+</div></div></aside>
+<button class="sideToggle right" id="userDrawerToggle" type="button">?뚮젅?댁뼱 ?몃깽 ??/button>
+<aside class="sideDrawer right open" id="userDrawer"><div class="sideDrawerHeader">
+<div>
+<h2 style="margin:0;">?좎? ?몃깽?좊━</h2>
+<div class="sideHint">?곗륫 ?⑤꼸?먯꽌 諛붾줈 ?ъ슜/?쒓굅 媛?ν빀?덈떎.</div>
+</div>
+<button id="userDrawerClose" type="button">?リ린</button>
+</div><div class="userDrawerTools"><button data-user-allowed="1" id="userMapOpenBtn" type="button">지도 보기</button></div><div class="pill"><span>???/span><b id="userInventoryOwner">-</b></div><div class="pill" style="margin-top:8px;"><span>蹂댁쑀 怨⑤뱶</span><b id="userInventoryGold">0</b></div><div class="pill" style="margin-top:8px;"><span>?곷? 紐ъ뒪??/span><b id="userEnemyLabel">?섎룞 ???/b></div><div class="box" style="margin-top:8px;">
+<div class="t">?곹깭 諛곗?</div>
+<div class="statusMiniWrap" id="userStatusBadges" style="margin-top:8px;"></div>
+</div><div style="margin-top:8px;">
+<label style="font-size:12px;color:var(--muted);margin-bottom:6px;display:block;">硫붾え??/label>
+<textarea id="userMemo" placeholder="湲곗뼲???댁슜, ?⑥꽌, 怨꾪쉷 ?깆쓣 湲곕줉" style="min-height:96px;"></textarea>
+</div><div class="box" style="margin-top:10px;">
+<div class="t">?몃깽?좊━ / ?뚮え??/div>
+<div class="grid2" style="margin-top:8px;">
+<div>
+<label>?쒖떆 ?꾪꽣</label>
+<select data-user-allowed="1" id="inventoryFilterType">
+<option value="all">?꾩껜</option>
+<option value="item">?꾩씠??/option>
+<option value="consumable">?뚮え??/option>
+</select>
+</div>
+<div>
+<label>????좏깮</label>
+<select data-user-allowed="1" id="inventoryGiveTarget"></select>
+</div>
+</div>
+<div class="small" id="inventoryList" style="margin-top:8px;"></div>
+</div><div class="box" style="margin-top:10px;">
+<div class="t">?숉뻾 NPC</div>
+<div class="small" id="userNpcList" style="margin-top:8px;"></div>
+</div><div class="box userRealtimeDock" id="userRealtimeDock" style="margin-top:10px;">
+<div class="t">?ㅼ떆媛??몄뀡</div>
+<div class="grid2" style="margin-top:8px;">
+<div>
+<label>??븷</label>
+<select id="roleMode"><option value="admin">?댁쁺??/option><option selected="" value="user">?뚮젅?댁뼱</option></select>
+</div>
+<div id="userSlotWrap" style="display:none;">
+<label>?뚮젅?댁뼱 ?щ’</label>
+<select id="userSlot">
+<option value="0">User1 (PC1)</option>
+<option value="1">User2 (PC2)</option>
+<option value="2">User3 (PC3)</option>
+</select>
+</div>
+<div>
+<label>諛?ID</label>
+<input id="roomId" type="text" value="trpg-room-1"/>
+</div>
+<div class="btnRow" style="align-items:flex-end;">
+<button id="connectBtn" type="button">?곌껐</button>
+<button id="disconnectBtn" type="button">醫낅즺</button>
+</div>
+</div>
+<div class="realtimeMeta userRealtimeMeta">
+<span class="status warn" id="netStatus">?ㅽ봽?쇱씤</span>
+<span class="small" id="presenceInfo">?묒냽?? -</span>
+</div>
+</div></aside>
+<div aria-hidden="true" class="mapViewer" id="mapViewer">
+<div class="mapViewerBackdrop" id="mapViewerBackdrop"></div>
+<div aria-label="TRPG 지도" aria-modal="true" class="mapViewerDialog" role="dialog">
+<div class="mapViewerHead"><div class="mapViewerTitle">TRPG 지도</div><button data-user-allowed="1" id="mapViewerCloseBtn" type="button">닫기</button></div>
+<img alt="TRPG 지도" class="mapViewerImage" id="mapViewerImage" loading="lazy" src="/TRPG%20MAP.jpg"/>
+</div>
+</div><div aria-hidden="true" class="diceRollOverlay" id="diceRollOverlay"></div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/assets/vendor/three.min.js?v=0.152.2-local"></script>
+<script>
+  if(!window.THREE){
+    document.write('<script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"><\\/script>');
+  }
+</script>
+<script>
+  if(!window.THREE){
+    document.write('<script src="https://unpkg.com/three@0.152.2/build/three.min.js"><\\/script>');
+  }
+</script>
+<script src="/injury_body_map.js"></script>
+<script src="/meranoder_plasma_helper_3pc_d20.js?v=20260220-67"></script>
+</body>
+</html>
+

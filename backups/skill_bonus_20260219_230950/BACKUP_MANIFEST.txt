@@ -1,0 +1,7 @@
+﻿Backup created: 20260219_230950
+Files:
+- meranoder_plasma_helper_3pc_d20.js
+- server.js
+- meranoder_plasma_helper_3pc_d20.html
+- meranoder_plasma_helper_3pc_d20.css
+- realtime_state.json
